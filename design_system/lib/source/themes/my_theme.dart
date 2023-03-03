@@ -76,7 +76,7 @@ class Mytheme {
       ),
       searchStyle: const TextStyle(
         fontSize: 20,
-        color: HexColors.primaryGrey,
+        color: HexColors.grey,
       ),
       profileContainerInfoNumberStyle: const TextStyle(
         fontSize: 20,

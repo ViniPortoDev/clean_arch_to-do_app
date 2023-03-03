@@ -341,7 +341,26 @@ class WidgetbookHotReload extends StatelessWidget {
             ),
             WidgetbookFolder(
               name: 'Text Fields',
-              widgets: [],
+              widgets: [
+                WidgetbookComponent(
+                  name: 'Search',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Default',
+                      child: const SearchWidget(),
+                    ),
+                  ],
+                ),
+                WidgetbookComponent(
+                  name: 'Send Message',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Default',
+                      child: const SendMessageWidget(),
+                    ),
+                  ],
+                ),
+              ],
             ),
             WidgetbookFolder(
               name: 'User Components',
