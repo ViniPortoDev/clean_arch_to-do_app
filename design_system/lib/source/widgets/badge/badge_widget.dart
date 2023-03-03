@@ -5,10 +5,14 @@ import '../../themes/extensions/text_style_theme.dart';
 class BadgeWidget extends StatelessWidget {
   final bool isSelected;
   final String numberMessage;
+  final double? width;
+  final double? height;
   const BadgeWidget({
     Key? key,
     required this.numberMessage,
     required this.isSelected,
+    this.width,
+    this.height,
   }) : super(key: key);
 
   @override
@@ -18,8 +22,8 @@ class BadgeWidget extends StatelessWidget {
 
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        width: constraints.maxWidth * 0.064,
-        height: constraints.maxWidth * 0.064,
+        width: width ?? constraints.maxWidth * 0.064,
+        height: height ?? constraints.maxWidth * 0.064,
         decoration: BoxDecoration(
           color: isSelected
               ? colorsTheme.badgeSelectedColor

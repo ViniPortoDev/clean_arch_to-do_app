@@ -14,25 +14,26 @@ class ProfileButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
 
-    return Container(
-      height: size.width * 0.16,
-      width: size.width * 0.16,
-      decoration: BoxDecoration(
-        color: avaliable
-            ? colorsTheme.profileIconsAvaliableColor
-            : colorsTheme.profileIconsUnvaliableColor,
-        borderRadius: BorderRadius.circular(size.width * 0.053),
-      ),
-      child: Icon(
-        icon,
-        size: size.width * 0.096,
-        color: avaliable
-            ? colorsTheme.iconsWhiteColor
-            : colorsTheme.profileSkilltextColor,
-      ),
-    );
+    return LayoutBuilder(builder: (context, constraints) {
+      return Container(
+        height: constraints.maxWidth * 0.16,
+        width: constraints.maxWidth * 0.16,
+        decoration: BoxDecoration(
+          color: avaliable
+              ? colorsTheme.profileIconsAvaliableColor
+              : colorsTheme.profileIconsUnvaliableColor,
+          borderRadius: BorderRadius.circular(constraints.maxWidth * 0.053),
+        ),
+        child: Icon(
+          icon,
+          size: constraints.maxWidth * 0.096,
+          color: avaliable
+              ? colorsTheme.iconsWhiteColor
+              : colorsTheme.profileSkilltextColor,
+        ),
+      );
+    });
   }
 }

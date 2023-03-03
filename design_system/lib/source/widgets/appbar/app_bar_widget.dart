@@ -5,15 +5,15 @@ import '../../themes/extensions/text_style_theme.dart';
 import '../user/name_widget.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSize {
-  final String title;
-  final String networkImage;
+  final String name;
   final double height;
+  final String networkImageAvatar;
 
   const AppBarWidget({
     Key? key,
-    required this.title,
-    required this.networkImage,
+    required this.name,
     required this.height,
+    required this.networkImageAvatar,
   }) : super(key: key);
 
   @override
@@ -29,11 +29,11 @@ class AppBarWidget extends StatelessWidget implements PreferredSize {
           padding: EdgeInsets.only(left: constraints.maxWidth * 0.064),
           child: CircleAvatar(
             radius: constraints.maxWidth * 0.037,
-            backgroundImage: NetworkImage(networkImage),
+            backgroundImage: NetworkImage(networkImageAvatar),
           ),
         ),
         title: NameWidget(
-          name: title,
+          name: name,
           isOnline: false,
           textSize: textStyleTheme.nameAppbarStyle.fontSize,
         ),

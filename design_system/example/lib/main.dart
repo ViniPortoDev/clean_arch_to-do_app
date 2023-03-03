@@ -26,7 +26,7 @@ class WidgetbookHotReload extends StatelessWidget {
           ),
         ),
       ],
-      appInfo: AppInfo(name: 'Desafio 3 Components'),
+      appInfo: AppInfo(name: 'Desafio 3 Design System'),
       themes: [
         WidgetbookTheme(
           name: 'dark',
@@ -36,48 +36,171 @@ class WidgetbookHotReload extends StatelessWidget {
       categories: [
         WidgetbookCategory(
           name: 'design system',
-          widgets: [
-            WidgetbookComponent(
-              name: 'Search Widget',
-              useCases: [
-                WidgetbookUseCase.center(
-                  name: 'Default',
-                  child: SearchWidget(
-                      // height: size.width * 0.906,
-                      // width: size.width * 0.16,
+          folders: [
+            WidgetbookFolder(
+              name: 'Appbar',
+              widgets: [
+                WidgetbookComponent(
+                  name: 'Appbar',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Default',
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          return AppBarWidget(
+                            name: 'Nego Ney',
+                            height: constraints.maxWidth * 0.266,
+                            networkImageAvatar:
+                                'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
+                          );
+                        },
                       ),
-                ),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'Selected Button Widget',
-              useCases: [
-                WidgetbookUseCase.center(
-                  name: 'Default ',
-                  child: const SelectedButtonWidget(
-                    child: Icon(
-                      Icons.done,
-                      color: Colors.black,
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),
-            WidgetbookComponent(
-              name: 'Badge Widget',
-              useCases: [
-                WidgetbookUseCase.center(
-                  name: 'Selected',
-                  child:
-                      const BadgeWidget(isSelected: true, numberMessage: '35'),
-                ),
-                WidgetbookUseCase.center(
-                  name: 'Unselected',
-                  child:
-                      const BadgeWidget(isSelected: false, numberMessage: '2'),
+            WidgetbookFolder(
+              name: 'Badge',
+              widgets: [
+                WidgetbookComponent(
+                  name: 'Badge',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Selected',
+                      child: const BadgeWidget(
+                        numberMessage: '31',
+                        isSelected: true,
+                      ),
+                    ),
+                    WidgetbookUseCase.center(
+                      name: 'Unselected',
+                      child: const BadgeWidget(
+                        numberMessage: '5',
+                        isSelected: false,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
+            WidgetbookFolder(
+              name: 'Buttons',
+              widgets: [
+                WidgetbookComponent(
+                  name: 'Chat filter Button',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Selected',
+                      child: const ChatFilterButtonWidget(
+                        icon: Icons.chat,
+                        filterTypeTextChat: 'All',
+                        numberMessage: '35',
+                        isSelected: true,
+                      ),
+                    ),
+                    WidgetbookUseCase.center(
+                      name: 'Unselected',
+                      child: const ChatFilterButtonWidget(
+                        icon: Icons.chat,
+                        filterTypeTextChat: 'Live Chat',
+                        numberMessage: '2',
+                        isSelected: false,
+                      ),
+                    ),
+                  ],
+                ),
+                WidgetbookComponent(
+                  name: 'Profile Button',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Avaliable',
+                      child: const ProfileButtonWidget(
+                        icon: Icons.volume_down,
+                        avaliable: true,
+                      ),
+                    ),
+                    WidgetbookUseCase.center(
+                      name: 'Unvaliable',
+                      child: const ProfileButtonWidget(
+                        icon: Icons.volume_off,
+                        avaliable: false,
+                      ),
+                    ),
+                  ],
+                ),
+                WidgetbookComponent(
+                  name: 'Selected Button',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Default',
+                      child: const SelectedButtonWidget(
+                        child: Icon(
+                          Icons.done,
+                          color: HexColors.black,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            WidgetbookFolder(
+              name: 'Chat Components',
+              widgets: [
+                // WidgetbookComponent(
+                //   name: 'Expansion Chat',
+                //   useCases: [
+                //     WidgetbookUseCase.center(
+                //         name: 'Default',
+                //         child: const ExpansionWidget(
+                //           title: title,
+                //           height: height,
+                //           isOpen: isOpen,
+                //           onTap: onTap,
+                //           child: child,
+                //         ),),
+                //   ],
+                // ),
+                WidgetbookComponent(
+                  name: 'List Tile',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Default',
+                      child: ListTileWidget(
+                        muted: false,
+                        imageNetwork:
+                            'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
+                        numberMessages: '35',
+                        name: 'Nego Ney',
+                        timeSent: '13:59',
+                        onTap: () {},
+                        phoneNumber: '(86) 9 9489-4600',
+                        message: 'Nego Ney',
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            WidgetbookFolder(
+              name: 'Navigatorbar',
+              widgets: [],
+            ),
+            WidgetbookFolder(
+              name: 'Task Components',
+              widgets: [],
+            ),
+            WidgetbookFolder(
+              name: 'Text Fields',
+              widgets: [],
+            ),
+            WidgetbookFolder(
+              name: 'User Components',
+              widgets: [],
+            ),
+          ],
+          widgets: [
             WidgetbookComponent(
               name: 'List Tile',
               useCases: [
@@ -211,22 +334,17 @@ class WidgetbookHotReload extends StatelessWidget {
                 ),
               ],
             ),
-            WidgetbookComponent(
-              name: 'AppBar Widget',
-              useCases: [
-                WidgetbookUseCase.center(
-                  name: 'Default',
-                  child: LayoutBuilder(builder: (context, constraints) {
-                    return AppBarWidget(
-                      title: 'Nego Ney',
-                      height: constraints.maxWidth * 0.026,
-                      networkImage:
-                          "https://i.scdn.co/image/ab67616d00001e024e5ccdc94de3657678dd767e",
-                    );
-                  }),
-                )
-              ],
-            ),
+            // WidgetbookComponent(
+            //   name: 'AppBar Widget',
+            //   useCases: [
+            //     WidgetbookUseCase.center(
+            //       name: 'Default',
+            //       child: LayoutBuilder(builder: (context, constraints) {
+            //         return
+            //       }),
+            //     )
+            //   ],
+            // ),
             WidgetbookComponent(
               name: 'Message Widget',
               useCases: [

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class HexColors {
   static const darkGrey = Color(0xff20232B);
-  static const primaryGrey = Color(0xff7D8186);
+  static const primaryGrey = Color.fromARGB(255, 175, 177, 179);
   static const secundaryDarkGrey = Color(0xff16171B);
   static const rosyPurple = Color(0xffB785F5);
-  static const lightPink = Color(0xffCDCBFF);
+  static const lightPink = Color.fromARGB(255, 240, 240, 253);
   static const purple = Color(0xff5852D6);
   static const amber = Color(0xffF3FC8A);
   static const selectedPurple = Color(0xff524CC5);

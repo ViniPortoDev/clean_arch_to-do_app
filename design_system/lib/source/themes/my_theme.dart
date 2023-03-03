@@ -18,7 +18,7 @@ class Mytheme {
       badgeSelectedColor: HexColors.selectedPurple,
       badgeUnselectedColor: HexColors.unselectedDarkGrey,
       iconsWhiteColor: HexColors.white,
-      iconsColor: HexColors.grey,
+      iconsColor: HexColors.primaryGrey,
       profileSkilltextColor: HexColors.pink,
       onlineColor: HexColors.greenLemon,
       terciaryGrey: HexColors.terciaryGrey,
@@ -37,11 +37,11 @@ class Mytheme {
     // estilos em geral do app
     TextStyleTheme(
       badgeWidgetStyle: const TextStyle(
-        fontSize: 16,
+        fontSize: 12,
         color: HexColors.lightPink,
       ),
       chatFilterButtonSelectedStyle: const TextStyle(
-        fontSize: 20,
+        fontSize: 18,
         color: HexColors.black,
       ),
       chatFilterButtonStyle: const TextStyle(
