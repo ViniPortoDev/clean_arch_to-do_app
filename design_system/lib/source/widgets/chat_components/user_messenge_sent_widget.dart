@@ -19,21 +19,28 @@ class UserMesseger extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
-    final size = MediaQuery.of(context).size;
-    return Row(
-      mainAxisAlignment: mainAxisAlignment,
-      children: [
-        CircleAvatar(
-          backgroundImage: NetworkImage(imageNetwork),
-        ),
-        SizedBox(width: size.width * 0.021),
-        NameWidget(name: name, isOnline: false),
-        SizedBox(width: size.width * 0.037),
-        Text(
-          timeSent,
-          style: TextStyle(color: colorsTheme.primaryColor),
-        ),
-      ],
-    );
+
+    return LayoutBuilder(builder: (context, constraints) {
+      return Row(
+        mainAxisAlignment: mainAxisAlignment,
+        children: [
+          CircleAvatar(
+            backgroundImage: NetworkImage(imageNetwork),
+          ),
+          SizedBox(width: constraints.maxWidth * 0.021),
+          NameWidget(
+            name: name,
+            isOnline: false,
+            statusWidth: constraints.maxWidth * 0.026,
+            statusHeight: constraints.maxWidth * 0.026,
+          ),
+          SizedBox(width: constraints.maxWidth * 0.037),
+          Text(
+            timeSent,
+            style: TextStyle(color: colorsTheme.primaryColor),
+          ),
+        ],
+      );
+    });
   }
 }

@@ -212,6 +212,40 @@ class WidgetbookHotReload extends StatelessWidget {
                     ),
                   ],
                 ),
+                WidgetbookComponent(
+                  name: 'Message',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'My message',
+                      child: const MessageWidget(
+                        myMessage: true,
+                        message: 'Hi my friend!',
+                      ),
+                    ),
+                    WidgetbookUseCase.center(
+                      name: 'Message from others',
+                      child: const MessageWidget(
+                        myMessage: false,
+                        message: 'Hello meu brother',
+                      ),
+                    ),
+                  ],
+                ),
+                WidgetbookComponent(
+                  name: 'Expansion Chat',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Default',
+                      child: const UserMesseger(
+                        name: 'Nego Ney',
+                        timeSent: '12:41',
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        imageNetwork:
+                            'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
             WidgetbookFolder(
