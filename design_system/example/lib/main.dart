@@ -232,16 +232,63 @@ class WidgetbookHotReload extends StatelessWidget {
                   ],
                 ),
                 WidgetbookComponent(
-                  name: 'Expansion Chat',
+                  name: 'Chat dialog',
                   useCases: [
                     WidgetbookUseCase.center(
-                      name: 'Default',
-                      child: const UserMesseger(
-                        name: 'Nego Ney',
-                        timeSent: '12:41',
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        imageNetwork:
-                            'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
+                      name: 'My Messages',
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          return MessagesSent(
+                            myMessage: true,
+                            name: 'Nego Ney',
+                            timeSent: '12:41',
+                            imageNetwork:
+                                'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
+                            messageList: [
+                              MessageWidget(
+                                myMessage: true,
+                                message: 'Bora lol?',
+                                messageSpacing: constraints.maxWidth * 0.026,
+                              ),
+                              MessageWidget(
+                                myMessage: true,
+                                message: 'pegar bronze?',
+                                messageSpacing: constraints.maxWidth * 0.026,
+                              ),
+                              MessageWidget(
+                                myMessage: true,
+                                message: 'trollar?',
+                                messageSpacing: constraints.maxWidth * 0.026,
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                    WidgetbookUseCase.center(
+                      name: 'Messages from other',
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          return MessagesSent(
+                            myMessage: false,
+                            name: 'Nego Ney',
+                            timeSent: '12:41',
+                            imageNetwork:
+                                'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
+                            messageList: [
+                              MessageWidget(
+                                myMessage: false,
+                                message: 'Vo n man',
+                                messageSpacing: constraints.maxWidth * 0.026,
+                              ),
+                              MessageWidget(
+                                myMessage: false,
+                                message: 'cansei de perder',
+                                messageSpacing: constraints.maxWidth * 0.026,
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     ),
                   ],
@@ -250,11 +297,47 @@ class WidgetbookHotReload extends StatelessWidget {
             ),
             WidgetbookFolder(
               name: 'Navigatorbar',
-              widgets: [],
+              widgets: [
+                WidgetbookComponent(
+                  name: 'Bottom Navigation',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Default',
+                      child: const BottomNavigationWidget(),
+                    ),
+                  ],
+                ),
+              ],
             ),
             WidgetbookFolder(
               name: 'Task Components',
-              widgets: [],
+              widgets: [
+                WidgetbookComponent(
+                  name: 'Todo Widget',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Selected',
+                      child: TodoWidget(
+                        title: 'Interview with Lead Designer',
+                        description: 'Sep 25, 2022 10:30 AM',
+                        isDone: true,
+                        dateAndTime: '12/11/20',
+                        onTap: () {},
+                      ),
+                    ),
+                    WidgetbookUseCase.center(
+                      name: 'Unselected',
+                      child: TodoWidget(
+                        title: 'Interview with Lead Designer',
+                        description: 'Sep 25, 2022 10:30 AM',
+                        isDone: false,
+                        dateAndTime: '12/11/20',
+                        onTap: () {},
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
             WidgetbookFolder(
               name: 'Text Fields',
@@ -279,15 +362,7 @@ class WidgetbookHotReload extends StatelessWidget {
                 ),
               ],
             ),
-            WidgetbookComponent(
-              name: 'Bottom Navigator',
-              useCases: [
-                WidgetbookUseCase.center(
-                  name: 'Default',
-                  child: const NavigatorWidget(),
-                )
-              ],
-            ),
+
             WidgetbookComponent(
               name: 'Profile Icons',
               useCases: [

@@ -65,7 +65,7 @@ class ListTileWidget extends StatelessWidget {
                         NameWidget(
                           name: name,
                           isOnline: isOnline,
-                          textSize: 16,
+                          textSize: textStyleTheme.nameSmallStyle.fontSize,
                           statusHeight: constraints.maxWidth * 0.026,
                           statusWidth: constraints.maxWidth * 0.026,
                         ),

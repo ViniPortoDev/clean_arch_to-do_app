@@ -91,10 +91,10 @@ class Mytheme {
         fontSize: 18,
       ),
       todoTitleStyle: const TextStyle(
-        fontSize: 20,
+        fontSize: 18,
       ),
       todoDescriptionStyle: const TextStyle(
-        fontSize: 18,
+        fontSize: 16,
         color: HexColors.primaryGrey,
       ),
       expansionTitleStyle: const TextStyle(

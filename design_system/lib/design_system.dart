@@ -11,7 +11,7 @@ export 'source/widgets/buttons/selected_button_widget.dart';
 export 'source/widgets/chat_components/expansion_chats_widget.dart';
 export 'source/widgets/chat_components/list_tile_widget.dart';
 export 'source/widgets/chat_components/message_widget.dart';
-export 'source/widgets/chat_components/user_messenge_sent_widget.dart';
+export 'source/widgets/chat_components/messenges_sent_widget.dart';
 export 'source/widgets/navigatorbar/navigator_widget.dart';
 export 'source/widgets/task/todo_widget.dart';
 export 'source/widgets/text_fields/search_widget.dart';
