@@ -49,6 +49,7 @@ class Mytheme {
         color: HexColors.primaryGrey,
       ),
       listTileNumberStyle: const TextStyle(
+        fontWeight: FontWeight.w400,
         fontSize: 16,
         color: HexColors.primaryGrey,
       ),
@@ -57,8 +58,8 @@ class Mytheme {
         color: HexColors.primaryGrey,
       ),
       listTilehourStyle: const TextStyle(
-        fontWeight: FontWeight.w500,
-        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        fontSize: 14,
         color: HexColors.primaryGrey,
       ),
       nameAppbarStyle: const TextStyle(

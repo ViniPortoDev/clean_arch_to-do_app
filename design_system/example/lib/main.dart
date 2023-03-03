@@ -166,17 +166,48 @@ class WidgetbookHotReload extends StatelessWidget {
                   name: 'List Tile',
                   useCases: [
                     WidgetbookUseCase.center(
-                      name: 'Default',
+                      name: 'Online',
                       child: ListTileWidget(
                         muted: false,
+                        isOnline: true,
                         imageNetwork:
                             'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
                         numberMessages: '35',
                         name: 'Nego Ney',
-                        timeSent: '13:59',
+                        dateSent: '13:59',
                         onTap: () {},
                         phoneNumber: '(86) 9 9489-4600',
-                        message: 'Nego Ney',
+                        message: 'nego ney nego ney nego nego nego ney',
+                      ),
+                    ),
+                    WidgetbookUseCase.center(
+                      name: 'Muted',
+                      child: ListTileWidget(
+                        muted: true,
+                        isOnline: true,
+                        imageNetwork:
+                            'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
+                        numberMessages: '35',
+                        name: 'Nego Ney',
+                        dateSent: '13:59',
+                        onTap: () {},
+                        phoneNumber: '(86) 9 9489-4600',
+                        message: 'nego ney nego ney nego nego nego ney',
+                      ),
+                    ),
+                    WidgetbookUseCase.center(
+                      name: 'Message from the day before',
+                      child: ListTileWidget(
+                        muted: false,
+                        isOnline: false,
+                        imageNetwork:
+                            'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
+                        numberMessages: '35',
+                        name: 'Nego Ney',
+                        dateSent: 'fri',
+                        onTap: () {},
+                        phoneNumber: '(86) 9 9489-4600',
+                        message: 'nego ney nego ney nego nego nego ney',
                       ),
                     ),
                   ],
@@ -201,39 +232,6 @@ class WidgetbookHotReload extends StatelessWidget {
             ),
           ],
           widgets: [
-            WidgetbookComponent(
-              name: 'List Tile',
-              useCases: [
-                WidgetbookUseCase.center(
-                  name: 'Default',
-                  child: ListTileWidget(
-                    muted: false,
-                    phoneNumber: '(86) 9 9489-4600',
-                    numberMessages: '89',
-                    timeSent: '17:31',
-                    name: 'Nego Ney',
-                    message: 'Nego Ney?',
-                    onTap: () {},
-                    imageNetwork:
-                        "https://i.scdn.co/image/ab67616d00001e024e5ccdc94de3657678dd767e",
-                  ),
-                ),
-                WidgetbookUseCase.center(
-                  name: 'Chat Muted',
-                  child: ListTileWidget(
-                    muted: true,
-                    phoneNumber: '(86) 9 9489-4600',
-                    numberMessages: '89',
-                    timeSent: '17:31',
-                    name: 'Nego Ney',
-                    message: 'Nego Ney?',
-                    onTap: () {},
-                    imageNetwork:
-                        "https://i.scdn.co/image/ab67616d00001e024e5ccdc94de3657678dd767e",
-                  ),
-                ),
-              ],
-            ),
             WidgetbookComponent(
               name: 'Name Widget',
               useCases: [

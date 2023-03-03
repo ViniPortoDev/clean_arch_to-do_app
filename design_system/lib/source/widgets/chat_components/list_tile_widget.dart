@@ -10,9 +10,10 @@ class ListTileWidget extends StatelessWidget {
   final String imageNetwork;
   final String numberMessages;
   final String name;
-  final String timeSent;
+  final String dateSent;
   final String phoneNumber;
   final String message;
+  final bool isOnline;
 
   final void Function() onTap;
 
@@ -22,10 +23,11 @@ class ListTileWidget extends StatelessWidget {
     required this.imageNetwork,
     required this.numberMessages,
     required this.name,
-    required this.timeSent,
+    required this.dateSent,
     required this.onTap,
     required this.phoneNumber,
     required this.message,
+    required this.isOnline,
   }) : super(key: key);
 
   @override
@@ -37,70 +39,77 @@ class ListTileWidget extends StatelessWidget {
         onTap: onTap,
         child: SizedBox(
           width: constraints.maxWidth * 0.906,
-          height: constraints.maxWidth * 0.161,
+          height: constraints.maxWidth * 0.22,
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              AvatarWidet(
+                radius: constraints.maxWidth * 0.061,
+                badge: BadgeWidget(
+                  width: constraints.maxWidth * 0.064,
+                  height: constraints.maxWidth * 0.064,
+                  numberMessage: numberMessages,
+                  isSelected: true,
+                ),
+                imageNetwork: imageNetwork,
+              ),
+              SizedBox(width: constraints.maxWidth * 0.032),
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AvatarWidet(
-                    badge: BadgeWidget(
-                      width: constraints.maxWidth * 0.064,
-                      height: constraints.maxWidth * 0.064,
-                      numberMessage: numberMessages,
-                      isSelected: true,
+                  SizedBox(
+                    width: constraints.maxWidth * 0.752,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        NameWidget(
+                          name: name,
+                          isOnline: isOnline,
+                          textSize: 16,
+                          statusHeight: constraints.maxWidth * 0.026,
+                          statusWidth: constraints.maxWidth * 0.026,
+                        ),
+                        Text(
+                          dateSent,
+                          style: textStyleTheme.listTilehourStyle,
+                        ),
+                      ],
                     ),
-                    imageNetwork: imageNetwork,
                   ),
-                  SizedBox(width: constraints.maxWidth * 0.032),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: constraints.maxWidth * 0.752,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            NameWidget(name: name, isOnline: true),
-                            Text(
-                              timeSent,
-                              style: textStyleTheme.listTilehourStyle,
+                  SizedBox(height: constraints.maxWidth * 0.010),
+                  SizedBox(
+                    child: Text(
+                      phoneNumber,
+                      style: textStyleTheme.listTileNumberStyle,
+                    ),
+                  ),
+                  SizedBox(height: constraints.maxWidth * 0.021),
+                  SizedBox(
+                    width: constraints.maxWidth * 0.752,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: constraints.maxWidth * 0.7,
+                          child: RichText(
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            text: TextSpan(
+                              text: message,
+                              style: textStyleTheme.listTileMessageStyle,
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        phoneNumber,
-                        style: textStyleTheme.listTileNumberStyle,
-                      ),
-                      SizedBox(height: constraints.maxWidth * 0.021),
-                      SizedBox(
-                        width: constraints.maxWidth * 0.752,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: constraints.maxWidth * 0.56,
-                              child: RichText(
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                text: TextSpan(
-                                  text: message,
-                                  style: textStyleTheme.listTileMessageStyle,
-                                ),
-                              ),
+                        if (muted)
+                          SizedBox(
+                            child: Icon(
+                              Icons.volume_off,
+                              size: constraints.maxWidth * 0.042,
+                              color: colorsTheme.primaryColor,
                             ),
-                            if (muted)
-                              Icon(
-                                Icons.volume_off,
-                                size: constraints.maxWidth * 0.042,
-                                color: colorsTheme.primaryColor,
-                              )
-                          ],
-                        ),
-                      ),
-                    ],
+                          )
+                      ],
+                    ),
                   ),
                 ],
               ),

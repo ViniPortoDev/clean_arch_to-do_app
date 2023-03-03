@@ -6,11 +6,18 @@ class NameWidget extends StatelessWidget {
   final double? textSize;
   final String name;
   final bool isOnline;
+  final double? statusWidth;
+  final double? statusHeight;
+
   const NameWidget({
     Key? key,
     this.textSize,
     required this.name,
     required this.isOnline,
+   this.statusWidth,
+   this.statusHeight,
+
+
   }) : super(key: key);
 
   @override
@@ -33,8 +40,8 @@ class NameWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 4),
               child: Container(
-                width: constraints.maxWidth * 0.026,
-                height: constraints.maxWidth * 0.026,
+                width: statusWidth ?? constraints.maxWidth * 0.026,
+                height: statusHeight ?? constraints.maxWidth * 0.026,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: colorsTheme.onlineColor,
