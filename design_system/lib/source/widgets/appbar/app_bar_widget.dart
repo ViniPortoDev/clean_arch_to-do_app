@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import '../../themes/extensions/colors_theme.dart';
 import '../../themes/extensions/text_style_theme.dart';
-import '../user/name_widget.dart';
+import '../profile_components/name_widget.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSize {
   final String name;

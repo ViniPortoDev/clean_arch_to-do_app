@@ -1,5 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 class WidgetbookHotReload extends StatelessWidget {
@@ -170,7 +171,7 @@ class WidgetbookHotReload extends StatelessWidget {
                       child: ListTileWidget(
                         muted: false,
                         isOnline: true,
-                        imageNetwork:
+                        imageNetworkAvatar:
                             'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
                         numberMessages: '35',
                         name: 'Nego Ney',
@@ -185,7 +186,7 @@ class WidgetbookHotReload extends StatelessWidget {
                       child: ListTileWidget(
                         muted: true,
                         isOnline: true,
-                        imageNetwork:
+                        imageNetworkAvatar:
                             'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
                         numberMessages: '35',
                         name: 'Nego Ney',
@@ -200,7 +201,7 @@ class WidgetbookHotReload extends StatelessWidget {
                       child: ListTileWidget(
                         muted: false,
                         isOnline: false,
-                        imageNetwork:
+                        imageNetworkAvatar:
                             'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
                         numberMessages: '35',
                         name: 'Nego Ney',
@@ -363,142 +364,102 @@ class WidgetbookHotReload extends StatelessWidget {
               ],
             ),
             WidgetbookFolder(
-              name: 'User Components',
-              widgets: [],
-            ),
-          ],
-          widgets: [
-            WidgetbookComponent(
-              name: 'Name Widget',
-              useCases: [
-                WidgetbookUseCase.center(
-                  name: 'Online',
-                  child: const NameWidget(name: 'Nego Ney', isOnline: true),
+              name: 'Profile Components',
+              widgets: [
+                WidgetbookComponent(
+                  name: 'Avatar Image',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Default',
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          return AvatarWidet(
+                            radius: constraints.maxWidth * 0.069,
+                            imageNetwork:
+                                'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
+                          );
+                        },
+                      ),
+                    ),
+                    WidgetbookUseCase.center(
+                      name: 'With Badge',
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          return AvatarWidet(
+                            radius: constraints.maxWidth * 0.069,
+                            badge: const BadgeWidget(
+                              numberMessage: '23',
+                              isSelected: true,
+                            ),
+                            imageNetwork:
+                                'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                WidgetbookUseCase.center(
-                  name: 'Offline',
-                  child: const NameWidget(name: 'Nego Ney', isOnline: false),
+                WidgetbookComponent(
+                  name: 'Name Widget',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Default',
+                      child: const NameWidget(
+                        name: 'Nego Ney',
+                        isOnline: false,
+                      ),
+                    ),
+                    WidgetbookUseCase.center(
+                      name: 'Online',
+                      child: const NameWidget(
+                        name: 'Nego Ney',
+                        isOnline: true,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-
-            WidgetbookComponent(
-              name: 'Profile Icons',
-              useCases: [
-                WidgetbookUseCase.center(
-                  name: 'Avaliable',
-                  child: const ProfileButtonWidget(
-                    icon: Icons.phone_in_talk_rounded,
-                    avaliable: true,
-                  ),
+                WidgetbookComponent(
+                  name: 'Profile Skills',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Default',
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          return ProfileSkillsWidget(
+                            text: 'Seo',
+                            colors: HexColors.skillsRandomColors1,
+                            borderRadius: constraints.maxWidth * 0.026,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: constraints.maxWidth * 0.032,
+                              vertical: constraints.maxWidth * 0.021,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                WidgetbookUseCase.center(
-                  name: 'Unavalible',
-                  child: const ProfileButtonWidget(
-                    icon: Icons.volume_off,
-                    avaliable: false,
-                  ),
-                ),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'Profile Skills Widget',
-              useCases: [
-                WidgetbookUseCase.center(
-                  name: 'Example 1',
-                  child: const ProfileSkillsWidget(
-                      colors: Color(0xff454084), text: 'UI/UX Designer'),
-                ),
-                WidgetbookUseCase.center(
-                  name: 'Example 2',
-                  child: const ProfileSkillsWidget(
-                      colors: Color(0xff454084), text: 'Project Manager'),
-                ),
-                WidgetbookUseCase.center(
-                  name: 'Example 3',
-                  child: const ProfileSkillsWidget(
-                      colors: Color(0xff8568A9), text: 'Java Script Developer'),
-                ),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'Profile Container Info',
-              useCases: [
-                WidgetbookUseCase.center(
-                    name: 'Default',
-                    child: const ProfileContainerInfoWidget(
-                      name: 'Nego Ney',
-                      description1: "sla",
-                      description2: 'sla 2',
-                      imageNetworkAvatar:
-                          "https://i.scdn.co/image/ab67616d00001e024e5ccdc94de3657678dd767e",
-                    )),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'Todo Widget',
-              useCases: [
-                WidgetbookUseCase.center(
-                  name: 'Selected',
-                  child: TodoWidget(
-                    title: 'Interview with Lead Designer',
-                    description: 'Sep 25, 2022 10:30 AM',
-                    isDone: true,
-                    dateAndTime: 'agora',
-                    onTap: () {},
-                  ),
-                ),
-                WidgetbookUseCase.center(
-                  name: 'Unselected',
-                  child: TodoWidget(
-                    title: 'Interview with Lead Designer',
-                    description: 'Sep 25, 2022 10:30 AM',
-                    isDone: false,
-                    dateAndTime: 'agora',
-                    onTap: () {},
-                  ),
-                ),
-              ],
-            ),
-            // WidgetbookComponent(
-            //   name: 'AppBar Widget',
-            //   useCases: [
-            //     WidgetbookUseCase.center(
-            //       name: 'Default',
-            //       child: LayoutBuilder(builder: (context, constraints) {
-            //         return
-            //       }),
-            //     )
-            //   ],
-            // ),
-            WidgetbookComponent(
-              name: 'Message Widget',
-              useCases: [
-                WidgetbookUseCase.center(
-                  name: 'My Message',
-                  child: const MessageWidget(
-                    myMessage: true,
-                    message: 'How does it sound for you?',
-                  ),
-                ),
-                WidgetbookUseCase.center(
-                  name: 'Your Message',
-                  child: const MessageWidget(
-                    myMessage: false,
-                    message: 'How does it sound for you?',
-                  ),
+                WidgetbookComponent(
+                  name: 'Profile Container Info',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Default',
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          return const ProfileContainerInfoWidget(
+                            name: 'Nego Ney',
+                            description1: 'description1',
+                            description2: 'description2',
+                            imageNetworkAvatar:
+                                'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-            // WidgetbookComponent(
-            //   name: 'Send Message',
-            //   useCases: [
-            //     WidgetbookUseCase.center(
-            //       name: 'Default',
-            //       child: const SendMessageWidget(),
-            //     )
-            //   ],
-            // ),
           ],
         ),
       ],

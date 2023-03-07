@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import '../../themes/extensions/colors_theme.dart';
 import '../../themes/extensions/text_style_theme.dart';
 import '../badge/badge_widget.dart';
-import '../user/avatar_widget.dart';
-import '../user/name_widget.dart';
+import '../profile_components/avatar_widget.dart';
+import '../profile_components/name_widget.dart';
 
 class ListTileWidget extends StatelessWidget {
   final bool muted;
-  final String imageNetwork;
+  final String imageNetworkAvatar;
   final String numberMessages;
   final String name;
   final String dateSent;
@@ -20,7 +20,7 @@ class ListTileWidget extends StatelessWidget {
   const ListTileWidget({
     Key? key,
     required this.muted,
-    required this.imageNetwork,
+    required this.imageNetworkAvatar,
     required this.numberMessages,
     required this.name,
     required this.dateSent,
@@ -51,7 +51,7 @@ class ListTileWidget extends StatelessWidget {
                   numberMessage: numberMessages,
                   isSelected: true,
                 ),
-                imageNetwork: imageNetwork,
+                imageNetwork: imageNetworkAvatar,
               ),
               SizedBox(width: constraints.maxWidth * 0.032),
               Column(

@@ -16,10 +16,10 @@ export 'source/widgets/navigatorbar/navigator_widget.dart';
 export 'source/widgets/task/todo_widget.dart';
 export 'source/widgets/text_fields/search_widget.dart';
 export 'source/widgets/text_fields/send_message_widget.dart';
-export 'source/widgets/user/avatar_widget.dart';
-export 'source/widgets/user/name_widget.dart';
-export 'source/widgets/user/profile_container_info_widget.dart';
-export 'source/widgets/user/profile_skills_widget.dart';
+export 'source/widgets/profile_components/avatar_widget.dart';
+export 'source/widgets/profile_components/name_widget.dart';
+export 'source/widgets/profile_components/profile_container_info_widget.dart';
+export 'source/widgets/profile_components/profile_skills_widget.dart';
 
 
 
