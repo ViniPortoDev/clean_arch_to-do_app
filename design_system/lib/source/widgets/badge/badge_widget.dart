@@ -20,23 +20,21 @@ class BadgeWidget extends StatelessWidget {
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
     final textStyleTheme = Theme.of(context).extension<TextStyleTheme>()!;
 
-    return LayoutBuilder(builder: (context, constraints) {
-      return Container(
-        width: width ?? constraints.maxWidth * 0.064,
-        height: height ?? constraints.maxWidth * 0.064,
-        decoration: BoxDecoration(
-          color: isSelected
-              ? colorsTheme.badgeSelectedColor
-              : colorsTheme.badgeUnselectedColor,
-          shape: BoxShape.circle,
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: isSelected
+            ? colorsTheme.badgeSelectedColor
+            : colorsTheme.badgeUnselectedColor,
+        shape: BoxShape.circle,
+      ),
+      child: Center(
+        child: Text(
+          numberMessage,
+          style: textStyleTheme.badgeWidgetStyle,
         ),
-        child: Center(
-          child: Text(
-            numberMessage,
-            style: textStyleTheme.badgeWidgetStyle,
-          ),
-        ),
-      );
-    });
+      ),
+    );
   }
 }

@@ -40,8 +40,8 @@ class NameWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 4),
               child: Container(
-                width: statusWidth ?? constraints.maxWidth * 0.026,
-                height: statusHeight ?? constraints.maxWidth * 0.026,
+                width: statusWidth ,
+                height: statusHeight, 
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: colorsTheme.onlineColor,

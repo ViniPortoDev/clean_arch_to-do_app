@@ -38,7 +38,6 @@ class ListTileWidget extends StatelessWidget {
       return InkWell(
         onTap: onTap,
         child: SizedBox(
-          width: constraints.maxWidth * 0.906,
           height: constraints.maxWidth * 0.22,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +57,7 @@ class ListTileWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: constraints.maxWidth * 0.752,
+                    width: constraints.maxWidth * 0.84,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -85,7 +84,7 @@ class ListTileWidget extends StatelessWidget {
                   ),
                   SizedBox(height: constraints.maxWidth * 0.021),
                   SizedBox(
-                    width: constraints.maxWidth * 0.752,
+                    width: constraints.maxWidth * 0.84,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

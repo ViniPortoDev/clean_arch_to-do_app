@@ -149,20 +149,30 @@ class WidgetbookHotReload extends StatelessWidget {
             WidgetbookFolder(
               name: 'Chat Components',
               widgets: [
-                // WidgetbookComponent(
-                //   name: 'Expansion Chat',
-                //   useCases: [
-                //     WidgetbookUseCase.center(
-                //         name: 'Default',
-                //         child: const ExpansionWidget(
-                //           title: title,
-                //           height: height,
-                //           isOpen: isOpen,
-                //           onTap: onTap,
-                //           child: child,
-                //         ),),
-                //   ],
-                // ),
+                WidgetbookComponent(
+                  name: 'Expansion Chat',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Default',
+                      child: ExpansionWidget(
+                        title: 'Unread',
+                        itemCount: 3,
+                        child: ListTileWidget(
+                          muted: true,
+                          isOnline: true,
+                          imageNetworkAvatar:
+                              'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w533h800/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg',
+                          numberMessages: '35',
+                          name: 'Nego Ney',
+                          dateSent: '13:59',
+                          onTap: () {},
+                          phoneNumber: '(86) 9 9489-4600',
+                          message: 'nego ney nego ney nego nego nego ney',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 WidgetbookComponent(
                   name: 'List Tile',
                   useCases: [
