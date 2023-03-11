@@ -34,6 +34,6 @@ class SelectedButtonWidget extends StatelessWidget {
         ),
         child: child,
       );
-    });
+    },);
   }
 }

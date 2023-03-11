@@ -46,6 +46,6 @@ class ProfileButtonWidget extends StatelessWidget {
               : colorsTheme.profileSkilltextColor,
         ),
       );
-    });
+    },);
   }
 }

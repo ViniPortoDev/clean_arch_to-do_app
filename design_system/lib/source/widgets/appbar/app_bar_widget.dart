@@ -62,7 +62,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSize {
           SizedBox(width: constraints.maxWidth * 0.044),
         ],
       );
-    });
+    },);
   }
 
   @override

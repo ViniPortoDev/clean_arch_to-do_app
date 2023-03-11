@@ -1,7 +1,5 @@
 import 'package:design_system/source/widgets/buttons/selected_button_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-
 import '../../themes/extensions/colors_theme.dart';
 import '../../themes/extensions/text_style_theme.dart';
 import '../badge/badge_widget.dart';
@@ -54,7 +52,7 @@ class ChatFilterButtonWidget extends StatelessWidget {
                 ),
               ),
             );
-          })
+          },)
         : LayoutBuilder(builder: (context, constraints) {
             return Padding(
               padding: EdgeInsets.only(right: constraints.maxWidth * 0.042),
@@ -84,6 +82,6 @@ class ChatFilterButtonWidget extends StatelessWidget {
                 ),
               ),
             );
-          });
+          },);
   }
 }

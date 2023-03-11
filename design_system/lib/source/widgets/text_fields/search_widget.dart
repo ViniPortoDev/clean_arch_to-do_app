@@ -1,7 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import '../../themes/extensions/colors_theme.dart';
-import '../../themes/extensions/text_style_theme.dart';
+
 
 class SearchWidget extends StatelessWidget {
   final String? hintText;

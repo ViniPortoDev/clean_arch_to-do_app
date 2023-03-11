@@ -106,6 +106,6 @@ class TodoWidget extends StatelessWidget {
           ),
         ),
       );
-    });
+    },);
   }
 }

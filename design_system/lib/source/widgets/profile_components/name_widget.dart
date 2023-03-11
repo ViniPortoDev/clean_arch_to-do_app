@@ -52,6 +52,6 @@ class NameWidget extends StatelessWidget {
             Container()
         ],
       );
-    });
+    },);
   }
 }

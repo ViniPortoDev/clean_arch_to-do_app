@@ -65,6 +65,6 @@ class MessageWidget extends StatelessWidget {
           SizedBox(height: messageSpacing ?? 0),
         ],
       );
-    });
+    },);
   }
 }

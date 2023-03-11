@@ -1,4 +1,5 @@
 export 'package:design_system/design_system.dart';
+
 export 'source/themes/extensions/colors_theme.dart';
 export 'source/themes/extensions/text_style_theme.dart';
 export 'source/themes/my_theme.dart';
@@ -13,20 +14,10 @@ export 'source/widgets/chat_components/list_tile_widget.dart';
 export 'source/widgets/chat_components/message_widget.dart';
 export 'source/widgets/chat_components/messenges_sent_widget.dart';
 export 'source/widgets/navigatorbar/navigator_widget.dart';
-export 'source/widgets/task/todo_widget.dart';
-export 'source/widgets/text_fields/search_widget.dart';
-export 'source/widgets/text_fields/send_message_widget.dart';
 export 'source/widgets/profile_components/avatar_widget.dart';
 export 'source/widgets/profile_components/name_widget.dart';
 export 'source/widgets/profile_components/profile_container_info_widget.dart';
 export 'source/widgets/profile_components/profile_skills_widget.dart';
-
-
-
-
-
-
-
-
-
-
+export 'source/widgets/task/todo_widget.dart';
+export 'source/widgets/text_fields/search_widget.dart';
+export 'source/widgets/text_fields/send_message_widget.dart';

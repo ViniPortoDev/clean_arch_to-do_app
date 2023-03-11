@@ -102,5 +102,5 @@ class Mytheme {
         color: HexColors.primaryGrey,
       ),
     )
-  ]);
+  ],);
 }

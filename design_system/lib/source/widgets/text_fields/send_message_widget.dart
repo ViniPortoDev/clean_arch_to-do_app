@@ -1,7 +1,5 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import '../../themes/extensions/colors_theme.dart';
-import '../buttons/selected_button_widget.dart';
 
 class SendMessageWidget extends StatelessWidget {
   const SendMessageWidget({Key? key}) : super(key: key);

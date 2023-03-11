@@ -23,6 +23,7 @@ class MessagesSent extends StatelessWidget {
     final textStyleTheme = Theme.of(context).extension<TextStyleTheme>()!;
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
 
+    // ignore: require_trailing_commas
     return LayoutBuilder(builder: (context, constraints) {
       return myMessage
           ? Column(
@@ -75,6 +76,6 @@ class MessagesSent extends StatelessWidget {
                 ),
               ],
             );
-    });
+    },);
   }
 }
