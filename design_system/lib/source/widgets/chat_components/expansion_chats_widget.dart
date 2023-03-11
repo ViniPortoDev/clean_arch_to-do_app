@@ -75,6 +75,7 @@ class ExpansionWidget extends StatelessWidget {
                         : 0,
                     child: ClipRect(
                       child: ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: itemCount,
                         itemBuilder: (context, index) => child,
                       ),
