@@ -16,6 +16,7 @@ class ExpansionWidget extends StatelessWidget {
   // usar value notifier
   @override
   Widget build(BuildContext context) {
+    var turns = 0.0;
     final ValueNotifier isExpanded = ValueNotifier<bool>(false);
     final textStyleTheme = Theme.of(context).extension<TextStyleTheme>()!;
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
@@ -44,12 +45,14 @@ class ExpansionWidget extends StatelessWidget {
                           late IconData iconArrow;
                           if (isExpanded) {
                             iconArrow = Icons.keyboard_arrow_up_rounded;
+                            turns = 1;
                           } else {
+                            turns = 2;
                             iconArrow = Icons.keyboard_arrow_down_rounded;
                           }
                           return AnimatedRotation(
-                            turns: 5,
-                            duration: const Duration(milliseconds: 1000),
+                            turns: turns,
+                            duration: const Duration(milliseconds: 200),
                             child: Icon(
                               iconArrow,
                               size: constraints.maxWidth * 0.064,
