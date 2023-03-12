@@ -1,9 +1,10 @@
 import 'package:app/utils/image_path.dart';
 import 'package:app/utils/user_name.dart';
-import 'package:design_system/source/widgets/appbar/app_bar_widget.dart';
-import 'package:design_system/source/widgets/chat_components/message_widget.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import '../../theme/extensions/colors_theme.dart';
+
+
+
 
 class ChatPage extends StatelessWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -33,7 +34,6 @@ class ChatPage extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                     
                         SizedBox(height: size.width * 0.021),
                         const MessageWidget(
                           myMessage: false,
@@ -44,7 +44,6 @@ class ChatPage extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                       
                         SizedBox(height: size.width * 0.021),
                         const MessageWidget(
                           myMessage: true,
@@ -55,52 +54,22 @@ class ChatPage extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const UserMesseger(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                        const MessagesSent(
+                          name: UserName.name,
+                          myMessage: false,
+                          timeSent: '10:48',
+                          imageNetwork: ImagePath.imageAvatar,
+                          messageList: [
+                            MessageWidget(
+                              myMessage: false,
+                              message: 'Eu to com muito sono',
+                            ),
+                          ],
                         ),
                         SizedBox(height: size.width * 0.021),
                         const MessageWidget(
                           myMessage: false,
                           message: 'Eu to com muito sono',
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        const UserMesseger(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                        ),
-                        SizedBox(height: size.width * 0.021),
-                        const MessageWidget(
-                          myMessage: true,
-                          message: 'Eu tbm to com muito sono',
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        const UserMesseger(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                        ),
-                        SizedBox(height: size.width * 0.021),
-                        const MessageWidget(
-                          myMessage: true,
-                          message: 'Eu tbm to com muito sono',
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        const UserMesseger(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                        ),
-                        SizedBox(height: size.width * 0.021),
-                        const MessageWidget(
-                          myMessage: true,
-                          message: 'Eu tbm to com muito sono',
                         ),
                       ],
                     ),

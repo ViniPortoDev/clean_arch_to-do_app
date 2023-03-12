@@ -4,13 +4,11 @@ import 'package:app/src/models/task_model.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import '../../service/prefs_service.dart';
-import '../mocks/chat_filter_mock.dart';
 import '../models/chat_filter_model.dart';
 
 class Controller extends ChangeNotifier {
   final taskMock = TaskMock();
   final prefsService = PrefsService();
-  final chatFilterMock = ChatFilterMock();
   final formKey = GlobalKey<FormState>();
   TextEditingController titleTaskController = TextEditingController();
   TextEditingController descriptionTaskController = TextEditingController();

@@ -15,7 +15,7 @@ class ListTileWidget extends StatelessWidget {
   final String message;
   final bool isOnline;
 
-  final void Function() onTap;
+  final void Function()? onTap;
 
   const ListTileWidget({
     Key? key,
@@ -24,98 +24,100 @@ class ListTileWidget extends StatelessWidget {
     required this.numberMessages,
     required this.name,
     required this.dateSent,
-    required this.onTap,
     required this.phoneNumber,
     required this.message,
     required this.isOnline,
+    this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
     final textStyleTheme = Theme.of(context).extension<TextStyleTheme>()!;
-    return LayoutBuilder(builder: (context, constraints) {
-      return InkWell(
-        onTap: onTap,
-        child: SizedBox(
-          height: constraints.maxWidth * 0.22,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AvatarWidet(
-                radius: constraints.maxWidth * 0.061,
-                badge: BadgeWidget(
-                  width: constraints.maxWidth * 0.064,
-                  height: constraints.maxWidth * 0.064,
-                  numberMessage: numberMessages,
-                  isSelected: true,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return InkWell(
+          onTap: onTap,
+          child: SizedBox(
+            height: constraints.maxWidth * 0.22,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AvatarWidet(
+                  radius: constraints.maxWidth * 0.061,
+                  badge: BadgeWidget(
+                    width: constraints.maxWidth * 0.064,
+                    height: constraints.maxWidth * 0.064,
+                    numberMessage: numberMessages,
+                    isSelected: true,
+                  ),
+                  imageNetwork: imageNetworkAvatar,
                 ),
-                imageNetwork: imageNetworkAvatar,
-              ),
-              SizedBox(width: constraints.maxWidth * 0.032),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: constraints.maxWidth * 0.84,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        NameWidget(
-                          name: name,
-                          isOnline: isOnline,
-                          textSize: textStyleTheme.nameSmallStyle.fontSize,
-                          statusHeight: constraints.maxWidth * 0.026,
-                          statusWidth: constraints.maxWidth * 0.026,
-                        ),
-                        Text(
-                          dateSent,
-                          style: textStyleTheme.listTilehourStyle,
-                        ),
-                      ],
+                SizedBox(width: constraints.maxWidth * 0.032),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: constraints.maxWidth * 0.84,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          NameWidget(
+                            name: name,
+                            isOnline: isOnline,
+                            textSize: textStyleTheme.nameSmallStyle.fontSize,
+                            statusHeight: constraints.maxWidth * 0.026,
+                            statusWidth: constraints.maxWidth * 0.026,
+                          ),
+                          Text(
+                            dateSent,
+                            style: textStyleTheme.listTilehourStyle,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(height: constraints.maxWidth * 0.010),
-                  SizedBox(
-                    child: Text(
-                      phoneNumber,
-                      style: textStyleTheme.listTileNumberStyle,
+                    SizedBox(height: constraints.maxWidth * 0.010),
+                    SizedBox(
+                      child: Text(
+                        phoneNumber,
+                        style: textStyleTheme.listTileNumberStyle,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: constraints.maxWidth * 0.021),
-                  SizedBox(
-                    width: constraints.maxWidth * 0.84,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: constraints.maxWidth * 0.7,
-                          child: RichText(
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            text: TextSpan(
-                              text: message,
-                              style: textStyleTheme.listTileMessageStyle,
+                    SizedBox(height: constraints.maxWidth * 0.021),
+                    SizedBox(
+                      width: constraints.maxWidth * 0.84,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: constraints.maxWidth * 0.7,
+                            child: RichText(
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              text: TextSpan(
+                                text: message,
+                                style: textStyleTheme.listTileMessageStyle,
+                              ),
                             ),
                           ),
-                        ),
-                        if (muted)
-                          SizedBox(
-                            child: Icon(
-                              Icons.volume_off,
-                              size: constraints.maxWidth * 0.042,
-                              color: colorsTheme.primaryColor,
-                            ),
-                          )
-                      ],
+                          if (muted)
+                            SizedBox(
+                              child: Icon(
+                                Icons.volume_off,
+                                size: constraints.maxWidth * 0.042,
+                                color: colorsTheme.primaryColor,
+                              ),
+                            )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
-      );
-    },);
+        );
+      },
+    );
   }
 }
