@@ -248,7 +248,7 @@ class WidgetbookHotReload extends StatelessWidget {
                       name: 'My Messages',
                       child: LayoutBuilder(
                         builder: (context, constraints) {
-                          return MessagesSent(
+                          return const MessagesSent(
                             myMessage: true,
                             name: 'Nego Ney',
                             timeSent: '12:41',
@@ -258,17 +258,14 @@ class WidgetbookHotReload extends StatelessWidget {
                               MessageWidget(
                                 myMessage: true,
                                 message: 'Bora lol?',
-                                messageSpacing: constraints.maxWidth * 0.026,
                               ),
                               MessageWidget(
                                 myMessage: true,
                                 message: 'pegar bronze?',
-                                messageSpacing: constraints.maxWidth * 0.026,
                               ),
                               MessageWidget(
                                 myMessage: true,
                                 message: 'trollar?',
-                                messageSpacing: constraints.maxWidth * 0.026,
                               ),
                             ],
                           );
@@ -279,7 +276,7 @@ class WidgetbookHotReload extends StatelessWidget {
                       name: 'Messages from other',
                       child: LayoutBuilder(
                         builder: (context, constraints) {
-                          return MessagesSent(
+                          return const MessagesSent(
                             myMessage: false,
                             name: 'Nego Ney',
                             timeSent: '12:41',
@@ -289,12 +286,10 @@ class WidgetbookHotReload extends StatelessWidget {
                               MessageWidget(
                                 myMessage: false,
                                 message: 'Vo n man',
-                                messageSpacing: constraints.maxWidth * 0.026,
                               ),
                               MessageWidget(
                                 myMessage: false,
                                 message: 'cansei de perder',
-                                messageSpacing: constraints.maxWidth * 0.026,
                               ),
                             ],
                           );
