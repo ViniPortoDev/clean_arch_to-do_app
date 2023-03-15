@@ -1,5 +1,6 @@
 import 'package:app/src/mocks/chat_filter_mock.dart';
 import 'package:app/utils/image_path.dart';
+import 'package:app/utils/routes.dart';
 import 'package:app/utils/user_name.dart';
 import 'package:design_system/source/themes/extensions/colors_theme.dart';
 import 'package:design_system/source/widgets/buttons/chat_filter_button_widget.dart';
@@ -48,11 +49,15 @@ class _HomePageState extends State<HomePage> {
                         itemCount: chatFilterMock.chatFilter.length,
                         itemBuilder: (context, index) {
                           final filterList = chatFilterMock.chatFilter[index];
-                          return ChatFilterButtonWidget(
-                            icon: controller.getIcon(filterList),
-                            filterTypeTextChat: filterList.textTypeChat,
-                            isSelected: filterList.isSelected,
-                            numberMessage: filterList.numberMessage,
+                          return SizedBox(
+                            width: size.width,
+                            height: size.width,
+                            child: ChatFilterButtonWidget(
+                              icon: controller.getIcon(filterList),
+                              filterTypeTextChat: filterList.textTypeChat,
+                              isSelected: filterList.isSelected,
+                              numberMessage: filterList.numberMessage,
+                            ),
                           );
                         },
                       ),
@@ -63,10 +68,11 @@ class _HomePageState extends State<HomePage> {
                           EdgeInsets.symmetric(horizontal: size.width * 0.048),
                       child: ExpansionWidget(
                         title: 'Unread',
-                        itemCount: 1,
+                        itemCount: 3,
+                        isOpen: true,
                         child: Padding(
                           padding: EdgeInsets.only(top: size.width * 0.037),
-                          child: const ListTileWidget(
+                          child: ListTileWidget(
                             name: UserName.name,
                             numberMessages: '20',
                             dateSent: '10:56',
@@ -75,6 +81,57 @@ class _HomePageState extends State<HomePage> {
                             imageNetworkAvatar: ImagePath.imageAvatar,
                             isOnline: true,
                             muted: false,
+                            onTap: () =>
+                                Navigator.pushNamed(context, Routes.chatPage),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: size.width * 0.064),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.048),
+                      child: ExpansionWidget(
+                        title: 'From team',
+                        itemCount: 3,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: size.width * 0.037),
+                          child: ListTileWidget(
+                            name: UserName.name,
+                            numberMessages: '20',
+                            dateSent: '10:56',
+                            phoneNumber: '(86) 9 9489-4600',
+                            message: 'nego ney nego ney nego nego nego',
+                            imageNetworkAvatar: ImagePath.imageAvatar,
+                            isOnline: true,
+                            muted: false,
+                            onTap: () =>
+                                Navigator.pushNamed(context, Routes.chatPage),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: size.width * 0.064),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.048),
+                      child: ExpansionWidget(
+                        title: 'From Companies',
+                        itemCount: 3,
+                        isOpen: true,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: size.width * 0.037),
+                          child: ListTileWidget(
+                            name: UserName.name,
+                            numberMessages: '20',
+                            dateSent: '10:56',
+                            phoneNumber: '(86) 9 9489-4600',
+                            message: 'nego ney nego ney nego nego nego',
+                            imageNetworkAvatar: ImagePath.imageAvatar,
+                            isOnline: true,
+                            muted: false,
+                            onTap: () =>
+                                Navigator.pushNamed(context, Routes.chatPage),
                           ),
                         ),
                       ),
@@ -84,9 +141,11 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            const Align(
+            Align(
               alignment: Alignment.bottomCenter,
-              child: BottomNavigationWidget(),
+              child: BottomNavigationWidget(
+                onPressed: () => Navigator.pushNamed(context, Routes.infoPage),
+              ),
             ),
           ],
         ),

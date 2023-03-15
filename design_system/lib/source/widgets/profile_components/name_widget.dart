@@ -14,44 +14,45 @@ class NameWidget extends StatelessWidget {
     this.textSize,
     required this.name,
     required this.isOnline,
-   this.statusWidth,
-   this.statusHeight,
-
-
+    this.statusWidth,
+    this.statusHeight,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
     final textStyleTheme = Theme.of(context).extension<TextStyleTheme>()!;
-    return LayoutBuilder(builder: (context, constraints) {
-      return Row(
-        children: [
-          RichText(
-            text: TextSpan(
-              text: name,
-              style: TextStyle(
-                fontSize: textSize ?? textStyleTheme.nameMediumStyle.fontSize,
-              ),
-            ),
-          ),
-          const SizedBox(width: 6),
-          if (isOnline)
-            Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Container(
-                width: statusWidth ,
-                height: statusHeight, 
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: colorsTheme.onlineColor,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Row(
+          children: [
+            RichText(
+              text: TextSpan(
+                text: name,
+                style: TextStyle(
+                  fontSize:
+                      textSize ?? textStyleTheme.nameMediumStyle.fontSize,
                 ),
               ),
-            )
-          else
-            Container()
-        ],
-      );
-    },);
+            ),
+            const SizedBox(width: 6),
+            if (isOnline)
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Container(
+                  width: statusWidth,
+                  height: statusHeight,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: colorsTheme.onlineColor,
+                  ),
+                ),
+              )
+            else
+              Container()
+          ],
+        );
+      },
+    );
   }
 }

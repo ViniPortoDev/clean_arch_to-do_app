@@ -2,7 +2,9 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 class SendMessageWidget extends StatelessWidget {
-  const SendMessageWidget({Key? key}) : super(key: key);
+  final double? height;
+  final double? width;
+  const SendMessageWidget({Key? key, this.height, this.width,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +14,8 @@ class SendMessageWidget extends StatelessWidget {
       builder: (context, constraints) {
         return Container(
           padding: EdgeInsets.only(left: constraints.maxWidth * 0.021),
-          height: constraints.maxWidth * 0.16,
-          width: constraints.maxWidth * 0.906,
+          height: height ?? constraints.maxWidth * 0.16,
+          width: width ?? constraints.maxWidth * 0.906,
           decoration: BoxDecoration(
             color: colorsTheme.secundaryColor,
             borderRadius: BorderRadius.circular(constraints.maxWidth * 0.048),

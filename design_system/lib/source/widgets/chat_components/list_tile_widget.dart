@@ -39,7 +39,7 @@ class ListTileWidget extends StatelessWidget {
         return InkWell(
           onTap: onTap,
           child: SizedBox(
-            height: constraints.maxWidth * 0.22,
+            height: constraints.maxWidth * 0.241,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

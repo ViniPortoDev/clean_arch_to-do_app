@@ -49,7 +49,10 @@ class ProfileContainerInfoWidget extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () => Navigator.pop(context),
-                      icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                      icon: Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        size: constraints.maxWidth * 0.052,
+                      ),
                     ),
                     AvatarWidet(
                       radius: constraints.maxWidth * 0.109,
@@ -133,54 +136,59 @@ class ProfileContainerInfoWidget extends StatelessWidget {
                 style: textStyleTheme.profileContainerInfoDescriptionStyle,
               ),
               SizedBox(height: constraints.maxWidth * 0.032),
-              Wrap(
-                alignment: WrapAlignment.center,
-                spacing: constraints.maxWidth * 0.032,
-                runSpacing: constraints.maxWidth * 0.026,
-                children: [
-                  ProfileSkillsWidget(
-                    borderRadius: constraints.maxWidth * 0.026,
-                    colors: colorsTheme.skillColor[0],
-                    text: 'UI/UX Designer',
-                  ),
-                  // const SizedBox(width: 4),
-                  ProfileSkillsWidget(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: constraints.maxWidth * 0.032,
-                      vertical: constraints.maxWidth * 0.021,
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: constraints.maxWidth * 0.032,
+                ),
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: constraints.maxWidth * 0.032,
+                  runSpacing: constraints.maxWidth * 0.026,
+                  children: [
+                    ProfileSkillsWidget(
+                      borderRadius: constraints.maxWidth * 0.026,
+                      colors: colorsTheme.skillColor[0],
+                      text: 'UI/UX Designer',
                     ),
-                    borderRadius: constraints.maxWidth * 0.026,
-                    colors: colorsTheme.skillColor[1],
-                    text: 'Project Manager',
-                  ),
-                  ProfileSkillsWidget(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: constraints.maxWidth * 0.032,
-                      vertical: constraints.maxWidth * 0.021,
+                    // const SizedBox(width: 4),
+                    ProfileSkillsWidget(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: constraints.maxWidth * 0.032,
+                        vertical: constraints.maxWidth * 0.021,
+                      ),
+                      borderRadius: constraints.maxWidth * 0.026,
+                      colors: colorsTheme.skillColor[1],
+                      text: 'Project Manager',
                     ),
-                    borderRadius: constraints.maxWidth * 0.026,
-                    colors: colorsTheme.skillColor[2],
-                    text: 'QA',
-                  ),
-                  ProfileSkillsWidget(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: constraints.maxWidth * 0.032,
-                      vertical: constraints.maxWidth * 0.021,
+                    ProfileSkillsWidget(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: constraints.maxWidth * 0.032,
+                        vertical: constraints.maxWidth * 0.021,
+                      ),
+                      borderRadius: constraints.maxWidth * 0.026,
+                      colors: colorsTheme.skillColor[2],
+                      text: 'QA',
                     ),
-                    borderRadius: constraints.maxWidth * 0.026,
-                    colors: colorsTheme.skillColor[3],
-                    text: 'SEO',
-                  ),
-                  ProfileSkillsWidget(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: constraints.maxWidth * 0.032,
-                      vertical: constraints.maxWidth * 0.021,
+                    ProfileSkillsWidget(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: constraints.maxWidth * 0.032,
+                        vertical: constraints.maxWidth * 0.021,
+                      ),
+                      borderRadius: constraints.maxWidth * 0.026,
+                      colors: colorsTheme.skillColor[3],
+                      text: 'SEO',
                     ),
-                    borderRadius: constraints.maxWidth * 0.026,
-                    colors: colorsTheme.skillColor[4],
-                    text: 'Java Script Developer',
-                  ),
-                ],
+                    ProfileSkillsWidget(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: constraints.maxWidth * 0.032,
+                        vertical: constraints.maxWidth * 0.021,
+                      ),
+                      borderRadius: constraints.maxWidth * 0.026,
+                      colors: colorsTheme.skillColor[4],
+                      text: 'Java Script Developer',
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

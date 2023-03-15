@@ -6,18 +6,20 @@ class ExpansionWidget extends StatelessWidget {
   final String title;
   final Widget child;
   final int itemCount;
+  final bool? isOpen;
 
   const ExpansionWidget({
     Key? key,
     required this.title,
     required this.child,
     required this.itemCount,
+    this.isOpen,
   }) : super(key: key);
   // usar value notifier
   @override
   Widget build(BuildContext context) {
     var turns = 0.0;
-    final ValueNotifier isExpanded = ValueNotifier<bool>(false);
+    final ValueNotifier isExpanded = ValueNotifier<bool>(isOpen ?? false);
     final textStyleTheme = Theme.of(context).extension<TextStyleTheme>()!;
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
 
@@ -71,7 +73,7 @@ class ExpansionWidget extends StatelessWidget {
                   return AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
                     height: isExpanded
-                        ? constraints.maxWidth * 0.23 * itemCount
+                        ? constraints.maxWidth * 0.285 * itemCount
                         : 0,
                     child: ClipRect(
                       child: ListView.builder(

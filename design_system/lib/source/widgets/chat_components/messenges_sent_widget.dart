@@ -7,7 +7,7 @@ class MessagesSent extends StatelessWidget {
   final String timeSent;
   final bool myMessage;
 
-  final List<MessageWidget> messageList;
+  final List<Widget> messageList;
 
   const MessagesSent({
     Key? key,

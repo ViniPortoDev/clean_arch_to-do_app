@@ -4,7 +4,9 @@ import '../../themes/extensions/colors_theme.dart';
 import '../buttons/selected_button_widget.dart';
 
 class BottomNavigationWidget extends StatelessWidget {
-  const BottomNavigationWidget({Key? key}) : super(key: key);
+  final void Function()? onPressed;
+  const BottomNavigationWidget({Key? key, this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +37,13 @@ class BottomNavigationWidget extends StatelessWidget {
                     size: constraints.maxWidth * 0.069,
                     color: colorsTheme.primaryColor,
                   ),
-                  Icon(
-                    Icons.account_box_outlined,
-                    size: constraints.maxWidth * 0.069,
-                    color: colorsTheme.primaryColor,
+                  IconButton(
+                    onPressed: onPressed,
+                    icon: Icon(
+                      Icons.account_box_outlined,
+                      size: constraints.maxWidth * 0.069,
+                      color: colorsTheme.primaryColor,
+                    ),
                   ),
                   Icon(
                     Icons.analytics_outlined,
