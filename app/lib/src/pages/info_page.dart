@@ -10,7 +10,6 @@ import 'package:design_system/source/widgets/task/todo_widget.dart';
 import 'package:flutter/material.dart';
 import '../../service/prefs_service.dart';
 
-
 class InfoPage extends StatefulWidget {
   const InfoPage({Key? key}) : super(key: key);
 
@@ -116,8 +115,6 @@ class _InfoPageState extends State<InfoPage> {
   }
 }
 
-
-
 class NewTaskWidget extends StatefulWidget {
   final Controller controller;
 
@@ -140,22 +137,22 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
     final size = MediaQuery.of(context).size;
 
     return SizedBox(
-      height: size.width * 0.9,
+      height: size.width * 1.2,
       child: Form(
         key: widget.controller.formKey,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 36),
+          padding: const EdgeInsets.symmetric(horizontal: 18),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text('Titulo:'),
-              const SizedBox(height: 8),
+              const SizedBox(height: 4),
               TextFormField(
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(16),
+                      Radius.circular(14),
                     ),
                   ),
                 ),
@@ -167,9 +164,8 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                   return null;
                 },
               ),
-              const SizedBox(height: 16),
               const Text('Descrição:'),
-              const SizedBox(height: 8),
+              const SizedBox(height: 4),
               TextFormField(
                 controller: widget.controller.descriptionTaskController,
                 validator: (value) {
@@ -181,15 +177,16 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(16),
+                      Radius.circular(14),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 8),
               Row(
                 children: [
                   ElevatedButton(
+                    child: const Text('escolha a data'),
                     onPressed: () async {
                       widget.controller.newDate = await showDatePicker(
                         context: context,
@@ -204,10 +201,10 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                         });
                       }
                     },
-                    child: const Text('escolha a data'),
                   ),
                   const SizedBox(width: 20),
                   ElevatedButton(
+                    child: const Text('escolha as horas'),
                     onPressed: () async {
                       widget.controller.newTime = await showTimePicker(
                         context: context,
@@ -220,43 +217,31 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                         });
                       }
                     },
-                    child: const Text('escolha as horas'),
                   )
                 ],
               ),
               const SizedBox(height: 24),
               Row(
                 children: [
-                  Visibility(
-                    visible: widget.controller
-                        .showInitialDate(widget.controller.dateTime),
-                    child: Text(
-                      widget.controller.formatedDate(),
-                    ),
-                  ),
+                  Text(widget.controller.formatedDate()),
                   const SizedBox(width: 12),
-                  Visibility(
-                    visible: widget.controller
-                        .showInitialTime(widget.controller.timeOfDay),
-                    child: Text(widget.controller.formatedTime()),
-                  ),
+                  Text(widget.controller.formatedTime()),
+                  const SizedBox(width: 30),
+                  Text(widget.controller.validatorTask())
                 ],
               ),
               const SizedBox(height: 24),
               ElevatedButton(
                 child: const Text('Salvar'),
                 onPressed: () {
-                  if (widget.controller.formKey.currentState!.validate()) {
-                    widget.controller.addTask();
-                    widget.controller.cleanFields();
-                    Navigator.pop(context);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Adicionando tarefa...'),
-                        duration: Duration(seconds: 2),
-                      ),
-                    );
-                  }
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Adicionando tarefa...'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                  // widget.controller.cleanFields();
+                  widget.controller.addTask();
                 },
               ),
             ],
@@ -266,4 +251,3 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
     );
   }
 }
-

@@ -12,24 +12,42 @@ class Controller extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
   TextEditingController titleTaskController = TextEditingController();
   TextEditingController descriptionTaskController = TextEditingController();
-
   TimeOfDay timeOfDay = TimeOfDay.now();
   DateTime dateTime = DateTime.now();
-
   DateTime? newDate;
   TimeOfDay? newTime;
+  bool visibility = false;
 
-  List<double> altura = [355, 350, 345];
-  List<bool> isOpen = [true, true, true];
-
-  // List<TaskModel> newList = [];
   String formatedDate() {
-    return '${dateTime.day}/${dateTime.month}/${dateTime.year}';
+    return '${newDate?.day ?? '00'}/${newDate?.month ?? '00'}/${newDate?.year ?? '00'}';
   }
 
   String formatedTime() {
-    return '${timeOfDay.hour}:${timeOfDay.minute}';
+    return '${newTime?.hour ?? '00'}:${newTime?.minute ?? '00'}';
   }
+
+  String validatorTask() {
+    if (newDate != null && newTime != null) {
+      if (newDate!.day == DateTime.now().day &&
+          newDate!.month == DateTime.now().month &&
+          newDate!.year == DateTime.now().year) {
+        if (newTime!.hour <= TimeOfDay.now().hour) {
+          if  (newTime!.minute < TimeOfDay.now().minute) {
+            return 'Insira uma data futura';
+          }
+          return '2';
+        }
+      }
+    }
+    return '1';
+  }
+
+  // void cleanFields() {
+  //   titleTaskController.clear();
+  //   descriptionTaskController.clear();
+  //   timeOfDay = TimeOfDay.now();
+  //   dateTime = DateTime.now();
+  // }
 
   IconData getIcon(ChatFilterModel chatIcons) {
     switch (chatIcons.chatIcons) {
@@ -42,32 +60,6 @@ class Controller extends ChangeNotifier {
       case ChatIcons.bookmark:
         return Icons.bookmark_border;
     }
-  }
-
-  bool showInitialDate(DateTime dateTime) {
-    if (dateTime.day == DateTime.now().day &&
-        dateTime.month == DateTime.now().month &&
-        dateTime.year == DateTime.now().year) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  bool showInitialTime(TimeOfDay timeOfDay) {
-    if (timeOfDay.hour == TimeOfDay.now().hour &&
-        timeOfDay.minute == TimeOfDay.now().minute) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  void cleanFields() {
-    titleTaskController.clear();
-    descriptionTaskController.clear();
-    timeOfDay = TimeOfDay.now();
-    dateTime = DateTime.now();
   }
 
   // String overueTask(String dateAndTime) {
@@ -96,19 +88,21 @@ class Controller extends ChangeNotifier {
 
   Future<void> addTask() async {
     // final tasksLoaded = prefsService.loadTask();
-    taskMock.taskList.add(
-      TaskModel(
-        title: titleTaskController.text,
-        description: descriptionTaskController.text,
-        dateAndTime:
-            '${newDate!.day}/${newDate!.month}/${newDate!.year}\n${newTime!.hour}:${newTime!.minute}',
-      ),
-    );
-    print(taskMock.taskList.length);
+    if (formKey.currentState!.validate()) {
+      taskMock.taskList.add(
+        TaskModel(
+          title: titleTaskController.text,
+          description: descriptionTaskController.text,
+          dateAndTime:
+              '${newDate!.day}/${newDate!.month}/${newDate!.year}\n${newTime!.hour}:${newTime!.minute}',
+        ),
+      );
+      print(taskMock.taskList.length);
 
-    final newList = taskMock.taskList;
-    final stringNewList = jsonEncode(newList);
-    await prefsService.saveTask(stringNewList);
-    notifyListeners();
+      final newList = taskMock.taskList;
+      final stringNewList = jsonEncode(newList);
+      await prefsService.saveTask(stringNewList);
+      notifyListeners();
+    }
   }
 }

@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 class SendMessageWidget extends StatelessWidget {
   final double? height;
   final double? width;
-  const SendMessageWidget({Key? key, this.height, this.width,}) : super(key: key);
+  const SendMessageWidget({
+    Key? key,
+    this.height,
+    this.width,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
