@@ -26,21 +26,19 @@ class Controller extends ChangeNotifier {
     return '${newTime?.hour ?? '00'}:${newTime?.minute ?? '00'}';
   }
 
-  String validatorTask() {
-    if (newDate != null && newTime != null) {
-      if (newDate!.day == DateTime.now().day &&
-          newDate!.month == DateTime.now().month &&
-          newDate!.year == DateTime.now().year) {
-        if (newTime!.hour <= TimeOfDay.now().hour) {
-          if  (newTime!.minute < TimeOfDay.now().minute) {
-            return 'Insira uma data futura';
-          }
-          return '2';
-        }
-      }
-    }
-    return '1';
-  }
+  // String validatorTask() {
+  //   if (newDate != null && newTime != null) {
+  //     if (newDate!.isAfter(DateTime.now())) {
+  //       if (newTime!.hour <= TimeOfDay.now().hour) {
+  //         if (newTime!.minute < TimeOfDay.now().minute) {
+  //           return 'Insira uma data futura';
+  //         }
+  //         return '2';
+  //       }
+  //     }
+  //   }
+  //   return '1';
+  // }
 
   // void cleanFields() {
   //   titleTaskController.clear();

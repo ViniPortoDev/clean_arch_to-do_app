@@ -227,7 +227,7 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                   const SizedBox(width: 12),
                   Text(widget.controller.formatedTime()),
                   const SizedBox(width: 30),
-                  Text(widget.controller.validatorTask())
+                  // Text(widget.controller.validatorTask())
                 ],
               ),
               const SizedBox(height: 24),
