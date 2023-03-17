@@ -1,3 +1,3 @@
 class PreferenceKeys {
-  static const savedTask = 'TASKS';
+  static const taskList = 'taskList';
 }

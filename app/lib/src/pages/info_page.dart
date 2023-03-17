@@ -36,20 +36,13 @@ class _InfoPageState extends State<InfoPage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: colorsTheme.backgroundSelectedColor,
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (context) {
-              return NewTaskWidget(
-                controller: controller,
-              );
-            },
-          );
-        },
-        child: Icon(
-          Icons.add,
-          size: size.width * 0.064,
+        onPressed: () => showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return NewTaskWidget(controller: controller);
+          },
         ),
+        child: Icon(Icons.add, size: size.width * 0.064),
       ),
       body: Container(
         color: colorsTheme.backgroundColor,
@@ -62,49 +55,30 @@ class _InfoPageState extends State<InfoPage> {
               description2: 'Oi linda aii kawaii',
               imageNetworkAvatar: ImagePath.profileAvatar,
             ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.048,
-                ),
-                child: ValueListenableBuilder(
-                  valueListenable: store,
-                  builder: (_, state, __) {
-                    if (state is TaskLoadingState) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    if (state is TaskErrorState) {
-                      return Center(
-                        child: Text(state.message),
-                      );
-                    }
-                    if (state is TaskSucessState) {
-                      return ListView.builder(
-                        padding: EdgeInsets.only(
-                          top: size.width * 0.064,
-                          bottom: size.width * 0.021,
+            ValueListenableBuilder(
+              valueListenable: controller.taskList,
+              builder: (cont, taskList, __) => Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.048),
+                  child: ListView.builder(
+                    padding: EdgeInsets.only(
+                      top: size.width * 0.064,
+                      bottom: size.width * 0.021,
+                    ),
+                    itemCount: taskList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return TodoWidget(
+                        title: taskList[index].title,
+                        description: taskList[index].description,
+                        dateAndTime: taskList[index].dateAndTime,
+                        isDone: taskList[index].isDone,
+                        onTap: () => setState(
+                          () =>
+                              taskList[index].isDone = !taskList[index].isDone,
                         ),
-                        itemCount: state.tasks.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final taskList = state.tasks[index];
-                          return TodoWidget(
-                            title: taskList.title,
-                            description: taskList.description,
-                            dateAndTime: taskList.dateAndTime,
-                            isDone: taskList.isDone,
-                            onTap: () {
-                              setState(() {
-                                taskList.isDone = !taskList.isDone;
-                              });
-                            },
-                          );
-                        },
                       );
-                    }
-                    return Container();
-                  },
+                    },
+                  ),
                 ),
               ),
             ),
@@ -114,6 +88,13 @@ class _InfoPageState extends State<InfoPage> {
     );
   }
 }
+
+///
+///
+///
+///
+///
+///
 
 class NewTaskWidget extends StatefulWidget {
   final Controller controller;
@@ -234,14 +215,15 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
               ElevatedButton(
                 child: const Text('Salvar'),
                 onPressed: () {
+                  Navigator.pop(context);
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('Adicionando tarefa...'),
                       duration: Duration(seconds: 2),
                     ),
                   );
-                  // widget.controller.cleanFields();
                   widget.controller.addTask();
+                  // widget.controller.cleanFields();
                 },
               ),
             ],
