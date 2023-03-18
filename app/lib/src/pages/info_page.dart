@@ -21,14 +21,15 @@ class _InfoPageState extends State<InfoPage> {
   @override
   void initState() {
     super.initState();
-    store.prefsLoad();
-    controller.addListener(() {
-      setState(() {});
-    });
+    store.loadTasks();
   }
 
-  final store = TaskStory(PrefsService());
   final controller = Controller();
+  final store = TaskStory(
+    prefsService: PrefsService(),
+    task: Controller().taskList.value,
+  );
+
   @override
   Widget build(BuildContext context) {
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
@@ -56,31 +57,47 @@ class _InfoPageState extends State<InfoPage> {
               imageNetworkAvatar: ImagePath.profileAvatar,
             ),
             ValueListenableBuilder(
-              valueListenable: controller.taskList,
-              builder: (cont, taskList, __) => Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.048),
-                  child: ListView.builder(
-                    padding: EdgeInsets.only(
-                      top: size.width * 0.064,
-                      bottom: size.width * 0.021,
+              valueListenable: store,
+              builder: (_, taskList, __) {
+                if (taskList is TaskLoadingState) {
+                  return const Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(),
                     ),
-                    itemCount: taskList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return TodoWidget(
-                        title: taskList[index].title,
-                        description: taskList[index].description,
-                        dateAndTime: taskList[index].dateAndTime,
-                        isDone: taskList[index].isDone,
-                        onTap: () => setState(
-                          () =>
-                              taskList[index].isDone = !taskList[index].isDone,
+                  );
+                }
+                if (taskList is TaskErrorState) {
+                  return Expanded(child: Center(child: Text(taskList.message)));
+                }
+                if (taskList is TaskSucessState) {
+                  return Expanded(
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.048),
+                      child: ListView.builder(
+                        padding: EdgeInsets.only(
+                          top: size.width * 0.064,
+                          bottom: size.width * 0.021,
                         ),
-                      );
-                    },
-                  ),
-                ),
-              ),
+                        itemCount: taskList.tasks.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final tasks = taskList.tasks[index];
+                          return TodoWidget(
+                            title: tasks.title,
+                            description: tasks.description,
+                            dateAndTime: tasks.dateAndTime,
+                            isDone: tasks.isDone,
+                            onTap: () => setState(
+                              () => tasks.isDone = !tasks.isDone,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                }
+                return Container();
+              },
             ),
           ],
         ),

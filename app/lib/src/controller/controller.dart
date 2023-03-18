@@ -1,10 +1,12 @@
+import 'dart:convert';
+
 import 'package:app/src/models/task_model.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import '../../service/prefs_service.dart';
 import '../models/chat_filter_model.dart';
 
-class Controller extends ChangeNotifier {
+class Controller {
   final prefsService = PrefsService();
   final formKey = GlobalKey<FormState>();
   TextEditingController titleTaskController = TextEditingController();
@@ -14,7 +16,6 @@ class Controller extends ChangeNotifier {
   DateTime? newDate;
   TimeOfDay? newTime;
   bool visibility = false;
-
   ValueNotifier<List<TaskModel>> taskList = ValueNotifier([]);
 
   String formatedDate() {
@@ -63,13 +64,11 @@ class Controller extends ChangeNotifier {
           dateAndTime: dateAndTime,
         ),
       );
-
-      // final newList = taskList;
-      // final stringNewList = jsonEncode(newList);
-      // await prefsService.saveTask(stringNewList);
-      // notifyListeners();
+      
+      final taskListJson = jsonEncode(taskList.value);
+      await prefsService.saveTask(taskListJson);
     }
-    notifyListeners();
+    
   }
 
   // void cleanFields() {

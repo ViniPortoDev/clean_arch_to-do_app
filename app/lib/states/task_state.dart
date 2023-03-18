@@ -1,4 +1,1 @@
-abstract class TaskState {
-  
-
-}
+abstract class TaskState {}
