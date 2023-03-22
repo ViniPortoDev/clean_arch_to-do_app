@@ -8,7 +8,6 @@ import 'package:design_system/source/themes/extensions/colors_theme.dart';
 import 'package:design_system/source/widgets/profile_components/profile_container_info_widget.dart';
 import 'package:design_system/source/widgets/task/todo_widget.dart';
 import 'package:flutter/material.dart';
-import '../../service/prefs_service.dart';
 
 class InfoPage extends StatefulWidget {
   const InfoPage({Key? key}) : super(key: key);
@@ -25,10 +24,7 @@ class _InfoPageState extends State<InfoPage> {
   }
 
   final controller = Controller();
-  final store = TaskStory(
-    prefsService: PrefsService(),
-    task: Controller().taskList.value,
-  );
+  final store = TaskStory();
 
   @override
   Widget build(BuildContext context) {
@@ -126,8 +122,8 @@ class NewTaskWidget extends StatefulWidget {
 }
 
 class _NewTaskWidgetState extends State<NewTaskWidget> {
+  final store = TaskStory();
   final formKey = GlobalKey<FormState>();
-  // ValueNotifier oi = ValueNotifier(_value)
   TextEditingController titleTaskController = TextEditingController();
   TextEditingController descriptionTaskController = TextEditingController();
   @override
@@ -240,7 +236,6 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                     ),
                   );
                   widget.controller.addTask();
-                  // widget.controller.cleanFields();
                 },
               ),
             ],

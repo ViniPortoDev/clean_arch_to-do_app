@@ -15,7 +15,7 @@ class PrefsService implements InterfaceDatabase {
   }
 
   @override
-  Future loadTask(List<TaskModel> list) async {
+  Future<List<TaskModel>> loadTask(List<TaskModel> list) async {
     final prefs = await SharedPreferences.getInstance();
     final loadedTasksJson = prefs.getString(PreferenceKeys.taskList);
     if (loadedTasksJson != null) {
@@ -26,5 +26,6 @@ class PrefsService implements InterfaceDatabase {
         list.add(task);
       }
     }
+    return list;
   }
 }

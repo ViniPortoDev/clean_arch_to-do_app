@@ -6,7 +6,7 @@ import 'package:line_icons/line_icons.dart';
 import '../../service/prefs_service.dart';
 import '../models/chat_filter_model.dart';
 
-class Controller {
+class Controller extends ChangeNotifier {
   final prefsService = PrefsService();
   final formKey = GlobalKey<FormState>();
   TextEditingController titleTaskController = TextEditingController();
@@ -16,7 +16,7 @@ class Controller {
   DateTime? newDate;
   TimeOfDay? newTime;
   bool visibility = false;
-  ValueNotifier<List<TaskModel>> taskList = ValueNotifier([]);
+  List<TaskModel> taskList = [];
 
   String formatedDate() {
     return '${newDate?.day ?? '00'}/${newDate?.month ?? '00'}/${newDate?.year ?? '00'}';
@@ -57,18 +57,18 @@ class Controller {
     final dateAndTime =
         '${newDate!.day}/${newDate!.month}/${newDate!.year}\n${newTime!.hour}:${newTime!.minute}';
     if (formKey.currentState!.validate()) {
-      taskList.value.add(
+      taskList.add(
         TaskModel(
           title: titleTaskController.text,
           description: descriptionTaskController.text,
           dateAndTime: dateAndTime,
         ),
       );
-      
-      final taskListJson = jsonEncode(taskList.value);
+
+      final taskListJson = jsonEncode(taskList);
       await prefsService.saveTask(taskListJson);
     }
-    
+
   }
 
   // void cleanFields() {
