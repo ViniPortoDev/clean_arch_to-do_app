@@ -9,6 +9,8 @@ class TodoWidget extends StatelessWidget {
   final String description;
   final bool isDone;
   final void Function()? onTap;
+  final void Function()? onLongPress;
+
   final String? dateAndTime;
 
   const TodoWidget({
@@ -18,6 +20,8 @@ class TodoWidget extends StatelessWidget {
     required this.isDone,
     this.dateAndTime,
     this.onTap,
+    this.onLongPress,
+
   }) : super(key: key);
 
   @override
@@ -29,6 +33,7 @@ class TodoWidget extends StatelessWidget {
         padding: EdgeInsets.only(bottom: constraints.maxWidth * 0.026),
         child: InkWell(
           onTap: onTap,
+          onLongPress: onLongPress,
           child: Container(
             height: constraints.maxWidth * 0.194,
             width: constraints.maxWidth * 0.906,

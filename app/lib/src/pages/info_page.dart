@@ -1,4 +1,5 @@
 import 'package:app/src/controller/controller.dart';
+import 'package:app/src/pages/widgets/new_task_widget.dart';
 import 'package:app/states/task_error_state.dart';
 import 'package:app/states/task_loading_state.dart';
 import 'package:app/states/task_sucess_state.dart';
@@ -23,8 +24,7 @@ class _InfoPageState extends State<InfoPage> {
     store.loadTasks();
   }
 
-  final controller = Controller();
-  final store = TaskStory();
+  final store = TaskStory(controller: Controller());
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,9 @@ class _InfoPageState extends State<InfoPage> {
         onPressed: () => showModalBottomSheet(
           context: context,
           builder: (context) {
-            return NewTaskWidget(controller: controller);
+            return NewTaskWidget(
+              store: store,
+            );
           },
         ),
         child: Icon(Icons.add, size: size.width * 0.064),
@@ -83,9 +85,10 @@ class _InfoPageState extends State<InfoPage> {
                             description: tasks.description,
                             dateAndTime: tasks.dateAndTime,
                             isDone: tasks.isDone,
-                            onTap: () => setState(
-                              () => tasks.isDone = !tasks.isDone,
-                            ),
+                            onTap: () =>
+                                setState(() => tasks.isDone = !tasks.isDone),
+                            onLongPress: () =>
+                                setState(() => taskList.tasks.removeAt(index)),
                           );
                         },
                       ),
@@ -96,150 +99,6 @@ class _InfoPageState extends State<InfoPage> {
               },
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-///
-///
-///
-///
-///
-///
-
-class NewTaskWidget extends StatefulWidget {
-  final Controller controller;
-
-  const NewTaskWidget({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-  @override
-  State<NewTaskWidget> createState() => _NewTaskWidgetState();
-}
-
-class _NewTaskWidgetState extends State<NewTaskWidget> {
-  final store = TaskStory();
-  final formKey = GlobalKey<FormState>();
-  TextEditingController titleTaskController = TextEditingController();
-  TextEditingController descriptionTaskController = TextEditingController();
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
-    return SizedBox(
-      height: size.width * 1.2,
-      child: Form(
-        key: widget.controller.formKey,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('Titulo:'),
-              const SizedBox(height: 4),
-              TextFormField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(14),
-                    ),
-                  ),
-                ),
-                controller: widget.controller.titleTaskController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor insira um titulo válido';
-                  }
-                  return null;
-                },
-              ),
-              const Text('Descrição:'),
-              const SizedBox(height: 4),
-              TextFormField(
-                controller: widget.controller.descriptionTaskController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor insira uma descrição válida';
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(14),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-              Row(
-                children: [
-                  ElevatedButton(
-                    child: const Text('escolha a data'),
-                    onPressed: () async {
-                      widget.controller.newDate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime.now(),
-                        lastDate: DateTime(2026),
-                      );
-                      if (widget.controller.newDate != null) {
-                        setState(() {
-                          widget.controller.dateTime =
-                              widget.controller.newDate!;
-                        });
-                      }
-                    },
-                  ),
-                  const SizedBox(width: 20),
-                  ElevatedButton(
-                    child: const Text('escolha as horas'),
-                    onPressed: () async {
-                      widget.controller.newTime = await showTimePicker(
-                        context: context,
-                        initialTime: TimeOfDay.now(),
-                      );
-                      if (widget.controller.newTime != null) {
-                        setState(() {
-                          widget.controller.timeOfDay =
-                              widget.controller.newTime!;
-                        });
-                      }
-                    },
-                  )
-                ],
-              ),
-              const SizedBox(height: 24),
-              Row(
-                children: [
-                  Text(widget.controller.formatedDate()),
-                  const SizedBox(width: 12),
-                  Text(widget.controller.formatedTime()),
-                  const SizedBox(width: 30),
-                  // Text(widget.controller.validatorTask())
-                ],
-              ),
-              const SizedBox(height: 24),
-              ElevatedButton(
-                child: const Text('Salvar'),
-                onPressed: () {
-                  Navigator.pop(context);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Adicionando tarefa...'),
-                      duration: Duration(seconds: 2),
-                    ),
-                  );
-                  widget.controller.addTask();
-                },
-              ),
-            ],
-          ),
         ),
       ),
     );

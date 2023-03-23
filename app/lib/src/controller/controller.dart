@@ -52,11 +52,14 @@ class Controller extends ChangeNotifier {
         return Icons.bookmark_border;
     }
   }
+  //   void removeTask(int index) {
+  //   taskList.removeAt(index);
+  // }
 
-  Future<void> addTask() async {
+  Future<List<TaskModel>> addTask() async {
     final dateAndTime =
         '${newDate!.day}/${newDate!.month}/${newDate!.year}\n${newTime!.hour}:${newTime!.minute}';
-    if (formKey.currentState!.validate()) {
+    if (formKey.currentState != null && formKey.currentState!.validate()) {
       taskList.add(
         TaskModel(
           title: titleTaskController.text,
@@ -67,9 +70,12 @@ class Controller extends ChangeNotifier {
 
       final taskListJson = jsonEncode(taskList);
       await prefsService.saveTask(taskListJson);
+      return taskList;
     }
-
+    return [];
   }
+
+
 
   // void cleanFields() {
   //   titleTaskController.clear();
