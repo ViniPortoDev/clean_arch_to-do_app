@@ -68,6 +68,7 @@ class _InfoPageState extends State<InfoPage> {
                   return Expanded(child: Center(child: Text(taskList.message)));
                 }
                 if (taskList is TaskSucessState) {
+                  print(taskList.tasks);
                   return Expanded(
                     child: Padding(
                       padding:
@@ -85,10 +86,8 @@ class _InfoPageState extends State<InfoPage> {
                             description: tasks.description,
                             dateAndTime: tasks.dateAndTime,
                             isDone: tasks.isDone,
-                            onTap: () =>
-                                setState(() => tasks.isDone = !tasks.isDone),
-                            onLongPress: () =>
-                                setState(() => taskList.tasks.removeAt(index)),
+                            onTap: () => store.completeTask(index),
+                            onLongPress: () => store.removeTask(index),
                           );
                         },
                       ),

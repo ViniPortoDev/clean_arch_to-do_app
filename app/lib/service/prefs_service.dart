@@ -28,4 +28,9 @@ class PrefsService implements InterfaceDatabase {
     }
     return list;
   }
+
+  Future<void> updateList() async {
+    final prefs = await SharedPreferences.getInstance();
+   await prefs.reload();
+  }
 }

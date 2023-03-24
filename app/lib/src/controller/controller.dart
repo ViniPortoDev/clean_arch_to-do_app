@@ -52,30 +52,47 @@ class Controller extends ChangeNotifier {
         return Icons.bookmark_border;
     }
   }
-  //   void removeTask(int index) {
-  //   taskList.removeAt(index);
-  // }
+
+  List<TaskModel> removeTask(int index) {
+    taskList.removeAt(index);
+    return taskList;
+  }
+
+  List<TaskModel> completeTask(int index) {
+    taskList[index].isDone = !taskList[index].isDone;
+    return taskList;
+  }
 
   Future<List<TaskModel>> addTask() async {
     final dateAndTime =
         '${newDate!.day}/${newDate!.month}/${newDate!.year}\n${newTime!.hour}:${newTime!.minute}';
     if (formKey.currentState != null && formKey.currentState!.validate()) {
-      taskList.add(
-        TaskModel(
-          title: titleTaskController.text,
-          description: descriptionTaskController.text,
-          dateAndTime: dateAndTime,
-        ),
-      );
+      taskList
+        ..add(
+          TaskModel(
+            title: titleTaskController.text,
+            description: descriptionTaskController.text,
+            date: newDate,
+            time: newTime,
+            dateAndTime: dateAndTime,
+          ),
+        )
+        ..sort((TaskModel a, TaskModel b) => a.date!.compareTo(b.date!))
+        ..sort(
+          (TaskModel a, TaskModel b) => a.time!.hour.compareTo(b.time!.hour),
+        )
+        ..sort(
+          (TaskModel a, TaskModel b) =>
+              a.time!.minute.compareTo(b.time!.minute),
+        );
 
       final taskListJson = jsonEncode(taskList);
       await prefsService.saveTask(taskListJson);
+
       return taskList;
     }
     return [];
   }
-
-
 
   // void cleanFields() {
   //   titleTaskController.clear();

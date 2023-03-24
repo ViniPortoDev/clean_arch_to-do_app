@@ -1,14 +1,21 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 class TaskModel {
   final String title;
   final String description;
+  final DateTime? date;
+  final TimeOfDay? time;
+
   final String? dateAndTime;
   bool isDone;
 
   TaskModel({
     required this.title,
     required this.description,
+    this.date,
+    this.time,
     this.dateAndTime,
     this.isDone = false,
   });

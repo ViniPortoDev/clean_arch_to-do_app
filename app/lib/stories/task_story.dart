@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app/service/prefs_service.dart';
 import 'package:app/src/controller/controller.dart';
 import 'package:app/src/models/task_model.dart';
@@ -23,17 +25,26 @@ class TaskStory extends ValueNotifier<TaskState> {
       value = TaskErrorState(e.toString());
     }
   }
+  
 
   Future<void> addTask() async {
     final list = await controller.addTask();
     value = TaskSucessState(list);
   }
 
-  // void isDone(dynamic done) {
-  //   done = !done;
-  // }
+  Future<void> completeTask(int index) async {
+    final newTaskList = controller.completeTask(index);
+    final newTaskListJson = jsonEncode(newTaskList);
+    await prefsService.saveTask(newTaskListJson);
+    value = TaskSucessState(newTaskList);
+  }
 
-  // void removeTask(int index) {
-  //   controller.taskList.removeAt(index);
-  // }
+  Future<void> removeTask(int index) async {
+    final newTaskList = controller.removeTask(index);
+    final newTaskListJson = jsonEncode(newTaskList);
+    await prefsService.saveTask(newTaskListJson);
+    value = TaskSucessState(newTaskList);
+  }
+
+
 }

@@ -12,10 +12,6 @@ class NewTaskWidget extends StatefulWidget {
 }
 
 class _NewTaskWidgetState extends State<NewTaskWidget> {
-
-
-
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -125,6 +121,7 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                       duration: Duration(seconds: 2),
                     ),
                   );
+                
                   widget.store.addTask();
                 },
               ),
