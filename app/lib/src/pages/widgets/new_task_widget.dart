@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import '../../../stories/task_story.dart';
-import '../../controller/controller.dart';
 
 class NewTaskWidget extends StatefulWidget {
   final TaskStory store;

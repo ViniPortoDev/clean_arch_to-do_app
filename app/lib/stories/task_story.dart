@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:app/service/prefs_service.dart';
 import 'package:app/src/controller/controller.dart';
-import 'package:app/src/models/task_model.dart';
 import 'package:app/states/task_error_state.dart';
 import 'package:app/states/task_initial_state.dart';
 import 'package:app/states/task_loading_state.dart';

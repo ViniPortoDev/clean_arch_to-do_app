@@ -98,10 +98,5 @@ class Controller extends ChangeNotifier {
     return [];
   }
 
-  // void cleanFields() {
-  //   titleTaskController.clear();
-  //   descriptionTaskController.clear();
-  //   timeOfDay = TimeOfDay.now();
-  //   dateTime = DateTime.now();
-  // }
+
 }

@@ -68,7 +68,6 @@ class _InfoPageState extends State<InfoPage> {
                   return Expanded(child: Center(child: Text(taskList.message)));
                 }
                 if (taskList is TaskSucessState) {
-                  print(taskList.tasks);
                   return Expanded(
                     child: Padding(
                       padding:
