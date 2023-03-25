@@ -63,30 +63,34 @@ class Controller extends ChangeNotifier {
     return taskList;
   }
 
+  List<TaskModel> sortList(List<TaskModel> list) {
+    list
+      ..sort((TaskModel a, TaskModel b) => a.date!.compareTo(b.date!))
+      ..sort(
+        (TaskModel a, TaskModel b) => a.time!.hour.compareTo(b.time!.hour),
+      )
+      ..sort(
+        (TaskModel a, TaskModel b) => a.time!.minute.compareTo(b.time!.minute),
+      );
+    return list;
+  }
+
   Future<List<TaskModel>> addTask() async {
     final dateAndTime =
         '${newDate!.day}/${newDate!.month}/${newDate!.year}\n${newTime!.hour}:${newTime!.minute}';
     if (formKey.currentState != null && formKey.currentState!.validate()) {
-      taskList
-        ..add(
-          TaskModel(
-            title: titleTaskController.text,
-            description: descriptionTaskController.text,
-            date: newDate,
-            time: newTime,
-            dateAndTime: dateAndTime,
-          ),
-        )
-        ..sort((TaskModel a, TaskModel b) => a.date!.compareTo(b.date!))
-        ..sort(
-          (TaskModel a, TaskModel b) => a.time!.hour.compareTo(b.time!.hour),
-        )
-        ..sort(
-          (TaskModel a, TaskModel b) =>
-              a.time!.minute.compareTo(b.time!.minute),
-        );
+      taskList.add(
+        TaskModel(
+          title: titleTaskController.text,
+          description: descriptionTaskController.text,
+          date: newDate,
+          time: newTime,
+          dateAndTime: dateAndTime,
+        ),
+      );
+      final orderedTaskList = sortList(taskList);
 
-      final taskListJson = jsonEncode(taskList);
+      final taskListJson = jsonEncode(orderedTaskList);
       await prefsService.saveTask(taskListJson);
 
       return taskList;
