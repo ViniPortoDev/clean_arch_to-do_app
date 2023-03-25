@@ -1,4 +1,5 @@
 import 'package:app/src/controller/controller.dart';
+import 'package:app/src/pages/widgets/completed_task_dialog.dart';
 import 'package:app/src/pages/widgets/new_task_widget.dart';
 import 'package:app/states/task_error_state.dart';
 import 'package:app/states/task_loading_state.dart';
@@ -85,7 +86,20 @@ class _InfoPageState extends State<InfoPage> {
                             description: tasks.description,
                             dateAndTime: tasks.dateAndTime,
                             isDone: tasks.isDone,
-                            onTap: () => store.completeTask(index),
+                            onTap: () {
+                              if (tasks.isDone == false) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => CompletedTaskDialog(
+                                    removeTask: () {
+                                      store.removeTask(index);
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                );
+                              }
+                              store.completeTask(index);
+                            },
                             onLongPress: () => store.removeTask(index),
                           );
                         },
