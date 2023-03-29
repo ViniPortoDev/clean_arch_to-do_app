@@ -6,39 +6,24 @@ import 'package:line_icons/line_icons.dart';
 import '../../service/prefs_service.dart';
 import '../models/chat_filter_model.dart';
 
-class Controller extends ChangeNotifier {
+class Controller  {
+  //TODO prefsService e taskList
   final prefsService = PrefsService();
   final formKey = GlobalKey<FormState>();
   TextEditingController titleTaskController = TextEditingController();
   TextEditingController descriptionTaskController = TextEditingController();
   TimeOfDay timeOfDay = TimeOfDay.now();
   DateTime dateTime = DateTime.now();
-  DateTime? newDate;
-  TimeOfDay? newTime;
-  bool visibility = false;
+
   List<TaskModel> taskList = [];
 
   String formatedDate() {
-    return '${newDate?.day ?? '00'}/${newDate?.month ?? '00'}/${newDate?.year ?? '00'}';
+    return '${dateTime.day}/${dateTime.month}/${dateTime.year}';
   }
 
   String formatedTime() {
-    return '${newTime?.hour ?? '00'}:${newTime?.minute ?? '00'}';
+    return '${timeOfDay.hour}:${timeOfDay.minute}';
   }
-
-  // String validatorTask() {
-  //   if (newDate != null && newTime != null) {
-  //     if (newDate!.isAfter(DateTime.now())) {
-  //       if (newTime!.hour <= TimeOfDay.now().hour) {
-  //         if (newTime!.minute < TimeOfDay.now().minute) {
-  //           return 'Insira uma data futura';
-  //         }
-  //         return '2';
-  //       }
-  //     }
-  //   }
-  //   return '1';
-  // }
 
   IconData getIcon(ChatFilterModel chatIcons) {
     switch (chatIcons.chatIcons) {
@@ -53,6 +38,22 @@ class Controller extends ChangeNotifier {
     }
   }
 
+  Color overdueTask(int index) {
+    final time = taskList[index].time;
+    final date = taskList[index].date;
+
+    if (time != null && date != null) {
+      return date.compareTo(DateTime.now()) == -1
+          ? time.hour.compareTo(TimeOfDay.now().hour) == -1
+              ? time.minute.compareTo(TimeOfDay.now().minute) == -1
+                  ? const Color.fromARGB(255, 250, 66, 53)
+                  : const Color.fromARGB(255, 255, 255, 255)
+              : const Color.fromARGB(255, 255, 255, 255)
+          : const Color.fromARGB(255, 255, 255, 255);
+    }
+    return Colors.white;
+  }
+
   List<TaskModel> removeTask(int index) {
     taskList.removeAt(index);
     return taskList;
@@ -64,27 +65,32 @@ class Controller extends ChangeNotifier {
   }
 
   List<TaskModel> sortList(List<TaskModel> list) {
-    list
-      ..sort((TaskModel a, TaskModel b) => a.date!.compareTo(b.date!))
-      ..sort(
-        (TaskModel a, TaskModel b) => a.time!.hour.compareTo(b.time!.hour),
-      )
-      ..sort(
-        (TaskModel a, TaskModel b) => a.time!.minute.compareTo(b.time!.minute),
-      );
+    if (list.length >= 2) {
+      list
+        ..sort((TaskModel a, TaskModel b) {
+          return a.time!.minute.compareTo(b.time!.minute);
+        })
+        ..sort((TaskModel a, TaskModel b) {
+          return a.time!.hour.compareTo(b.time!.hour);
+        })
+        ..sort((TaskModel a, TaskModel b) {
+          return a.date!.compareTo(b.date!);
+        });
+      return list;
+    }
     return list;
   }
 
   Future<List<TaskModel>> addTask() async {
     final dateAndTime =
-        '${newDate!.day}/${newDate!.month}/${newDate!.year}\n${newTime!.hour}:${newTime!.minute}';
+        '${dateTime.day}/${dateTime.month}/${dateTime.year}\n${timeOfDay.hour}:${timeOfDay.minute}';
     if (formKey.currentState != null && formKey.currentState!.validate()) {
       taskList.add(
         TaskModel(
           title: titleTaskController.text,
           description: descriptionTaskController.text,
-          date: newDate,
-          time: newTime,
+          date: dateTime,
+          time: timeOfDay,
           dateAndTime: dateAndTime,
         ),
       );
@@ -93,10 +99,8 @@ class Controller extends ChangeNotifier {
       final taskListJson = jsonEncode(orderedTaskList);
       await prefsService.saveTask(taskListJson);
 
-      return taskList;
+      return orderedTaskList;
     }
     return [];
   }
-
-
 }

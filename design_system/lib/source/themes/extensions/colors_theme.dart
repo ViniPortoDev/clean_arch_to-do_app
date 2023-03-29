@@ -16,7 +16,6 @@ class ColorsTheme extends ThemeExtension<ColorsTheme> {
   final Color titleColor;
   final Color onlineColor;
   final Color terciaryGrey;
-
   final Color profileSkilltextColor;
   final Color profileIconsAvaliableColor;
   final Color profileIconsUnvaliableColor;
@@ -37,7 +36,6 @@ class ColorsTheme extends ThemeExtension<ColorsTheme> {
     required this.titleColor,
     required this.onlineColor,
     required this.terciaryGrey,
-
     required this.profileSkilltextColor,
     required this.profileIconsAvaliableColor,
     required this.profileIconsUnvaliableColor,

@@ -13,7 +13,6 @@ class HexColors {
   static const white = Colors.white;
   static const grey = Color(0xff919397);
   static const terciaryGrey = Color(0xff262626);
-
   static const pink = Color(0xffB6B4FF);
   static const greenLemon = Color(0xffA3D731);
   static const profileAvaliablePurple = Color(0xff6963DB);

@@ -41,11 +41,11 @@ class Mytheme {
           color: HexColors.lightPink,
         ),
         chatFilterButtonSelectedStyle: const TextStyle(
-          fontSize: 18,
+          fontSize: 16,
           color: HexColors.black,
         ),
         chatFilterButtonStyle: const TextStyle(
-          fontSize: 20,
+          fontSize: 16,
           color: HexColors.primaryGrey,
         ),
         listTileNumberStyle: const TextStyle(

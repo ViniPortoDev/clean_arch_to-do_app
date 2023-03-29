@@ -1,6 +1,6 @@
 import '../src/models/task_model.dart';
 
 abstract class InterfaceDatabase {
-  Future loadTask(List<TaskModel> list) async {}
-  Future saveTask(String json) async {}
+  Future<List<TaskModel>> loadTask(List<TaskModel> list);
+  Future saveTask(String json);
 }

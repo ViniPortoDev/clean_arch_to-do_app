@@ -3,19 +3,22 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 class TaskModel {
+  //TODO tirar data nula, cor e datendtime
   final String title;
   final String description;
   final DateTime? date;
   final TimeOfDay? time;
-
+   final Color? overdueTask;
   final String? dateAndTime;
   bool isDone;
 
+  //TODO fazer copywith pro isDone e estudar o porque
   TaskModel({
     required this.title,
     required this.description,
     this.date,
     this.time,
+    this.overdueTask,
     this.dateAndTime,
     this.isDone = false,
   });

@@ -1,17 +1,14 @@
 import 'dart:convert';
 import 'package:app/service/prefs_service.dart';
 import 'package:app/src/controller/controller.dart';
-import 'package:app/states/task_error_state.dart';
-import 'package:app/states/task_initial_state.dart';
-import 'package:app/states/task_loading_state.dart';
 import 'package:app/states/task_state.dart';
-import 'package:app/states/task_sucess_state.dart';
 import 'package:flutter/cupertino.dart';
 
-class TaskStory extends ValueNotifier<TaskState> {
+class TaskStore extends ValueNotifier<TaskState> {
+  //TODO instancia do controller n pode existir, tem receber por parametro
   final Controller controller;
   final PrefsService prefsService = PrefsService();
-  TaskStory({required this.controller}) : super(TaskInitialState());
+  TaskStore({required this.controller}) : super(TaskInitialState());
   Future loadTasks() async {
     value = TaskLoadingState();
 
@@ -23,7 +20,6 @@ class TaskStory extends ValueNotifier<TaskState> {
       value = TaskErrorState(e.toString());
     }
   }
-  
 
   Future<void> addTask() async {
     final list = await controller.addTask();
@@ -43,6 +39,4 @@ class TaskStory extends ValueNotifier<TaskState> {
     await prefsService.saveTask(newTaskListJson);
     value = TaskSucessState(newTaskList);
   }
-
-
 }

@@ -10,12 +10,25 @@ class ChatFilterButtonWidget extends StatelessWidget {
   final String filterTypeTextChat;
   final String numberMessage;
   final bool isSelected;
+  final double? selectedWidth;
+  final double? iconSize;
+  final double? spacing;
+  final double? padding;
+  final double? selectedButtonBorderRadius;
+  final double? unselectedButtonWidth;
+
   const ChatFilterButtonWidget({
     Key? key,
     required this.icon,
     required this.filterTypeTextChat,
     required this.numberMessage,
     required this.isSelected,
+    this.selectedWidth,
+    this.iconSize,
+    this.spacing,
+    this.padding,
+    this.selectedButtonBorderRadius,
+    this.unselectedButtonWidth,
   }) : super(key: key);
 
   @override
@@ -27,28 +40,32 @@ class ChatFilterButtonWidget extends StatelessWidget {
         ? LayoutBuilder(
             builder: (context, constraints) {
               return Padding(
-                padding: EdgeInsets.only(right: constraints.maxWidth * 0.042),
+                padding: EdgeInsets.only(
+                  right: padding ?? constraints.maxWidth * 0.042,
+                ),
                 child: SelectedButtonWidget(
-                  width: constraints.maxWidth * 0.33,
+                  borderRadius: selectedButtonBorderRadius,
+                  padding: 5,
+                  width: selectedWidth ?? constraints.maxWidth * 0.33,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
                         icon,
                         color: colorsTheme.blackColor,
-                        size: constraints.maxWidth * 0.069,
+                        size: iconSize ?? constraints.maxWidth * 0.069,
                       ),
-                      SizedBox(width: constraints.maxWidth * 0.032),
+                      SizedBox(width: spacing ?? constraints.maxWidth * 0.032),
                       Text(
                         filterTypeTextChat,
                         style: textStyleTheme.chatFilterButtonSelectedStyle,
                       ),
-                      SizedBox(width: constraints.maxWidth * 0.014),
+                      const SizedBox(width: 6),
                       BadgeWidget(
                         numberMessage: numberMessage,
                         isSelected: isSelected,
-                        height: constraints.maxWidth * 0.064,
-                        width: constraints.maxWidth * 0.064,
+                        height: iconSize ?? constraints.maxWidth * 0.064,
+                        width: iconSize ?? constraints.maxWidth * 0.064,
                       )
                     ],
                   ),
@@ -59,28 +76,30 @@ class ChatFilterButtonWidget extends StatelessWidget {
         : LayoutBuilder(
             builder: (context, constraints) {
               return Padding(
-                padding: EdgeInsets.only(right: constraints.maxWidth * 0.042),
+                padding: EdgeInsets.only(
+                  right: padding ?? constraints.maxWidth * 0.042,
+                ),
                 child: SizedBox(
-                  width: constraints.maxWidth * 0.4,
+                  width: unselectedButtonWidth ?? constraints.maxWidth * 0.4,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
                         icon,
                         color: colorsTheme.iconsColor,
-                        size: constraints.maxWidth * 0.069,
+                        size: iconSize ?? constraints.maxWidth * 0.069,
                       ),
-                      SizedBox(width: constraints.maxWidth * 0.026),
+                      SizedBox(width: spacing ?? constraints.maxWidth * 0.026),
                       Text(
                         filterTypeTextChat,
                         style: textStyleTheme.chatFilterButtonStyle,
                       ),
-                      SizedBox(width: constraints.maxWidth * 0.016),
+                      const SizedBox(width: 6),
                       BadgeWidget(
                         numberMessage: numberMessage,
                         isSelected: isSelected,
-                        height: constraints.maxWidth * 0.064,
-                        width: constraints.maxWidth * 0.064,
+                        height: iconSize ?? constraints.maxWidth * 0.064,
+                        width: iconSize ?? constraints.maxWidth * 0.064,
                       )
                     ],
                   ),

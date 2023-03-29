@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../stories/task_story.dart';
+import '../../../stores/task_story.dart';
 
 class NewTaskWidget extends StatefulWidget {
-  final TaskStory store;
+  final TaskStore store;
   const NewTaskWidget({Key? key, required this.store}) : super(key: key);
 
   @override
@@ -66,16 +66,15 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                   ElevatedButton(
                     child: const Text('escolha a data'),
                     onPressed: () async {
-                      widget.store.controller.newDate = await showDatePicker(
+                      final newDate = await showDatePicker(
                         context: context,
                         initialDate: DateTime.now(),
                         firstDate: DateTime.now(),
                         lastDate: DateTime(2026),
                       );
-                      if (widget.store.controller.newDate != null) {
+                      if (newDate != null) {
                         setState(() {
-                          widget.store.controller.dateTime =
-                              widget.store.controller.newDate!;
+                          widget.store.controller.dateTime = newDate;
                         });
                       }
                     },
@@ -84,14 +83,13 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                   ElevatedButton(
                     child: const Text('escolha as horas'),
                     onPressed: () async {
-                      widget.store.controller.newTime = await showTimePicker(
+                      final newTime = await showTimePicker(
                         context: context,
                         initialTime: TimeOfDay.now(),
                       );
-                      if (widget.store.controller.newTime != null) {
+                      if (newTime != null) {
                         setState(() {
-                          widget.store.controller.timeOfDay =
-                              widget.store.controller.newTime!;
+                          widget.store.controller.timeOfDay = newTime;
                         });
                       }
                     },
@@ -119,7 +117,7 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                       duration: Duration(seconds: 2),
                     ),
                   );
-                
+
                   widget.store.addTask();
                 },
               ),

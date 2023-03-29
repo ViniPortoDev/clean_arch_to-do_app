@@ -10,7 +10,7 @@ class TodoWidget extends StatelessWidget {
   final bool isDone;
   final void Function()? onTap;
   final void Function()? onLongPress;
-
+  final Color? overdueTask;
   final String? dateAndTime;
 
   const TodoWidget({
@@ -20,18 +20,17 @@ class TodoWidget extends StatelessWidget {
     required this.isDone,
     this.dateAndTime,
     this.onTap,
+    this.overdueTask,
     this.onLongPress,
-
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
     final textStyleTheme = Theme.of(context).extension<TextStyleTheme>()!;
-    return LayoutBuilder(builder: (context, constraints) {
-      return Padding(
-        padding: EdgeInsets.only(bottom: constraints.maxWidth * 0.026),
-        child: InkWell(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return InkWell(
           onTap: onTap,
           onLongPress: onLongPress,
           child: Container(
@@ -105,12 +104,15 @@ class TodoWidget extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(width: 4),
-                Text(dateAndTime ?? ''),
+                Text(
+                  dateAndTime ?? '',
+                  style: TextStyle(color: overdueTask ?? Colors.white),
+                ),
               ],
             ),
           ),
-        ),
-      );
-    },);
+        );
+      },
+    );
   }
 }

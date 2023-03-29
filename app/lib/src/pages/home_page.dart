@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:app/src/mocks/chat_filter_mock.dart';
 import 'package:app/utils/image_path.dart';
 import 'package:app/utils/routes.dart';
@@ -28,127 +30,118 @@ class _HomePageState extends State<HomePage> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Container(
-        color: colorsTheme.backgroundColor,
+      backgroundColor: colorsTheme.backgroundColor,
+      body: SizedBox(
         height: size.height,
-        child: Stack(
-          children: [
-            SizedBox(
-              height: size.height,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(height: size.width * 0.128),
-                    const SearchWidget(),
-                    SizedBox(height: size.width * 0.037),
-                    SizedBox(
-                      height: size.width * 0.133,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        padding: EdgeInsets.only(left: size.width * 0.042),
-                        itemCount: chatFilterMock.chatFilter.length,
-                        itemBuilder: (context, index) {
-                          final filterList = chatFilterMock.chatFilter[index];
-                          return SizedBox(
-                            width: size.width,
-                            height: size.width,
-                            child: ChatFilterButtonWidget(
-                              icon: controller.getIcon(filterList),
-                              filterTypeTextChat: filterList.textTypeChat,
-                              isSelected: filterList.isSelected,
-                              numberMessage: filterList.numberMessage,
-                            ),
-                          );
-                        },
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: size.width * 0.128),
+              const SearchWidget(),
+              SizedBox(height: size.width * 0.037),
+              SizedBox(
+                height: size.width * 0.133,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.only(left: size.width * 0.042),
+                  itemCount: chatFilterMock.chatFilter.length,
+                  itemBuilder: (context, index) {
+                    final filterList = chatFilterMock.chatFilter[index];
+                    return SizedBox(
+                      child: ChatFilterButtonWidget(
+                        icon: controller.getIcon(filterList),
+                        filterTypeTextChat: filterList.textTypeChat,
+                        isSelected: filterList.isSelected,
+                        numberMessage: filterList.numberMessage,
+                        unselectedButtonWidth: size.width * 0.42,
+                        iconSize: size.width * 0.069,
+                        padding: size.width * 0.042,
+                        spacing: size.width * 0.02,
+                        selectedButtonBorderRadius: size.width * 0.034,
+                        selectedWidth: size.width * 0.33,
                       ),
-                    ),
-                    SizedBox(height: size.width * 0.042),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: size.width * 0.048),
-                      child: ExpansionWidget(
-                        title: 'Unread',
-                        itemCount: 3,
-                        isOpen: true,
-                        child: Padding(
-                          padding: EdgeInsets.only(top: size.width * 0.037),
-                          child: ListTileWidget(
-                            name: UserName.name,
-                            numberMessages: '20',
-                            dateSent: '10:56',
-                            phoneNumber: '(86) 9 9489-4600',
-                            message: 'nego ney nego ney nego nego nego',
-                            imageNetworkAvatar: ImagePath.imageAvatar,
-                            isOnline: true,
-                            muted: false,
-                            onTap: () =>
-                                Navigator.pushNamed(context, Routes.chatPage),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: size.width * 0.064),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: size.width * 0.048),
-                      child: ExpansionWidget(
-                        title: 'From team',
-                        itemCount: 3,
-                        child: Padding(
-                          padding: EdgeInsets.only(top: size.width * 0.037),
-                          child: ListTileWidget(
-                            name: UserName.name,
-                            numberMessages: '20',
-                            dateSent: '10:56',
-                            phoneNumber: '(86) 9 9489-4600',
-                            message: 'nego ney nego ney nego nego nego',
-                            imageNetworkAvatar: ImagePath.imageAvatar,
-                            isOnline: true,
-                            muted: false,
-                            onTap: () =>
-                                Navigator.pushNamed(context, Routes.chatPage),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: size.width * 0.064),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: size.width * 0.048),
-                      child: ExpansionWidget(
-                        title: 'From Companies',
-                        itemCount: 3,
-                        isOpen: true,
-                        child: Padding(
-                          padding: EdgeInsets.only(top: size.width * 0.037),
-                          child: ListTileWidget(
-                            name: UserName.name,
-                            numberMessages: '20',
-                            dateSent: '10:56',
-                            phoneNumber: '(86) 9 9489-4600',
-                            message: 'nego ney nego ney nego nego nego',
-                            imageNetworkAvatar: ImagePath.imageAvatar,
-                            isOnline: true,
-                            muted: false,
-                            onTap: () =>
-                                Navigator.pushNamed(context, Routes.chatPage),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: size.width * 0.33)
-                  ],
+                    );
+                  },
                 ),
               ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: BottomNavigationWidget(
-                onPressed: () => Navigator.pushNamed(context, Routes.infoPage),
+              SizedBox(height: size.width * 0.042),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.048),
+                child: ExpansionWidget(
+                  title: 'Unread',
+                  itemCount: 3,
+                  isOpen: true,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: size.width * 0.037),
+                    child: ListTileWidget(
+                      name: UserName.name,
+                      numberMessages: '20',
+                      dateSent: '10:56',
+                      phoneNumber: '(86) 9 9489-4600',
+                      message: 'nego ney nego ney nego nego nego',
+                      imageNetworkAvatar: ImagePath.imageAvatar,
+                      isOnline: true,
+                      muted: false,
+                      onTap: () =>
+                          Navigator.pushNamed(context, Routes.chatPage),
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ],
+              SizedBox(height: size.width * 0.064),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.048),
+                child: ExpansionWidget(
+                  title: 'From team',
+                  itemCount: 3,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: size.width * 0.037),
+                    child: ListTileWidget(
+                      name: UserName.name,
+                      numberMessages: '20',
+                      dateSent: '10:56',
+                      phoneNumber: '(86) 9 9489-4600',
+                      message: 'nego ney nego ney nego nego nego',
+                      imageNetworkAvatar: ImagePath.imageAvatar,
+                      isOnline: true,
+                      muted: false,
+                      onTap: () =>
+                          Navigator.pushNamed(context, Routes.chatPage),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: size.width * 0.064),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.048),
+                child: ExpansionWidget(
+                  title: 'From Companies',
+                  itemCount: 3,
+                  isOpen: true,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: size.width * 0.037),
+                    child: ListTileWidget(
+                      name: UserName.name,
+                      numberMessages: '20',
+                      dateSent: '10:56',
+                      phoneNumber: '(86) 9 9489-4600',
+                      message: 'nego ney nego ney nego nego nego',
+                      imageNetworkAvatar: ImagePath.imageAvatar,
+                      isOnline: true,
+                      muted: false,
+                      onTap: () =>
+                          Navigator.pushNamed(context, Routes.chatPage),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: size.width * 0.33)
+            ],
+          ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationWidget(
+        onPressed: () => Navigator.pushNamed(context, Routes.infoPage),
       ),
     );
   }
