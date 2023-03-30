@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:app/src/mocks/chat_filter_mock.dart';
 import 'package:app/utils/image_path.dart';
 import 'package:app/utils/routes.dart';

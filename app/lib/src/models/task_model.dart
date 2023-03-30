@@ -1,33 +1,37 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-
 class TaskModel {
-  //TODO tirar data nula, cor e datendtime
   final String title;
   final String description;
-  final DateTime? date;
-  final TimeOfDay? time;
-   final Color? overdueTask;
-  final String? dateAndTime;
-  bool isDone;
+  final DateTime date;
+  final bool isDone;
 
-  //TODO fazer copywith pro isDone e estudar o porque
-  TaskModel({
+  const TaskModel({
     required this.title,
     required this.description,
-    this.date,
-    this.time,
-    this.overdueTask,
-    this.dateAndTime,
-    this.isDone = false,
+    required this.date,
+    required this.isDone,
   });
+
+  TaskModel copyWith({
+    String? title,
+    String? description,
+    DateTime? date,
+    bool? isDone,
+  }) {
+    return TaskModel(
+      title: title ?? this.title,
+      description: description ?? this.description,
+      date: date ?? this.date,
+      isDone: isDone ?? this.isDone,
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'title': title,
       'description': description,
-      'dateAndTime': dateAndTime,
+      'date': date.millisecondsSinceEpoch,
       'isDone': isDone,
     };
   }
@@ -36,8 +40,7 @@ class TaskModel {
     return TaskModel(
       title: map['title'] as String,
       description: map['description'] as String,
-      dateAndTime:
-          map['dateAndTime'] != null ? map['dateAndTime'] as String : null,
+      date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
       isDone: map['isDone'] as bool,
     );
   }
@@ -46,9 +49,4 @@ class TaskModel {
 
   factory TaskModel.fromJson(String source) =>
       TaskModel.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  @override
-  String toString() {
-    return '''TaskModel(title: $title, description: $description, dateAndTime: $dateAndTime, isDone: $isDone)''';
-  }
 }

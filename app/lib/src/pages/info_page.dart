@@ -85,9 +85,9 @@ class _InfoPageState extends State<InfoPage> {
                           return TodoWidget(
                             title: tasks.title,
                             description: tasks.description,
-                            dateAndTime: tasks.dateAndTime,
                             isDone: tasks.isDone,
-                            overdueTask: store.controller.overdueTask(index),
+                            date: store.controller.dateAndTime(tasks.date),
+                            onLongPress: () => store.removeTask(index),
                             onTap: () {
                               if (tasks.isDone == false) {
                                 showDialog(
@@ -102,7 +102,6 @@ class _InfoPageState extends State<InfoPage> {
                               }
                               store.completeTask(index);
                             },
-                            onLongPress: () => store.removeTask(index),
                           );
                         },
                       ),

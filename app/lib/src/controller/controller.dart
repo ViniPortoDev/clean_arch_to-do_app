@@ -1,28 +1,24 @@
 import 'dart:convert';
 
+import 'package:app/repositories/task_repositories.dart';
 import 'package:app/src/models/task_model.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import '../../service/prefs_service.dart';
 import '../models/chat_filter_model.dart';
 
-class Controller  {
-  //TODO prefsService e taskList
-  final prefsService = PrefsService();
+class Controller {
   final formKey = GlobalKey<FormState>();
   TextEditingController titleTaskController = TextEditingController();
   TextEditingController descriptionTaskController = TextEditingController();
   TimeOfDay timeOfDay = TimeOfDay.now();
   DateTime dateTime = DateTime.now();
+  bool isDone = false;
 
-  List<TaskModel> taskList = [];
-
-  String formatedDate() {
-    return '${dateTime.day}/${dateTime.month}/${dateTime.year}';
-  }
-
-  String formatedTime() {
-    return '${timeOfDay.hour}:${timeOfDay.minute}';
+  String dateAndTime(DateTime date) {
+    final dateAndTime =
+        '${date.day}/${date.month}/${date.year}\n${date.hour}:${date.minute}';
+    return dateAndTime;
   }
 
   IconData getIcon(ChatFilterModel chatIcons) {
@@ -38,67 +34,59 @@ class Controller  {
     }
   }
 
-  Color overdueTask(int index) {
-    final time = taskList[index].time;
-    final date = taskList[index].date;
+  // Color overdueTask(int index) {
 
-    if (time != null && date != null) {
-      return date.compareTo(DateTime.now()) == -1
-          ? time.hour.compareTo(TimeOfDay.now().hour) == -1
-              ? time.minute.compareTo(TimeOfDay.now().minute) == -1
-                  ? const Color.fromARGB(255, 250, 66, 53)
-                  : const Color.fromARGB(255, 255, 255, 255)
-              : const Color.fromARGB(255, 255, 255, 255)
-          : const Color.fromARGB(255, 255, 255, 255);
-    }
-    return Colors.white;
-  }
+  //   final date = taskList[index].date;
 
-  List<TaskModel> removeTask(int index) {
+  //   if (time != null && date != null) {
+  //     return date.compareTo(DateTime.now()) == -1
+  //         ? time.hour.compareTo(TimeOfDay.now().hour) == -1
+  //             ? time.minute.compareTo(TimeOfDay.now().minute) == -1
+  //                 ? const Color.fromARGB(255, 250, 66, 53)
+  //                 : const Color.fromARGB(255, 255, 255, 255)
+  //             : const Color.fromARGB(255, 255, 255, 255)
+  //         : const Color.fromARGB(255, 255, 255, 255);
+  //   }
+  //   return Colors.white;
+  // }
+
+  List<TaskModel> removeTask(int index, List<TaskModel> taskList) {
     taskList.removeAt(index);
     return taskList;
   }
 
-  List<TaskModel> completeTask(int index) {
-    taskList[index].isDone = !taskList[index].isDone;
+  List<TaskModel> completeTask(int index, List<TaskModel> taskList) {
+    isDone = !isDone;
+    final taskModel = taskList[index].copyWith(isDone: isDone);
+    taskList[index] = taskModel;
     return taskList;
   }
 
   List<TaskModel> sortList(List<TaskModel> list) {
     if (list.length >= 2) {
-      list
-        ..sort((TaskModel a, TaskModel b) {
-          return a.time!.minute.compareTo(b.time!.minute);
-        })
-        ..sort((TaskModel a, TaskModel b) {
-          return a.time!.hour.compareTo(b.time!.hour);
-        })
-        ..sort((TaskModel a, TaskModel b) {
-          return a.date!.compareTo(b.date!);
-        });
+      list.sort((TaskModel a, TaskModel b) {
+        return a.date.compareTo(b.date);
+      });
       return list;
     }
     return list;
   }
 
-  Future<List<TaskModel>> addTask() async {
-    final dateAndTime =
-        '${dateTime.day}/${dateTime.month}/${dateTime.year}\n${timeOfDay.hour}:${timeOfDay.minute}';
+  Future<List<TaskModel>> addTask(
+    TaskDataBaseRepository service,
+    List<TaskModel> taskList,
+  ) async {
     if (formKey.currentState != null && formKey.currentState!.validate()) {
       taskList.add(
         TaskModel(
           title: titleTaskController.text,
           description: descriptionTaskController.text,
           date: dateTime,
-          time: timeOfDay,
-          dateAndTime: dateAndTime,
+          isDone: isDone = false,
         ),
       );
       final orderedTaskList = sortList(taskList);
-
-      final taskListJson = jsonEncode(orderedTaskList);
-      await prefsService.saveTask(taskListJson);
-
+      await service.saveTask(orderedTaskList);
       return orderedTaskList;
     }
     return [];

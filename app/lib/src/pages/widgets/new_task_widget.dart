@@ -89,7 +89,14 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                       );
                       if (newTime != null) {
                         setState(() {
-                          widget.store.controller.timeOfDay = newTime;
+                          final date = widget.store.controller.dateTime;
+                          widget.store.controller.dateTime = DateTime(
+                            date.year,
+                            date.month,
+                            date.day,
+                            newTime.hour,
+                            newTime.minute,
+                          );
                         });
                       }
                     },
@@ -99,11 +106,11 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
               const SizedBox(height: 24),
               Row(
                 children: [
-                  Text(widget.store.controller.formatedDate()),
-                  const SizedBox(width: 12),
-                  Text(widget.store.controller.formatedTime()),
-                  const SizedBox(width: 30),
-                  // Text(widget.controller.validatorTask())
+                  Text(
+                    widget.store.controller
+                        .dateAndTime(widget.store.controller.dateTime),
+                  ),
+
                 ],
               ),
               const SizedBox(height: 24),

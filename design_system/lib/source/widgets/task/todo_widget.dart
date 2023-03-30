@@ -11,14 +11,14 @@ class TodoWidget extends StatelessWidget {
   final void Function()? onTap;
   final void Function()? onLongPress;
   final Color? overdueTask;
-  final String? dateAndTime;
+  final String? date;
 
   const TodoWidget({
     Key? key,
     required this.title,
     required this.description,
     required this.isDone,
-    this.dateAndTime,
+   required this.date,
     this.onTap,
     this.overdueTask,
     this.onLongPress,
@@ -105,7 +105,7 @@ class TodoWidget extends StatelessWidget {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  dateAndTime ?? '',
+                  date ?? '',
                   style: TextStyle(color: overdueTask ?? Colors.white),
                 ),
               ],
