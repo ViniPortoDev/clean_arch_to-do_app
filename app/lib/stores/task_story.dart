@@ -1,10 +1,7 @@
-
 import 'package:app/repositories/task_repositories.dart';
-import 'package:app/service/prefs_service.dart';
 import 'package:app/src/controller/controller.dart';
 import 'package:app/states/task_state.dart';
 import 'package:flutter/cupertino.dart';
-
 import '../src/models/task_model.dart';
 
 class TaskStore extends ValueNotifier<TaskState> {

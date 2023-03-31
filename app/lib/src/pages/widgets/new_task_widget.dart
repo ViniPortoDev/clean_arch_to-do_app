@@ -1,5 +1,7 @@
+import 'package:app/src/pages/widgets/task_error_dialog.dart';
 import 'package:flutter/material.dart';
 import '../../../stores/task_story.dart';
+
 
 class NewTaskWidget extends StatefulWidget {
   final TaskStore store;
@@ -110,22 +112,34 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                     widget.store.controller
                         .dateAndTime(widget.store.controller.dateTime),
                   ),
-
                 ],
               ),
               const SizedBox(height: 24),
               ElevatedButton(
                 child: const Text('Salvar'),
                 onPressed: () {
-                  Navigator.pop(context);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Adicionando tarefa...'),
-                      duration: Duration(seconds: 2),
-                    ),
-                  );
-
-                  widget.store.addTask();
+                  if (widget.store.controller.formKey.currentState!
+                      .validate()) {
+                    if (widget.store.controller.dateTime
+                            .compareTo(DateTime.now()) ==
+                        -1) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => const TaskErrorDialog(
+                          message: 'Insira a data corretamente!!!',
+                        ),
+                      );
+                    } else {
+                      Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Adicionando tarefa...'),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+                      widget.store.addTask();
+                    }
+                  }
                 },
               ),
             ],

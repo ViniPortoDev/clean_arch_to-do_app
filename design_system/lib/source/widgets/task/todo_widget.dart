@@ -10,7 +10,7 @@ class TodoWidget extends StatelessWidget {
   final bool isDone;
   final void Function()? onTap;
   final void Function()? onLongPress;
-  final Color? overdueTask;
+  final Color overdueTask;
   final String? date;
 
   const TodoWidget({
@@ -18,9 +18,9 @@ class TodoWidget extends StatelessWidget {
     required this.title,
     required this.description,
     required this.isDone,
-   required this.date,
+    required this.date,
+    required this.overdueTask,
     this.onTap,
-    this.overdueTask,
     this.onLongPress,
   }) : super(key: key);
 
@@ -106,7 +106,7 @@ class TodoWidget extends StatelessWidget {
                 const SizedBox(width: 4),
                 Text(
                   date ?? '',
-                  style: TextStyle(color: overdueTask ?? Colors.white),
+                  style: TextStyle(color: overdueTask),
                 ),
               ],
             ),

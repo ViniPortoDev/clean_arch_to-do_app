@@ -88,6 +88,8 @@ class _InfoPageState extends State<InfoPage> {
                             isDone: tasks.isDone,
                             date: store.controller.dateAndTime(tasks.date),
                             onLongPress: () => store.removeTask(index),
+                            overdueTask:
+                                store.controller.overdueTask(tasks.date),
                             onTap: () {
                               if (tasks.isDone == false) {
                                 showDialog(
