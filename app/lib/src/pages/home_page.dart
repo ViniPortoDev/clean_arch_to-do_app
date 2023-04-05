@@ -9,7 +9,7 @@ import 'package:design_system/source/widgets/chat_components/list_tile_widget.da
 import 'package:design_system/source/widgets/navigatorbar/navigator_widget.dart';
 import 'package:design_system/source/widgets/text_fields/search_widget.dart';
 import 'package:flutter/material.dart';
-import '../controller/controller.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final controller = Controller();
+
   final chatFilterMock = ChatFilterMock();
 
   @override
@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                     final filterList = chatFilterMock.chatFilter[index];
                     return SizedBox(
                       child: ChatFilterButtonWidget(
-                        icon: controller.getIcon(filterList),
+                        icon: chatFilterMock.getIcon(filterList),
                         filterTypeTextChat: filterList.textTypeChat,
                         isSelected: filterList.isSelected,
                         numberMessage: filterList.numberMessage,

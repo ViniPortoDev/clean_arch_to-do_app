@@ -1,9 +1,9 @@
-import 'package:app/src/controller/controller.dart';
+import 'package:app/src/controllers/list_controller.dart';
 import 'package:app/src/models/task_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final controller = Controller();
+  final controller = ListController();
 
   final testTasks = <TaskModel>[
     TaskModel(
@@ -19,7 +19,7 @@ void main() {
       isDone: false,
     ),
   ];
-  final orderedList = controller.sortList(testTasks);
+  final orderedList = controller.taskStore.sortList(testTasks);
   test('A lista deve vim ordenada por data', () {
     expect(
       orderedList[0].title,

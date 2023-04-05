@@ -1,17 +1,26 @@
+import 'package:app/src/controllers/form_controller.dart';
+import 'package:app/src/models/task_model.dart';
 import 'package:app/src/pages/widgets/task_error_dialog.dart';
 import 'package:flutter/material.dart';
-import '../../../stores/task_story.dart';
-
 
 class NewTaskWidget extends StatefulWidget {
-  final TaskStore store;
-  const NewTaskWidget({Key? key, required this.store}) : super(key: key);
+  final FormController formController;
+  const NewTaskWidget({
+    Key? key,
+    required this.formController,
+  }) : super(key: key);
 
   @override
   State<NewTaskWidget> createState() => _NewTaskWidgetState();
 }
 
 class _NewTaskWidgetState extends State<NewTaskWidget> {
+  final formKey = GlobalKey<FormState>();
+  TimeOfDay timeOfDay = TimeOfDay.now();
+  DateTime dateTime = DateTime.now();
+  TextEditingController titleTaskController = TextEditingController();
+  TextEditingController descriptionTaskController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -19,7 +28,7 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
     return SizedBox(
       height: size.width * 1.2,
       child: Form(
-        key: widget.store.controller.formKey,
+        key: formKey,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18),
           child: Column(
@@ -36,7 +45,7 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                     ),
                   ),
                 ),
-                controller: widget.store.controller.titleTaskController,
+                controller: titleTaskController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor insira um titulo válido';
@@ -47,7 +56,7 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
               const Text('Descrição:'),
               const SizedBox(height: 4),
               TextFormField(
-                controller: widget.store.controller.descriptionTaskController,
+                controller: descriptionTaskController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor insira uma descrição válida';
@@ -76,7 +85,7 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                       );
                       if (newDate != null) {
                         setState(() {
-                          widget.store.controller.dateTime = newDate;
+                          dateTime = newDate;
                         });
                       }
                     },
@@ -91,8 +100,8 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                       );
                       if (newTime != null) {
                         setState(() {
-                          final date = widget.store.controller.dateTime;
-                          widget.store.controller.dateTime = DateTime(
+                          final date = dateTime;
+                          dateTime = DateTime(
                             date.year,
                             date.month,
                             date.day,
@@ -109,8 +118,7 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
               Row(
                 children: [
                   Text(
-                    widget.store.controller
-                        .dateAndTime(widget.store.controller.dateTime),
+                    widget.formController.dateAndTime(dateTime),
                   ),
                 ],
               ),
@@ -118,11 +126,8 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
               ElevatedButton(
                 child: const Text('Salvar'),
                 onPressed: () {
-                  if (widget.store.controller.formKey.currentState!
-                      .validate()) {
-                    if (widget.store.controller.dateTime
-                            .compareTo(DateTime.now()) ==
-                        -1) {
+                  if (formKey.currentState!.validate()) {
+                    if (dateTime.compareTo(DateTime.now()) == -1) {
                       showDialog(
                         context: context,
                         builder: (context) => const TaskErrorDialog(
@@ -137,7 +142,14 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                           duration: Duration(seconds: 2),
                         ),
                       );
-                      widget.store.addTask();
+                      widget.formController.taskStore.addTask(
+                        TaskModel(
+                          title: titleTaskController.text,
+                          description: descriptionTaskController.text,
+                          date: dateTime,
+                          isDone: false,
+                        ),
+                      );
                     }
                   }
                 },

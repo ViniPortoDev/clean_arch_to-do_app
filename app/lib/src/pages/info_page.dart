@@ -1,14 +1,13 @@
-import 'package:app/src/controller/controller.dart';
+import 'package:app/src/controllers/list_controller.dart';
 import 'package:app/src/pages/widgets/completed_task_dialog.dart';
 import 'package:app/src/pages/widgets/new_task_widget.dart';
-import 'package:app/stores/task_story.dart';
 import 'package:app/utils/image_path.dart';
 import 'package:design_system/source/themes/extensions/colors_theme.dart';
 import 'package:design_system/source/widgets/profile_components/profile_container_info_widget.dart';
 import 'package:design_system/source/widgets/task/todo_widget.dart';
 import 'package:flutter/material.dart';
-
 import '../../states/task_state.dart';
+import '../controllers/form_controller.dart';
 
 class InfoPage extends StatefulWidget {
   const InfoPage({Key? key}) : super(key: key);
@@ -21,10 +20,12 @@ class _InfoPageState extends State<InfoPage> {
   @override
   void initState() {
     super.initState();
-    store.loadTasks();
+    // print(listController.taskStore.)
+    listController.taskStore.loadTasks();
   }
 
-  final store = TaskStore(controller: Controller());
+  final listController = ListController();
+  final formController = FormController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class _InfoPageState extends State<InfoPage> {
           context: context,
           builder: (context) {
             return NewTaskWidget(
-              store: store,
+              formController: formController,
             );
           },
         ),
@@ -55,7 +56,7 @@ class _InfoPageState extends State<InfoPage> {
               imageNetworkAvatar: ImagePath.profileAvatar,
             ),
             ValueListenableBuilder(
-              valueListenable: store,
+              valueListenable: listController.taskStore,
               builder: (_, taskList, __) {
                 if (taskList is TaskLoadingState) {
                   return const Expanded(
@@ -86,23 +87,27 @@ class _InfoPageState extends State<InfoPage> {
                             title: tasks.title,
                             description: tasks.description,
                             isDone: tasks.isDone,
-                            date: store.controller.dateAndTime(tasks.date),
-                            onLongPress: () => store.removeTask(index),
-                            overdueTask:
-                                store.controller.overdueTask(tasks.date),
+                            date: formController.dateAndTime(tasks.date),
+                            onLongPress: () =>
+                                formController.taskStore.removeTask(index),
+                            overdueTask: listController.overdueTask(tasks.date),
                             onTap: () {
                               if (tasks.isDone == false) {
                                 showDialog(
                                   context: context,
                                   builder: (context) => CompletedTaskDialog(
                                     removeTask: () {
-                                      store.removeTask(index);
+                                      formController.taskStore
+                                          .removeTask(index);
                                       Navigator.pop(context);
                                     },
                                   ),
                                 );
                               }
-                              store.completeTask(index);
+                              listController.taskStore.completeTask(
+                                index: index,
+                                isDone: tasks.isDone,
+                              );
                             },
                           );
                         },

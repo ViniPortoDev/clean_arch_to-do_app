@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'interface_local_storage.dart';
 
-class PrefsService implements ILocalStorage {
+class PrefsLocalStorageService implements ILocalStorageService {
   @override
   Future<bool> saveListMap({
     required String key,

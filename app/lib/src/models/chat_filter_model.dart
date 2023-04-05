@@ -11,4 +11,6 @@ class ChatFilterModel {
     required this.numberMessage,
     this.isSelected = false,
   });
+
+
 }

@@ -1,4 +1,4 @@
-abstract class ILocalStorage {
+abstract class ILocalStorageService {
   Future<bool> saveListMap({
     required String key,
     required List<Map<String, dynamic>> listMap,

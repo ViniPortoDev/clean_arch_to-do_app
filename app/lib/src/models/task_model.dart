@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 class TaskModel {
+  final int? id;
   final String title;
   final String description;
   final DateTime date;
   final bool isDone;
 
   const TaskModel({
+    this.id,
     required this.title,
     required this.description,
     required this.date,
@@ -49,4 +51,6 @@ class TaskModel {
 
   factory TaskModel.fromJson(String source) =>
       TaskModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+
 }
