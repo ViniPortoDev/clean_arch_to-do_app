@@ -1,7 +1,8 @@
 import 'package:app/repositories/task_repositories.dart';
 import 'package:app/service/prefs_service.dart';
 import 'package:app/states/task_state.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 import '../src/models/task_model.dart';
 
 class TaskStore extends ValueNotifier<TaskState> {
@@ -15,6 +16,7 @@ class TaskStore extends ValueNotifier<TaskState> {
     await Future.delayed(const Duration(seconds: 1));
     try {
       final taskLoad = await _taskRepository.loadTask();
+      _tasks.addAll(taskLoad);
       value = TaskSucessState(taskLoad);
     } catch (e) {
       value = TaskErrorState(e.toString());
@@ -23,7 +25,7 @@ class TaskStore extends ValueNotifier<TaskState> {
 
   Future<void> addTask(TaskModel task) async {
     _tasks.add(task);
-    final orderedTaskList = sortList(_tasks);
+    final orderedTaskList = _sortList(_tasks);
     await _taskRepository.saveTask(orderedTaskList);
     value = TaskSucessState(_tasks);
   }
@@ -45,8 +47,7 @@ class TaskStore extends ValueNotifier<TaskState> {
     value = TaskSucessState(_tasks);
   }
 
-  //TODO privar metodo
-  List<TaskModel> sortList(List<TaskModel> list) {
+  List<TaskModel> _sortList(List<TaskModel> list) {
     if (list.length >= 2) {
       list.sort((TaskModel a, TaskModel b) {
         return a.date.compareTo(b.date);
@@ -54,5 +55,18 @@ class TaskStore extends ValueNotifier<TaskState> {
       return list;
     }
     return list;
+  }
+
+  Color overdueTask(DateTime date) {
+    if (date.compareTo(DateTime.now()) == -1) {
+      return Colors.red;
+    }
+    return Colors.white;
+  }
+
+  String dateAndTime(DateTime date) {
+    final dateAndTime =
+        '${date.day}/${date.month}/${date.year}\n${date.hour}:${date.minute}';
+    return dateAndTime;
   }
 }

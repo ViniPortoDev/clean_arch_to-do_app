@@ -1,13 +1,16 @@
-import 'package:app/src/controllers/form_controller.dart';
 import 'package:app/src/models/task_model.dart';
 import 'package:app/src/pages/widgets/task_error_dialog.dart';
 import 'package:flutter/material.dart';
 
+import '../../../stores/task_store.dart';
+
 class NewTaskWidget extends StatefulWidget {
-  final FormController formController;
+  final TaskStore taskStore;
+  
+
   const NewTaskWidget({
     Key? key,
-    required this.formController,
+    required this.taskStore,
   }) : super(key: key);
 
   @override
@@ -118,7 +121,7 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
               Row(
                 children: [
                   Text(
-                    widget.formController.dateAndTime(dateTime),
+                    widget.taskStore.dateAndTime(dateTime),
                   ),
                 ],
               ),
@@ -142,7 +145,7 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                           duration: Duration(seconds: 2),
                         ),
                       );
-                      widget.formController.taskStore.addTask(
+                      widget.taskStore.addTask(
                         TaskModel(
                           title: titleTaskController.text,
                           description: descriptionTaskController.text,

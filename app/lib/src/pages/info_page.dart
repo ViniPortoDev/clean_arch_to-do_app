@@ -1,13 +1,12 @@
-import 'package:app/src/controllers/list_controller.dart';
 import 'package:app/src/pages/widgets/completed_task_dialog.dart';
 import 'package:app/src/pages/widgets/new_task_widget.dart';
+import 'package:app/stores/task_store.dart';
 import 'package:app/utils/image_path.dart';
 import 'package:design_system/source/themes/extensions/colors_theme.dart';
 import 'package:design_system/source/widgets/profile_components/profile_container_info_widget.dart';
 import 'package:design_system/source/widgets/task/todo_widget.dart';
 import 'package:flutter/material.dart';
 import '../../states/task_state.dart';
-import '../controllers/form_controller.dart';
 
 class InfoPage extends StatefulWidget {
   const InfoPage({Key? key}) : super(key: key);
@@ -20,12 +19,10 @@ class _InfoPageState extends State<InfoPage> {
   @override
   void initState() {
     super.initState();
-    // print(listController.taskStore.)
-    listController.taskStore.loadTasks();
+    taskStore.loadTasks();
   }
 
-  final listController = ListController();
-  final formController = FormController();
+  final taskStore = TaskStore();
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +34,7 @@ class _InfoPageState extends State<InfoPage> {
         onPressed: () => showModalBottomSheet(
           context: context,
           builder: (context) {
-            return NewTaskWidget(
-              formController: formController,
-            );
+            return NewTaskWidget(taskStore: taskStore);
           },
         ),
         child: Icon(Icons.add, size: size.width * 0.064),
@@ -56,7 +51,7 @@ class _InfoPageState extends State<InfoPage> {
               imageNetworkAvatar: ImagePath.profileAvatar,
             ),
             ValueListenableBuilder(
-              valueListenable: listController.taskStore,
+              valueListenable: taskStore,
               builder: (_, taskList, __) {
                 if (taskList is TaskLoadingState) {
                   return const Expanded(
@@ -87,24 +82,22 @@ class _InfoPageState extends State<InfoPage> {
                             title: tasks.title,
                             description: tasks.description,
                             isDone: tasks.isDone,
-                            date: formController.dateAndTime(tasks.date),
-                            onLongPress: () =>
-                                formController.taskStore.removeTask(index),
-                            overdueTask: listController.overdueTask(tasks.date),
+                            date: taskStore.dateAndTime(tasks.date),
+                            onLongPress: () => taskStore.removeTask(index),
+                            overdueTask: taskStore.overdueTask(tasks.date),
                             onTap: () {
                               if (tasks.isDone == false) {
                                 showDialog(
                                   context: context,
                                   builder: (context) => CompletedTaskDialog(
                                     removeTask: () {
-                                      formController.taskStore
-                                          .removeTask(index);
+                                      taskStore.removeTask(index);
                                       Navigator.pop(context);
                                     },
                                   ),
                                 );
                               }
-                              listController.taskStore.completeTask(
+                              taskStore.completeTask(
                                 index: index,
                                 isDone: tasks.isDone,
                               );
