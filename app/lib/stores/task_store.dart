@@ -1,23 +1,22 @@
 import 'package:app/repositories/task_repositories.dart';
-import 'package:app/service/prefs_service.dart';
 import 'package:app/states/task_state.dart';
 import 'package:flutter/material.dart';
-
 import '../src/models/task_model.dart';
 
 class TaskStore extends ValueNotifier<TaskState> {
   final List<TaskModel> _tasks = [];
-  final TaskDataBaseRepository _taskRepository =
-      TaskDataBaseRepository(PrefsLocalStorageService());
-  TaskStore() : super(TaskInitialState());
+  final TaskDataBaseRepository _taskRepository;
+  TaskStore(this._taskRepository) : super(TaskInitialState());
 
   Future loadTasks() async {
     value = TaskLoadingState();
     await Future.delayed(const Duration(seconds: 1));
     try {
-      final taskLoad = await _taskRepository.loadTask();
-      _tasks.addAll(taskLoad);
-      value = TaskSucessState(taskLoad);
+      _tasks.clear();
+      final loadedTasks = await _taskRepository.loadTasks();
+
+      _tasks.addAll(loadedTasks);
+      value = TaskSucessState(loadedTasks);
     } catch (e) {
       value = TaskErrorState(e.toString());
     }

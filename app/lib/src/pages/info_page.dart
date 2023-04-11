@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import '../../states/task_state.dart';
 
 class InfoPage extends StatefulWidget {
-  const InfoPage({Key? key}) : super(key: key);
+  final TaskStore taskStore;
+  const InfoPage({Key? key, required this.taskStore}) : super(key: key);
 
   @override
   State<InfoPage> createState() => _InfoPageState();
@@ -19,10 +20,8 @@ class _InfoPageState extends State<InfoPage> {
   @override
   void initState() {
     super.initState();
-    taskStore.loadTasks();
+    widget.taskStore.loadTasks();
   }
-
-  final taskStore = TaskStore();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class _InfoPageState extends State<InfoPage> {
         onPressed: () => showModalBottomSheet(
           context: context,
           builder: (context) {
-            return NewTaskWidget(taskStore: taskStore);
+            return NewTaskWidget(taskStore: widget.taskStore);
           },
         ),
         child: Icon(Icons.add, size: size.width * 0.064),
@@ -51,7 +50,7 @@ class _InfoPageState extends State<InfoPage> {
               imageNetworkAvatar: ImagePath.profileAvatar,
             ),
             ValueListenableBuilder(
-              valueListenable: taskStore,
+              valueListenable: widget.taskStore,
               builder: (_, taskList, __) {
                 if (taskList is TaskLoadingState) {
                   return const Expanded(
@@ -82,22 +81,24 @@ class _InfoPageState extends State<InfoPage> {
                             title: tasks.title,
                             description: tasks.description,
                             isDone: tasks.isDone,
-                            date: taskStore.dateAndTime(tasks.date),
-                            onLongPress: () => taskStore.removeTask(index),
-                            overdueTask: taskStore.overdueTask(tasks.date),
+                            date: widget.taskStore.dateAndTime(tasks.date),
+                            onLongPress: () =>
+                                widget.taskStore.removeTask(index),
+                            overdueTask:
+                                widget.taskStore.overdueTask(tasks.date),
                             onTap: () {
                               if (tasks.isDone == false) {
                                 showDialog(
                                   context: context,
                                   builder: (context) => CompletedTaskDialog(
                                     removeTask: () {
-                                      taskStore.removeTask(index);
+                                      widget.taskStore.removeTask(index);
                                       Navigator.pop(context);
                                     },
                                   ),
                                 );
                               }
-                              taskStore.completeTask(
+                              widget.taskStore.completeTask(
                                 index: index,
                                 isDone: tasks.isDone,
                               );

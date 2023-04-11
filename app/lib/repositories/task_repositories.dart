@@ -14,7 +14,7 @@ class TaskDataBaseRepository {
     return saved;
   }
 
-  Future<List<TaskModel>> loadTask() async {
+  Future<List<TaskModel>> loadTasks() async {
     final list = <TaskModel>[];
     final loadedTasks =
         await _storageService.getListMap(PreferenceKeys.taskList);
