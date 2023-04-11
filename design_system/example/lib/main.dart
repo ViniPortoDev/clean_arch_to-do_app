@@ -25,6 +25,13 @@ class WidgetbookHotReload extends StatelessWidget {
             scaleFactor: 1,
           ),
         ),
+        Device.desktop(
+          name: 'Web',
+          resolution: Resolution(
+            nativeSize: DeviceSize(width: 1920, height: 1080),
+            scaleFactor: 1,
+          ),
+        ),
       ],
       appInfo: AppInfo(name: 'Desafio 3 Design System'),
       themes: [
