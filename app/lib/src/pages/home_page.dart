@@ -10,7 +10,6 @@ import 'package:design_system/source/widgets/navigatorbar/navigator_widget.dart'
 import 'package:design_system/source/widgets/text_fields/search_widget.dart';
 import 'package:flutter/material.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -19,7 +18,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   final chatFilterMock = ChatFilterMock();
 
   @override

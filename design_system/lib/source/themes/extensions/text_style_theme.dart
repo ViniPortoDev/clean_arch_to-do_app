@@ -8,10 +8,12 @@ class TextStyleTheme extends ThemeExtension<TextStyleTheme> {
   final TextStyle listTileMessageStyle;
   final TextStyle listTilehourStyle;
   final TextStyle nameAppbarStyle;
-
   final TextStyle nameSmallStyle;
   final TextStyle nameMediumStyle;
   final TextStyle nameBigStyle;
+  final TextStyle menuButtonStyle;
+  final TextStyle menuButtonSelectedStyle;
+
   final TextStyle searchStyle;
   final TextStyle profileContainerInfoNumberStyle;
   final TextStyle profileContainerInfoDescriptionStyle;
@@ -31,6 +33,8 @@ class TextStyleTheme extends ThemeExtension<TextStyleTheme> {
     required this.nameSmallStyle,
     required this.nameMediumStyle,
     required this.nameBigStyle,
+    required this.menuButtonStyle,
+    required this.menuButtonSelectedStyle,
     required this.searchStyle,
     required this.profileContainerInfoNumberStyle,
     required this.profileContainerInfoDescriptionStyle,

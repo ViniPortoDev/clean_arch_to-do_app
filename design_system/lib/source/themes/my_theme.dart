@@ -74,9 +74,17 @@ class Mytheme {
         nameBigStyle: const TextStyle(
           fontSize: 20,
         ),
+        menuButtonStyle: const TextStyle(
+          fontSize: 16,
+          color: HexColors.primaryGrey,
+        ),
+        menuButtonSelectedStyle: const TextStyle(
+          fontSize: 16,
+          color: HexColors.amber,
+        ),
         searchStyle: const TextStyle(
           fontSize: 16,
-          color: HexColors.grey,
+          color: HexColors.primaryGrey,
         ),
         profileContainerInfoNumberStyle: const TextStyle(
           fontSize: 16,

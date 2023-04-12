@@ -118,6 +118,29 @@ class WidgetbookHotReload extends StatelessWidget {
                   ],
                 ),
                 WidgetbookComponent(
+                  name: 'Menu Buttons',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'Selected',
+                      child: const MenuButtonsWidget(
+                        height: 50,
+                        width: 100,
+                        isSelected: true,
+                        iconData: Icons.drafts,
+                        title: 'Resume',
+                      ),
+                    ),
+                    WidgetbookUseCase.center(
+                      name: 'Unselected',
+                      child: const MenuButtonsWidget(
+                        isSelected: false,
+                        iconData: Icons.drafts,
+                        title: 'Resume',
+                      ),
+                    ),
+                  ],
+                ),
+                WidgetbookComponent(
                   name: 'Profile Button',
                   useCases: [
                     WidgetbookUseCase.center(
@@ -147,6 +170,19 @@ class WidgetbookHotReload extends StatelessWidget {
                           color: HexColors.black,
                         ),
                       ),
+                    ),
+                  ],
+                ),
+                WidgetbookComponent(
+                  name: 'Custom Switch',
+                  useCases: [
+                    WidgetbookUseCase.center(
+                      name: 'True',
+                      child: const CustomSwitchWidget(value: true),
+                    ),
+                    WidgetbookUseCase.center(
+                      name: 'False',
+                      child: const CustomSwitchWidget(value: false),
                     ),
                   ],
                 ),
