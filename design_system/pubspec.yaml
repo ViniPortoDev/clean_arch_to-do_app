@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   line_icons: ^2.0.0
   flutterando_analysis: ^0.0.2
+  lite_rolling_switch: ^1.0.1
 
 dev_dependencies:
   flutter_test:

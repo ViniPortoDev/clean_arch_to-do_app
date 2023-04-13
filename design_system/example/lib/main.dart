@@ -178,11 +178,19 @@ class WidgetbookHotReload extends StatelessWidget {
                   useCases: [
                     WidgetbookUseCase.center(
                       name: 'True',
-                      child: const CustomSwitchWidget(value: true),
+                      child: CustomSwitchWidget(
+                        width: 90,
+                        value: true,
+                        onChanged: (dark) {},
+                      ),
                     ),
                     WidgetbookUseCase.center(
                       name: 'False',
-                      child: const CustomSwitchWidget(value: false),
+                      child: CustomSwitchWidget(
+                        width: 90,
+                        value: false,
+                        onChanged: (light) {},
+                      ),
                     ),
                   ],
                 ),

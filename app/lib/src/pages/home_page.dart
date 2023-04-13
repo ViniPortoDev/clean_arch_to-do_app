@@ -61,6 +61,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               SizedBox(height: size.width * 0.042),
+            
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: size.width * 0.048),
                 child: ExpansionWidget(
