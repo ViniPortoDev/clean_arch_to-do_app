@@ -6,17 +6,18 @@ import 'package:design_system/source/themes/extensions/colors_theme.dart';
 import 'package:design_system/source/widgets/profile_components/profile_container_info_widget.dart';
 import 'package:design_system/source/widgets/task/todo_widget.dart';
 import 'package:flutter/material.dart';
-import '../../states/task_state.dart';
 
-class InfoPage extends StatefulWidget {
+import '../../../states/task_state.dart';
+
+class InfoPageMobile extends StatefulWidget {
   final TaskStore taskStore;
-  const InfoPage({Key? key, required this.taskStore}) : super(key: key);
+  const InfoPageMobile({Key? key, required this.taskStore}) : super(key: key);
 
   @override
-  State<InfoPage> createState() => _InfoPageState();
+  State<InfoPageMobile> createState() => _InfoPageMobileState();
 }
 
-class _InfoPageState extends State<InfoPage> {
+class _InfoPageMobileState extends State<InfoPageMobile> {
   @override
   void initState() {
     super.initState();

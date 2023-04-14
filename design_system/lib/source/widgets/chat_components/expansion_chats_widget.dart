@@ -48,7 +48,7 @@ class _ExpansionWidgetState extends State<ExpansionWidget>
       CurvedAnimation(parent: animationController, curve: Curves.easeIn),
     );
     animationContainer =
-        Tween(begin: 0.0, end: widget.itemCount * 100.0).animate(
+        Tween(begin: 0.0, end: widget.itemCount * 90.0).animate(
       CurvedAnimation(parent: animationController, curve: Curves.easeIn),
     );
   }

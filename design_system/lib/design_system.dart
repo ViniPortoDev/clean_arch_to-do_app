@@ -1,5 +1,4 @@
 export 'package:design_system/design_system.dart';
-
 export 'source/themes/extensions/colors_theme.dart';
 export 'source/themes/extensions/text_style_theme.dart';
 export 'source/themes/my_theme.dart';

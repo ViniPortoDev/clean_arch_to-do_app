@@ -1,5 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+
 import '../../themes/extensions/colors_theme.dart';
 
 class CustomSwitchWidget extends StatelessWidget {
@@ -17,19 +18,11 @@ class CustomSwitchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
 
-    return LiteRollingSwitch(
-      width: width,
+    return CupertinoSwitch(
+      activeColor: colorsTheme.profileIconsAvaliableColor,
+      trackColor: colorsTheme.backgroundSelectedColor,
       value: value,
-      colorOn: colorsTheme.profileIconsAvaliableColor,
-      colorOff: colorsTheme.backgroundSelectedColor,
-      iconOn: Icons.dark_mode_outlined,
-      iconOff: Icons.light_mode_outlined,
-      textOff: '',
-      textOn: '',
       onChanged: onChanged,
-      onDoubleTap: () {},
-      onSwipe: () {},
-      onTap: () {},
     );
   }
 }

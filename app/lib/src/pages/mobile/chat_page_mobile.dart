@@ -3,8 +3,8 @@ import 'package:app/utils/user_name.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
-class ChatPage extends StatelessWidget {
-  const ChatPage({Key? key}) : super(key: key);
+class ChatPageMobile extends StatelessWidget {
+  const ChatPageMobile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

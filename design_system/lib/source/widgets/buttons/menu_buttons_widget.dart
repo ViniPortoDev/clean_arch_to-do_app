@@ -6,7 +6,6 @@ import '../../themes/extensions/text_style_theme.dart';
 class MenuButtonsWidget extends StatelessWidget {
   final double? height;
   final double? width;
-
   final bool isSelected;
   final IconData iconData;
   final String title;
@@ -27,22 +26,39 @@ class MenuButtonsWidget extends StatelessWidget {
       builder: (context, constraints) => SizedBox(
         height: height,
         width: width,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(
-              iconData,
-              color: isSelected
-                  ? colorsTheme.backgroundSelectedColor
-                  : colorsTheme.iconsColor,
+            Container(
+              height: 6,
+              width: width,
+              decoration: BoxDecoration(
+                color: isSelected ? colorsTheme.backgroundSelectedColor : null,
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
+              ),
             ),
-            SizedBox(width: constraints.maxHeight * 0.024),
-            Text(
-              title,
-              style: isSelected
-                  ? textStyleTheme.menuButtonSelectedStyle
-                  : textStyleTheme.menuButtonStyle,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  iconData,
+                  color: isSelected
+                      ? colorsTheme.backgroundSelectedColor
+                      : colorsTheme.iconsColor,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  title,
+                  style: isSelected
+                      ? textStyleTheme.menuButtonSelectedStyle
+                      : textStyleTheme.menuButtonStyle,
+                ),
+              ],
             ),
+            Container()
           ],
         ),
       ),
