@@ -7,6 +7,8 @@ class TextStyleTheme extends ThemeExtension<TextStyleTheme> {
   final TextStyle listTileNumberStyle;
   final TextStyle listTileMessageStyle;
   final TextStyle listTilehourStyle;
+  final TextStyle listTileDescription;
+
   final TextStyle nameAppbarStyle;
   final TextStyle nameSmallStyle;
   final TextStyle nameMediumStyle;
@@ -29,6 +31,7 @@ class TextStyleTheme extends ThemeExtension<TextStyleTheme> {
     required this.listTileNumberStyle,
     required this.listTileMessageStyle,
     required this.listTilehourStyle,
+    required this.listTileDescription,
     required this.nameAppbarStyle,
     required this.nameSmallStyle,
     required this.nameMediumStyle,

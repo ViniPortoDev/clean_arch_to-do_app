@@ -1,5 +1,5 @@
-import 'package:app/src/pages/widgets/completed_task_dialog.dart';
-import 'package:app/src/pages/widgets/new_task_widget.dart';
+import 'package:app/src/pages/mobile/widgets/completed_task_dialog.dart';
+import 'package:app/src/pages/mobile/widgets/new_task_widget.dart';
 import 'package:app/stores/task_store.dart';
 import 'package:app/utils/image_path.dart';
 import 'package:design_system/source/themes/extensions/colors_theme.dart';

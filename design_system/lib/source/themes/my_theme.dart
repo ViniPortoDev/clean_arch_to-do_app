@@ -62,6 +62,11 @@ class Mytheme {
           fontSize: 12,
           color: HexColors.primaryGrey,
         ),
+        listTileDescription: const TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 12,
+          color: HexColors.primaryGrey,
+        ),
         nameAppbarStyle: const TextStyle(
           fontSize: 14,
         ),

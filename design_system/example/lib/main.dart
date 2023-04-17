@@ -123,11 +123,9 @@ class WidgetbookHotReload extends StatelessWidget {
                     WidgetbookUseCase.center(
                       name: 'Selected',
                       child: const MenuButtonsWidget(
-                        height: 50,
-                        width: 100,
                         isSelected: true,
                         iconData: Icons.drafts,
-                        title: 'Resume',
+                        title: 'Chats',
                       ),
                     ),
                     WidgetbookUseCase.center(
