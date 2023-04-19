@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class ColorsTheme extends ThemeExtension<ColorsTheme> {
   final Color backgroundColor;
+  final Color backgroundChatColor;
+
   final Color primaryColor;
   final Color secundaryColor;
   final Color terciaryColor;
@@ -19,9 +21,13 @@ class ColorsTheme extends ThemeExtension<ColorsTheme> {
   final Color profileSkilltextColor;
   final Color profileIconsAvaliableColor;
   final Color profileIconsUnvaliableColor;
+  final Color switchActivateColor;
+  final Color inactiveSwitchActivateColor;
+
   final List<Color> skillColor;
   ColorsTheme({
     required this.backgroundColor,
+    required this.backgroundChatColor,
     required this.primaryColor,
     required this.secundaryColor,
     required this.terciaryColor,
@@ -39,10 +45,10 @@ class ColorsTheme extends ThemeExtension<ColorsTheme> {
     required this.profileSkilltextColor,
     required this.profileIconsAvaliableColor,
     required this.profileIconsUnvaliableColor,
+    required this.switchActivateColor,
+    required this.inactiveSwitchActivateColor,
     required this.skillColor,
   });
-
- 
 
   @override
   ThemeExtension<ColorsTheme> copyWith() {
@@ -51,7 +57,9 @@ class ColorsTheme extends ThemeExtension<ColorsTheme> {
 
   @override
   ThemeExtension<ColorsTheme> lerp(
-      ThemeExtension<ColorsTheme>? other, double t,) {
+    ThemeExtension<ColorsTheme>? other,
+    double t,
+  ) {
     throw UnimplementedError();
   }
 }

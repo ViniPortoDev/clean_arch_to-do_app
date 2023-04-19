@@ -1,7 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
-
 class SearchWidget extends StatelessWidget {
   final String? hintText;
   final Widget? prefixIcon;
@@ -20,7 +19,7 @@ class SearchWidget extends StatelessWidget {
     return LayoutBuilder(
       builder: (p0, constraints) => Container(
         padding: const EdgeInsets.only(left: 18),
-        width: constraints.maxWidth * 0.906,
+        width: constraints.maxWidth,
         height: constraints.maxWidth * 0.16,
         decoration: BoxDecoration(
           color: colorsTheme.secundaryColor,

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 import '../../themes/extensions/colors_theme.dart';
@@ -17,12 +17,68 @@ class CustomSwitchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
-
-    return CupertinoSwitch(
-      activeColor: colorsTheme.profileIconsAvaliableColor,
-      trackColor: colorsTheme.backgroundSelectedColor,
-      value: value,
-      onChanged: onChanged,
+    final thumbIcon = MaterialStateProperty.resolveWith<Icon?>(
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.selected)) {
+          return const Icon(
+            Icons.dark_mode_outlined,
+            color: HexColors.white,
+          );
+        }
+        return const Icon(
+          Icons.light_mode_outlined,
+          color: HexColors.black,
+        );
+      },
     );
+    final thumbColor = MaterialStateProperty.resolveWith<Color?>(
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.selected)) {
+          return colorsTheme.switchActivateColor;
+        }
+        return colorsTheme.inactiveSwitchActivateColor;
+      },
+    );
+    final trackColor = MaterialStateProperty.resolveWith<Color?>(
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.selected)) {
+          return Colors.transparent;
+        }
+        return Colors.transparent;
+      },
+    );
+
+    return Builder(builder: (context) {
+      return Theme(
+        data: ThemeData(useMaterial3: true),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              width: 55,
+              height: 35,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: 2.5,
+                  color: value == true
+                      ? colorsTheme.switchActivateColor
+                      : colorsTheme.inactiveSwitchActivateColor,
+                ),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Switch(
+                value: value,
+                trackColor: trackColor,
+                onChanged: onChanged,
+                activeColor: colorsTheme.backgroundColor,
+                inactiveTrackColor: colorsTheme.backgroundColor,
+                thumbColor: thumbColor,
+                thumbIcon: thumbIcon,
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }

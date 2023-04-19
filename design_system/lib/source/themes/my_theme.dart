@@ -9,6 +9,7 @@ class Mytheme {
       // cores do app
       ColorsTheme(
         backgroundColor: HexColors.darkGrey,
+        backgroundChatColor:HexColors.backgroundChatColor ,
         primaryColor: HexColors.primaryGrey,
         secundaryColor: HexColors.secundaryDarkGrey,
         terciaryColor: HexColors.rosyPurple,
@@ -24,6 +25,8 @@ class Mytheme {
         terciaryGrey: HexColors.terciaryGrey,
         profileIconsAvaliableColor: HexColors.profileAvaliablePurple,
         profileIconsUnvaliableColor: HexColors.profileUnvaliablePurple,
+        switchActivateColor: HexColors.switchActivateColor,
+        inactiveSwitchActivateColor: HexColors.inactiveSwitchActivateColor,
         blackColor: HexColors.black,
         titleColor: HexColors.white,
         skillColor: const [

@@ -21,19 +21,17 @@ class SelectedButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
 
-    return LayoutBuilder(builder: (context, constraints) {
-      return Container(
-        width: width,
-        height: height,
-        padding: EdgeInsets.all(padding ?? constraints.maxWidth * 0.032),
-        decoration: BoxDecoration(
-          color: colorsTheme.backgroundSelectedColor,
-          borderRadius: BorderRadius.circular(
-            borderRadius ?? constraints.maxWidth * 0.037,
-          ),
+    return Container(
+      height: height,
+      width: width,
+      padding: EdgeInsets.all(padding ?? 12),
+      decoration: BoxDecoration(
+        color: colorsTheme.backgroundSelectedColor,
+        borderRadius: BorderRadius.circular(
+          borderRadius ?? 8,
         ),
-        child: child,
-      );
-    },);
+      ),
+      child: child,
+    );
   }
 }

@@ -7,6 +7,7 @@ export 'source/widgets/appbar/app_bar_widget.dart';
 export 'source/widgets/badge/badge_widget.dart';
 export 'source/widgets/buttons/chat_filter_button_widget.dart';
 export 'source/widgets/buttons/custom_switch_widget.dart';
+export 'source/widgets/buttons/lateral_buttons_widget.dart';
 export 'source/widgets/buttons/menu_buttons_widget.dart';
 export 'source/widgets/buttons/profile_button_widget.dart';
 export 'source/widgets/buttons/selected_button_widget.dart';

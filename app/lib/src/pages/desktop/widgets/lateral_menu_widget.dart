@@ -1,4 +1,4 @@
-import 'package:app/utils/hex_colors.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 class LateralMenuWidget extends StatelessWidget {
@@ -8,17 +8,67 @@ class LateralMenuWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return LayoutBuilder(builder: (context, constraints) {
-      return Container(
-        color: HexColors.black,
-        height: size.height - 95,
-        width: size.width * 0.2,
-        child: Column(
-          children: [
-            SizedBox(height: size.width * 0.032),
-          ],
-        ),
-      );
-    });
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Container(
+          width: size.width * 0.179,
+          color: HexColors.black,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                LateralButtonWidget(
+                  icon: Icons.mark_email_unread_outlined,
+                  filterTypeTextChat: 'Pinned',
+                  messages: '5',
+                  isSelected: false,
+                  unselectedButtonWidth: size.width * 0.13,
+                ),
+                LateralButtonWidget(
+                  icon: Icons.forum_outlined,
+                  filterTypeTextChat: 'All',
+                  messages: '35',
+                  isSelected: true,
+                  selectedWidth: size.width * 0.13,
+                ),
+                LateralButtonWidget(
+                  icon: Icons.inbox,
+                  filterTypeTextChat: 'Live Chat',
+                  messages: '2',
+                  isSelected: false,
+                  unselectedButtonWidth: size.width * 0.13,
+                ),
+                LateralButtonWidget(
+                  icon: Icons.bookmark,
+                  filterTypeTextChat: 'Archived',
+                  messages: '',
+                  isSelected: false,
+                  unselectedButtonWidth: size.width * 0.13,
+                ),
+                LateralButtonWidget(
+                  icon: Icons.block,
+                  filterTypeTextChat: 'Blocked',
+                  messages: '',
+                  isSelected: false,
+                  unselectedButtonWidth: size.width * 0.13,
+                ),
+                LateralButtonWidget(
+                  icon: Icons.delete_forever_rounded,
+                  filterTypeTextChat: 'trash',
+                  messages: '',
+                  isSelected: false,
+                  unselectedButtonWidth: size.width * 0.13,
+                ),
+                SizedBox(
+                  width: size.width * 0.13,
+                  height: size.height * 0.3,
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }

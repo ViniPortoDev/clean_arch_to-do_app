@@ -16,6 +16,7 @@ class ChatFilterButtonWidget extends StatelessWidget {
   final double? padding;
   final double? selectedButtonBorderRadius;
   final double? unselectedButtonWidth;
+  final MainAxisAlignment? mainAxisAlignment;
 
   const ChatFilterButtonWidget({
     Key? key,
@@ -29,6 +30,7 @@ class ChatFilterButtonWidget extends StatelessWidget {
     this.padding,
     this.selectedButtonBorderRadius,
     this.unselectedButtonWidth,
+    this.mainAxisAlignment,
   }) : super(key: key);
 
   @override
@@ -37,72 +39,59 @@ class ChatFilterButtonWidget extends StatelessWidget {
     final textStyleTheme = Theme.of(context).extension<TextStyleTheme>()!;
 
     return isSelected
-        ? LayoutBuilder(
-            builder: (context, constraints) {
-              return Padding(
-                padding: EdgeInsets.only(
-                  right: padding ?? constraints.maxWidth * 0.042,
+        ? SelectedButtonWidget(
+            borderRadius: selectedButtonBorderRadius,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
+              children: [
+                Icon(
+                  icon,
+                  color: colorsTheme.blackColor,
+                  size: iconSize,
                 ),
-                child: SelectedButtonWidget(
-                  borderRadius: selectedButtonBorderRadius,
-                  padding: 5,
-                  width: selectedWidth ?? constraints.maxWidth * 0.33,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        icon,
-                        color: colorsTheme.blackColor,
-                        size: iconSize ?? constraints.maxWidth * 0.069,
-                      ),
-                      SizedBox(width: spacing ?? constraints.maxWidth * 0.032),
-                      Text(
-                        filterTypeTextChat,
-                        style: textStyleTheme.chatFilterButtonSelectedStyle,
-                      ),
-                      const SizedBox(width: 6),
-                      BadgeWidget(
-                        numberMessage: numberMessage,
-                        isSelected: isSelected,
-                        height: iconSize ?? constraints.maxWidth * 0.064,
-                        width: iconSize ?? constraints.maxWidth * 0.064,
-                      )
-                    ],
-                  ),
+                const SizedBox(width: 8),
+                Text(
+                  filterTypeTextChat,
+                  style: textStyleTheme.chatFilterButtonSelectedStyle,
                 ),
-              );
-            },
+                const SizedBox(width: 6),
+                BadgeWidget(
+                  numberMessage: numberMessage,
+                  isSelected: isSelected,
+                  height: iconSize,
+                  width: iconSize,
+                )
+              ],
+            ),
           )
         : LayoutBuilder(
             builder: (context, constraints) {
-              return Padding(
-                padding: EdgeInsets.only(
-                  right: padding ?? constraints.maxWidth * 0.042,
-                ),
-                child: SizedBox(
-                  width: unselectedButtonWidth ?? constraints.maxWidth * 0.4,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        icon,
-                        color: colorsTheme.iconsColor,
-                        size: iconSize ?? constraints.maxWidth * 0.069,
-                      ),
-                      SizedBox(width: spacing ?? constraints.maxWidth * 0.026),
-                      Text(
-                        filterTypeTextChat,
-                        style: textStyleTheme.chatFilterButtonStyle,
-                      ),
-                      const SizedBox(width: 6),
-                      BadgeWidget(
-                        numberMessage: numberMessage,
-                        isSelected: isSelected,
-                        height: iconSize ?? constraints.maxWidth * 0.064,
-                        width: iconSize ?? constraints.maxWidth * 0.064,
-                      )
-                    ],
-                  ),
+              return Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                color: Colors.blue,
+                width: unselectedButtonWidth ?? constraints.maxWidth * 0.4,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      icon,
+                      color: colorsTheme.iconsColor,
+                      size: iconSize ?? constraints.maxWidth * 0.069,
+                    ),
+                    SizedBox(width: spacing ?? constraints.maxWidth * 0.026),
+                    Text(
+                      filterTypeTextChat,
+                      style: textStyleTheme.chatFilterButtonStyle,
+                    ),
+                    const SizedBox(width: 6),
+                    BadgeWidget(
+                      numberMessage: numberMessage,
+                      isSelected: isSelected,
+                      height: iconSize ?? constraints.maxWidth * 0.064,
+                      width: iconSize ?? constraints.maxWidth * 0.064,
+                    )
+                  ],
                 ),
               );
             },

@@ -1,9 +1,11 @@
 import 'package:app/repositories/task_repositories.dart';
 import 'package:app/states/task_state.dart';
+import 'package:design_system/source/themes/my_theme.dart';
 import 'package:flutter/material.dart';
 import '../src/models/task_model.dart';
 
 class TaskStore extends ValueNotifier<TaskState> {
+  bool mode = true;
   final List<TaskModel> _tasks = [];
   final TaskDataBaseRepository _taskRepository;
   TaskStore(this._taskRepository) : super(TaskInitialState());
@@ -67,5 +69,13 @@ class TaskStore extends ValueNotifier<TaskState> {
     final dateAndTime =
         '${date.day}/${date.month}/${date.year}\n${date.hour}:${date.minute}';
     return dateAndTime;
+  }
+
+  ThemeData switchMode({required bool value}) {
+    mode = value;
+    if (mode) {
+      return Mytheme.myTheme;
+    }
+    return ThemeData.light();
   }
 }
