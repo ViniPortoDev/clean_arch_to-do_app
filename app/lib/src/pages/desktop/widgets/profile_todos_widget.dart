@@ -29,7 +29,10 @@ class _ProfileTodosWidgetState extends State<ProfileTodosWidget> {
       child: Column(
         children: [
           SizedBox(height: size.height * 0.029),
-          const ProfileContainerInfoWidget(
+          ProfileContainerInfoWidget(
+            width: size.width * 0.17,
+            height: size.height * 0.298,
+            borderRadius: 22,
             name: 'Nego Ney',
             description1: 'Chama no zap',
             description2: 'Oi linda aii kawaii',

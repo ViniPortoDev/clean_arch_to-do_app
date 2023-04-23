@@ -7,6 +7,7 @@ import '../../themes/extensions/text_style_theme.dart';
 
 class ExpansionWidget extends StatefulWidget {
   final String title;
+  final double childHeight;
   final Widget child;
   final int itemCount;
   final bool? isOpen;
@@ -14,6 +15,7 @@ class ExpansionWidget extends StatefulWidget {
   const ExpansionWidget({
     Key? key,
     required this.title,
+    required this.childHeight,
     required this.child,
     required this.itemCount,
     this.isOpen,
@@ -48,7 +50,7 @@ class _ExpansionWidgetState extends State<ExpansionWidget>
       CurvedAnimation(parent: animationController, curve: Curves.easeIn),
     );
     animationContainer =
-        Tween(begin: 0.0, end: widget.itemCount * 90.0).animate(
+        Tween(begin: 0.0, end: widget.itemCount * widget.childHeight).animate(
       CurvedAnimation(parent: animationController, curve: Curves.easeIn),
     );
   }
@@ -68,6 +70,7 @@ class _ExpansionWidgetState extends State<ExpansionWidget>
       builder: (context, constraints) {
         return ClipRect(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
                 onTap: () {
@@ -78,36 +81,35 @@ class _ExpansionWidgetState extends State<ExpansionWidget>
                     animationController.forward();
                   }
                 },
-                child: SizedBox(
-                  height: constraints.maxWidth * 0.08,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        widget.title,
-                        style: textStyleTheme.expansionTitleStyle,
-                      ),
-                      AnimatedBuilder(
-                        animation: animationController,
-                        builder: (buildContext, child) {
-                          return Transform.rotate(
-                            angle: animationRotation.value,
-                            child: Icon(
-                              Icons.keyboard_arrow_up_rounded,
-                              size: constraints.maxWidth * 0.064,
-                              color: colorsTheme.primaryColor,
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      widget.title,
+                      style: textStyleTheme.expansionTitleStyle,
+                    ),
+                    AnimatedBuilder(
+                      animation: animationController,
+                      builder: (buildContext, child) {
+                        return Transform.rotate(
+                          angle: animationRotation.value,
+                          child: Icon(
+                            Icons.keyboard_arrow_up_rounded,
+                            size: constraints.maxWidth * 0.064,
+                            color: colorsTheme.primaryColor,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
               AnimatedBuilder(
                 animation: animationController,
                 builder: (buildContext, child) {
-                  return SizedBox(
+                  return Container(
+                    color: Colors.red,
+                    padding: const EdgeInsets.symmetric(vertical: 20),
                     height: animationContainer.value,
                     child: ClipRect(
                       child: ListView.builder(

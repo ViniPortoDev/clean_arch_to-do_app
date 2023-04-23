@@ -1,7 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
-import '../../themes/extensions/colors_theme.dart';
 
 class CustomSwitchWidget extends StatelessWidget {
   final bool value;
@@ -79,6 +78,6 @@ class CustomSwitchWidget extends StatelessWidget {
           ],
         ),
       );
-    });
+    },);
   }
 }

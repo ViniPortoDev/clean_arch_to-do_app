@@ -23,7 +23,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSize {
     return LayoutBuilder(
       builder: (context, constraints) {
         return AppBar(
-          toolbarHeight: constraints.maxWidth * 0.266,
+          toolbarHeight: height,
           backgroundColor: colorsTheme.blackColor,
           elevation: 0,
           leading: Container(

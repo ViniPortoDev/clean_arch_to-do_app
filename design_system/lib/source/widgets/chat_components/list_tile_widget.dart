@@ -7,6 +7,7 @@ import '../profile_components/name_widget.dart';
 
 class ListTileWidget extends StatelessWidget {
   final bool muted;
+  final double? height;
   final String imageNetworkAvatar;
   final String numberMessages;
   final String name;
@@ -27,6 +28,7 @@ class ListTileWidget extends StatelessWidget {
     required this.phoneNumber,
     required this.message,
     required this.isOnline,
+    this.height,
     this.onTap,
   }) : super(key: key);
 
@@ -39,7 +41,7 @@ class ListTileWidget extends StatelessWidget {
         return InkWell(
           onTap: onTap,
           child: SizedBox(
-            height: constraints.maxWidth * 0.241,
+            height: height ?? constraints.maxWidth * 0.241,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

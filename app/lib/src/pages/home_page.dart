@@ -20,6 +20,9 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
+      tablet: const Center(
+        child: Text('EM CONSTRUÇÃO'),
+      ),
       mobile: const HomePageMobile(),
     );
   }

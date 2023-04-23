@@ -1,7 +1,5 @@
-import 'package:design_system/source/themes/extensions/colors_theme.dart';
-import 'package:design_system/source/widgets/chat_components/message_widget.dart';
-import 'package:design_system/source/widgets/chat_components/messenges_sent_widget.dart';
-import 'package:design_system/source/widgets/text_fields/send_message_widget.dart';
+import 'package:app/src/pages/desktop/widgets/appbar_desktop_widget.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import '../../../../utils/image_path.dart';
 import '../../../../utils/user_name.dart';
@@ -15,122 +13,150 @@ class ChatWidget extends StatelessWidget {
 
     final size = MediaQuery.of(context).size;
 
-    return Column(
-      children: [
-        SizedBox(height: size.height * 0.029),
-        Container(
-          color: colorsTheme.backgroundChatColor,
-          width: size.width * 0.411,
-          child: Stack(
-            alignment: Alignment.bottomCenter,
+    return Container(
+      width: size.width * 0.411,
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Column(
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.053),
-                child: Column(
-                  children: [
-                    SizedBox(height: size.width * 0.042),
-                    SizedBox(
-                      width: size.width,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: size.width * 0.021),
-                          const MessagesSent(
-                            name: UserName.name,
-                            myMessage: false,
-                            timeSent: '10:48',
-                            imageNetwork: ImagePath.imageAvatar,
-                            messageList: [
-                              MessageWidget(
-                                myMessage: false,
-                                message: 'Eu to com muito sono',
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: size.width,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          SizedBox(height: size.width * 0.021),
-                          MessagesSent(
-                            name: UserName.name,
-                            myMessage: true,
-                            timeSent: '10:48',
-                            imageNetwork: ImagePath.imageAvatar,
-                            messageList: [
-                              const MessageWidget(
-                                myMessage: true,
-                                message: 'Eu to com muito sono',
-                              ),
-                              SizedBox(height: size.width * 0.032),
-                              const MessageWidget(
-                                myMessage: true,
-                                message: 'Eu to com muito sono',
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: size.width * 0.042),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+              Container(
+                color: colorsTheme.backgroundColor,
+                height: size.height * 0.029,
+              ),
+              AppbarDesktopWidget(
+                height: size.height * 0.09,
+                name: UserName.name,
+                networkImageAvatar: ImagePath.imageAvatar,
+              ),
+              Container(
+                color: colorsTheme.backgroundChatColor,
+                height: size.height * 0.77,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
+                  child: SingleChildScrollView(
+                    child: Column(
                       children: [
-                        const MessagesSent(
+                        MessagesSent(
                           name: UserName.name,
                           myMessage: false,
                           timeSent: '10:48',
                           imageNetwork: ImagePath.imageAvatar,
                           messageList: [
                             MessageWidget(
+                              paddingHorizontal: size.height * 0.032,
+                              paddingVertical: size.width * 0.015,
+                              borderRadius: 18,
                               myMessage: false,
                               message: 'Eu to com muito sono',
                             ),
                           ],
                         ),
-                        SizedBox(
-                          width: size.width,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: const [
-                              MessagesSent(
-                                name: UserName.name,
-                                myMessage: true,
-                                timeSent: '10:48',
-                                imageNetwork: ImagePath.imageAvatar,
-                                messageList: [
-                                  MessageWidget(
-                                    myMessage: true,
-                                    message: 'Eu to com muito sono',
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                        MessagesSent(
+                          name: UserName.name,
+                          myMessage: true,
+                          timeSent: '10:48',
+                          imageNetwork: ImagePath.imageAvatar,
+                          messageList: [
+                            MessageWidget(
+                              paddingHorizontal: size.height * 0.032,
+                              paddingVertical: size.width * 0.015,
+                              borderRadius: 18,
+                              myMessage: true,
+                              message: 'Eu to com muito sono',
+                            ),
+                            MessageWidget(
+                              paddingHorizontal: size.height * 0.032,
+                              paddingVertical: size.width * 0.015,
+                              borderRadius: 18,
+                              myMessage: true,
+                              message: 'Eu to com muito sono',
+                            ),
+                          ],
                         ),
+                        MessagesSent(
+                          name: UserName.name,
+                          myMessage: false,
+                          timeSent: '10:48',
+                          imageNetwork: ImagePath.imageAvatar,
+                          messageList: [
+                            MessageWidget(
+                              paddingHorizontal: size.height * 0.032,
+                              paddingVertical: size.width * 0.015,
+                              borderRadius: 18,
+                              myMessage: false,
+                              message: 'Eu to com muito sono',
+                            ),
+                          ],
+                        ),
+                        MessagesSent(
+                          name: UserName.name,
+                          myMessage: false,
+                          timeSent: '10:48',
+                          imageNetwork: ImagePath.imageAvatar,
+                          messageList: [
+                            MessageWidget(
+                              paddingHorizontal: size.height * 0.032,
+                              paddingVertical: size.width * 0.015,
+                              borderRadius: 18,
+                              myMessage: false,
+                              message: 'Eu to com muito sono',
+                            ),
+                          ],
+                        ),
+                        MessagesSent(
+                          name: UserName.name,
+                          myMessage: false,
+                          timeSent: '10:48',
+                          imageNetwork: ImagePath.imageAvatar,
+                          messageList: [
+                            MessageWidget(
+                              paddingHorizontal: size.height * 0.032,
+                              paddingVertical: size.width * 0.015,
+                              borderRadius: 18,
+                              myMessage: false,
+                              message: 'Eu to com muito sono',
+                            ),
+                          ],
+                        ),
+                        MessagesSent(
+                          name: UserName.name,
+                          myMessage: true,
+                          timeSent: '10:48',
+                          imageNetwork: ImagePath.imageAvatar,
+                          messageList: [
+                            MessageWidget(
+                              paddingHorizontal: size.height * 0.032,
+                              paddingVertical: size.width * 0.015,
+                              borderRadius: 18,
+                              myMessage: true,
+                              message: 'Eu to com muito sono',
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: size.height * 0.1)
                       ],
                     ),
-                  ],
-                ),
-              ),
-              Positioned(
-                top: size.width * 1.48,
-                child: SizedBox(
-                  width: size.width * 0.906,
-                  child: SendMessageWidget(
-                    height: size.width * 0.16,
-                    width: size.width * 0.906,
                   ),
                 ),
               ),
             ],
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.only(bottom: 18),
+            child: SizedBox(
+              child: SendMessageWidget(
+                height: size.height * 0.068,
+                width: size.width * 0.4,
+                iconsSize: size.width * 0.016,
+                selectedItemheight: size.height * 0.048,
+                selectedItemWidth: size.width * 0.027,
+                borderRadius: 10,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

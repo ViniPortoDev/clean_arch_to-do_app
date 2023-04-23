@@ -1,7 +1,5 @@
 import 'package:design_system/design_system.dart';
-import 'package:design_system/source/themes/extensions/colors_theme.dart';
-import 'package:design_system/source/themes/extensions/text_style_theme.dart';
-import 'package:design_system/source/widgets/buttons/selected_button_widget.dart';
+
 import 'package:flutter/material.dart';
 
 class LateralButtonWidget extends StatelessWidget {
@@ -48,7 +46,7 @@ class LateralButtonWidget extends StatelessWidget {
                       icon,
                       color: colorsTheme.blackColor,
                     ),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: 8),
                     Text(
                       filterTypeTextChat,
                       style: textStyleTheme.chatFilterButtonSelectedStyle,
@@ -77,7 +75,7 @@ class LateralButtonWidget extends StatelessWidget {
                           icon,
                           color: colorsTheme.iconsColor,
                         ),
-                        const SizedBox(width: 12),
+                        const SizedBox(width: 8),
                         Text(
                           filterTypeTextChat,
                           style: textStyleTheme.chatFilterButtonStyle,

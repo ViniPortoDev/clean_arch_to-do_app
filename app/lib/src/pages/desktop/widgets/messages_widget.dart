@@ -13,6 +13,7 @@ class MessagesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final itemHeight = size.height * 0.103;
 
     return SizedBox(
       width: size.width * 0.218,
@@ -28,7 +29,9 @@ class MessagesWidget extends StatelessWidget {
                 title: 'Unread',
                 itemCount: 3,
                 isOpen: true,
+                childHeight: itemHeight,
                 child: ListTileWidget(
+                  height: itemHeight,
                   name: UserName.name,
                   numberMessages: '20',
                   dateSent: '10:56',
@@ -44,6 +47,7 @@ class MessagesWidget extends StatelessWidget {
               ExpansionWidget(
                 title: 'From team',
                 itemCount: 3,
+                childHeight: itemHeight,
                 child: Padding(
                   padding: EdgeInsets.only(top: size.width * 0.037),
                   child: ListTileWidget(
@@ -63,6 +67,7 @@ class MessagesWidget extends StatelessWidget {
               ExpansionWidget(
                 title: 'From Companies',
                 itemCount: 3,
+                childHeight: itemHeight,
                 isOpen: true,
                 child: Padding(
                   padding: EdgeInsets.only(top: size.width * 0.037),

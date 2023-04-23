@@ -24,40 +24,43 @@ class MessageWidget extends StatelessWidget {
     final textStyleTheme = Theme.of(context).extension<TextStyleTheme>()!;
     return LayoutBuilder(
       builder: (context, constraints) {
-        return Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: paddingHorizontal ?? constraints.maxWidth * 0.042,
-            vertical: paddingVertical ?? constraints.maxWidth * 0.058,
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 6),
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: paddingHorizontal ?? constraints.maxWidth * 0.042,
+              vertical: paddingVertical ?? constraints.maxWidth * 0.058,
+            ),
+            decoration: BoxDecoration(
+              color: myMessage
+                  ? colorsTheme.terciaryColor
+                  : colorsTheme.secundaryColor,
+              borderRadius: myMessage
+                  ? BorderRadius.only(
+                      bottomLeft: Radius.circular(
+                        borderRadius ?? constraints.maxWidth * 0.048,
+                      ),
+                      topLeft: Radius.circular(
+                        borderRadius ?? constraints.maxWidth * 0.048,
+                      ),
+                      topRight: Radius.circular(
+                        borderRadius ?? constraints.maxWidth * 0.048,
+                      ),
+                    )
+                  : BorderRadius.only(
+                      bottomLeft: Radius.circular(
+                        borderRadius ?? constraints.maxWidth * 0.048,
+                      ),
+                      bottomRight: Radius.circular(
+                        borderRadius ?? constraints.maxWidth * 0.048,
+                      ),
+                      topRight: Radius.circular(
+                        borderRadius ?? constraints.maxWidth * 0.048,
+                      ),
+                    ),
+            ),
+            child: Text(message, style: textStyleTheme.nameSmallStyle),
           ),
-          decoration: BoxDecoration(
-            color: myMessage
-                ? colorsTheme.terciaryColor
-                : colorsTheme.secundaryColor,
-            borderRadius: myMessage
-                ? BorderRadius.only(
-                    bottomLeft: Radius.circular(
-                      borderRadius ?? constraints.maxWidth * 0.048,
-                    ),
-                    topLeft: Radius.circular(
-                      borderRadius ?? constraints.maxWidth * 0.048,
-                    ),
-                    topRight: Radius.circular(
-                      borderRadius ?? constraints.maxWidth * 0.048,
-                    ),
-                  )
-                : BorderRadius.only(
-                    bottomLeft: Radius.circular(
-                      borderRadius ?? constraints.maxWidth * 0.048,
-                    ),
-                    bottomRight: Radius.circular(
-                      borderRadius ?? constraints.maxWidth * 0.048,
-                    ),
-                    topRight: Radius.circular(
-                      borderRadius ?? constraints.maxWidth * 0.048,
-                    ),
-                  ),
-          ),
-          child: Text(message, style: textStyleTheme.nameSmallStyle),
         );
       },
     );

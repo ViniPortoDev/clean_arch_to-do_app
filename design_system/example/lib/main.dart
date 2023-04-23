@@ -203,6 +203,7 @@ class WidgetbookHotReload extends StatelessWidget {
                     WidgetbookUseCase.center(
                       name: 'Default',
                       child: ExpansionWidget(
+                        childHeight: 90,
                         title: 'Unread',
                         itemCount: 3,
                         child: ListTileWidget(

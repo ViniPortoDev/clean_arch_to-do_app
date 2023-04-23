@@ -24,6 +24,7 @@ class _HomePageMobileState extends State<HomePageMobile> {
   Widget build(BuildContext context) {
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
     final size = MediaQuery.of(context).size;
+    final itemHeight = size.height * 0.103;
 
     return Scaffold(
       backgroundColor: colorsTheme.backgroundColor,
@@ -67,6 +68,7 @@ class _HomePageMobileState extends State<HomePageMobile> {
                   title: 'Unread',
                   itemCount: 3,
                   isOpen: true,
+                  childHeight: itemHeight,
                   child: Padding(
                     padding: EdgeInsets.only(top: size.width * 0.037),
                     child: ListTileWidget(
@@ -90,6 +92,7 @@ class _HomePageMobileState extends State<HomePageMobile> {
                 child: ExpansionWidget(
                   title: 'From team',
                   itemCount: 3,
+                  childHeight: itemHeight,
                   child: Padding(
                     padding: EdgeInsets.only(top: size.width * 0.037),
                     child: ListTileWidget(
@@ -114,6 +117,7 @@ class _HomePageMobileState extends State<HomePageMobile> {
                   title: 'From Companies',
                   itemCount: 3,
                   isOpen: true,
+                  childHeight: itemHeight,
                   child: Padding(
                     padding: EdgeInsets.only(top: size.width * 0.037),
                     child: ListTileWidget(
