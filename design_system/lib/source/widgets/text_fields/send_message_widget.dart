@@ -41,7 +41,7 @@ class SendMessageWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: constraints.maxWidth * 0.61,
+                width: constraints.maxWidth * 0.59,
                 child: const TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -49,7 +49,7 @@ class SendMessageWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: constraints.maxWidth * 0.3,
+                width: constraints.maxWidth * 0.28,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

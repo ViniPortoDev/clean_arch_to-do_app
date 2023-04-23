@@ -13,7 +13,7 @@ class ChatWidget extends StatelessWidget {
 
     final size = MediaQuery.of(context).size;
 
-    return Container(
+    return SizedBox(
       width: size.width * 0.411,
       child: Stack(
         alignment: Alignment.bottomCenter,
@@ -147,7 +147,7 @@ class ChatWidget extends StatelessWidget {
             child: SizedBox(
               child: SendMessageWidget(
                 height: size.height * 0.068,
-                width: size.width * 0.4,
+                width: size.width * 0.38,
                 iconsSize: size.width * 0.016,
                 selectedItemheight: size.height * 0.048,
                 selectedItemWidth: size.width * 0.027,
