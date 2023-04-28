@@ -1,44 +1,86 @@
+// ignore_for_file: prefer_int_literals
+
+import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../themes/extensions/colors_theme.dart';
 import '../../themes/extensions/text_style_theme.dart';
 
 class ExpansionWidget extends StatefulWidget {
   final String title;
-  final double height;
-  final bool isOpen;
-  final void Function() onTap;
+  final double childHeight;
   final Widget child;
+  final int itemCount;
+  final bool? isOpen;
+
   const ExpansionWidget({
     Key? key,
     required this.title,
-    required this.height,
-    required this.isOpen,
-    required this.onTap,
+    required this.childHeight,
     required this.child,
+    required this.itemCount,
+    this.isOpen,
   }) : super(key: key);
 
   @override
   State<ExpansionWidget> createState() => _ExpansionWidgetState();
 }
 
-class _ExpansionWidgetState extends State<ExpansionWidget> {
+class _ExpansionWidgetState extends State<ExpansionWidget>
+    with SingleTickerProviderStateMixin {
+  late Animation animationRotation;
+  late Animation animationContainer;
+
+  late AnimationController animationController;
+  @override
+  void initState() {
+    super.initState();
+
+    animationController = AnimationController(
+      duration: const Duration(milliseconds: 400),
+      vsync: this,
+    )..addListener(() {
+        setState(() {});
+      });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    animationRotation = Tween(begin: 0.0, end: pi).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.easeIn),
+    );
+    animationContainer =
+        Tween(begin: 0.0, end: widget.itemCount * widget.childHeight).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.easeIn),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    animationController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final textStyleTheme = Theme.of(context).extension<TextStyleTheme>()!;
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
 
-    final size = MediaQuery.of(context).size;
-    return ClipRect(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: size.width * 0.042,
-        ),
-        child: Column(
-          children: [
-            InkWell(
-              onTap: widget.onTap,
-              child: SizedBox(
-                height: size.width * 0.08,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return ClipRect(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: () {
+                  final status = animationController.status;
+                  if (status == AnimationStatus.completed) {
+                    animationController.reverse();
+                  } else if (status == AnimationStatus.dismissed) {
+                    animationController.forward();
+                  }
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -46,39 +88,43 @@ class _ExpansionWidgetState extends State<ExpansionWidget> {
                       widget.title,
                       style: textStyleTheme.expansionTitleStyle,
                     ),
-                    Icon(
-                      widget.isOpen
-                          ? Icons.keyboard_arrow_up_rounded
-                          : Icons.keyboard_arrow_down_rounded,
-                      size: size.width * 0.064,
-                      color: colorsTheme.primaryColor,
-                    )
+                    AnimatedBuilder(
+                      animation: animationController,
+                      builder: (buildContext, child) {
+                        return Transform.rotate(
+                          angle: animationRotation.value,
+                          child: Icon(
+                            Icons.keyboard_arrow_up_rounded,
+                            size: constraints.maxWidth * 0.064,
+                            color: colorsTheme.primaryColor,
+                          ),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
-            ),
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 100),
-              height: widget.height,
-              child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 3,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: EdgeInsets.only(
-                      bottom: size.width * 0.053,
-                    ),
-                    child: SizedBox(
-                      height: size.width * 0.186,
-                      child: widget.child,
+              AnimatedBuilder(
+                animation: animationController,
+                builder: (buildContext, child) {
+                  return Container(
+                    color: Colors.red,
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    height: animationContainer.value,
+                    child: ClipRect(
+                      child: ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: widget.itemCount,
+                        itemBuilder: (context, index) => widget.child,
+                      ),
                     ),
                   );
                 },
               ),
-            )
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

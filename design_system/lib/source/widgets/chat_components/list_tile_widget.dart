@@ -2,84 +2,97 @@ import 'package:flutter/material.dart';
 import '../../themes/extensions/colors_theme.dart';
 import '../../themes/extensions/text_style_theme.dart';
 import '../badge/badge_widget.dart';
-import '../user/avatar_widget.dart';
-import '../user/name_widget.dart';
+import '../profile_components/avatar_widget.dart';
+import '../profile_components/name_widget.dart';
 
 class ListTileWidget extends StatelessWidget {
   final bool muted;
-  final String imageNetwork;
+  final double? height;
+  final String imageNetworkAvatar;
   final String numberMessages;
   final String name;
-  final String timeSent;
+  final String dateSent;
   final String phoneNumber;
   final String message;
+  final bool isOnline;
 
-  final void Function() onTap;
+  final void Function()? onTap;
 
   const ListTileWidget({
     Key? key,
     required this.muted,
-    required this.imageNetwork,
+    required this.imageNetworkAvatar,
     required this.numberMessages,
     required this.name,
-    required this.timeSent,
-    required this.onTap,
+    required this.dateSent,
     required this.phoneNumber,
     required this.message,
-
+    required this.isOnline,
+    this.height,
+    this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
     final textStyleTheme = Theme.of(context).extension<TextStyleTheme>()!;
-    return InkWell(
-      onTap: onTap,
-      child: SizedBox(
-        width: size.width * 0.906,
-        height: size.width * 0.161,
-        child: Row(
-          children: [
-            
-            Row(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return InkWell(
+          onTap: onTap,
+          child: SizedBox(
+            height: height ?? constraints.maxWidth * 0.241,
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AvatarWidet(
+                  radius: constraints.maxWidth * 0.061,
                   badge: BadgeWidget(
-                      numberMessage: numberMessages, isSelected: true),
-                  imageNetwork: imageNetwork,
+                    width: constraints.maxWidth * 0.064,
+                    height: constraints.maxWidth * 0.064,
+                    numberMessage: numberMessages,
+                    isSelected: true,
+                  ),
+                  imageNetwork: imageNetworkAvatar,
                 ),
-                SizedBox(width: size.width * 0.032),
+                SizedBox(width: constraints.maxWidth * 0.032),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: size.width * 0.752,
+                      width: constraints.maxWidth * 0.84,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          NameWidget(name: name, isOnline: true),
+                          NameWidget(
+                            name: name,
+                            isOnline: isOnline,
+                            textSize: textStyleTheme.nameSmallStyle.fontSize,
+                            statusHeight: constraints.maxWidth * 0.026,
+                            statusWidth: constraints.maxWidth * 0.026,
+                          ),
                           Text(
-                            timeSent,
+                            dateSent,
                             style: textStyleTheme.listTilehourStyle,
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      phoneNumber,
-                      style: textStyleTheme.listTileNumberStyle,
-                    ),
-                    SizedBox(height: size.width * 0.021),
+                    SizedBox(height: constraints.maxWidth * 0.010),
                     SizedBox(
-                      width: size.width * 0.752,
+                      child: Text(
+                        phoneNumber,
+                        style: textStyleTheme.listTileNumberStyle,
+                      ),
+                    ),
+                    SizedBox(height: constraints.maxWidth * 0.021),
+                    SizedBox(
+                      width: constraints.maxWidth * 0.84,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: size.width * 0.56,
+                            width: constraints.maxWidth * 0.7,
                             child: RichText(
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
@@ -90,10 +103,12 @@ class ListTileWidget extends StatelessWidget {
                             ),
                           ),
                           if (muted)
-                            Icon(
-                              Icons.volume_off,
-                              size: size.width * 0.042,
-                              color: colorsTheme.primaryColor,
+                            SizedBox(
+                              child: Icon(
+                                Icons.volume_off,
+                                size: constraints.maxWidth * 0.042,
+                                color: colorsTheme.primaryColor,
+                              ),
                             )
                         ],
                       ),
@@ -102,9 +117,9 @@ class ListTileWidget extends StatelessWidget {
                 ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

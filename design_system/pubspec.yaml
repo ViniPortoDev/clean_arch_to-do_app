@@ -13,6 +13,7 @@ dependencies:
   line_icons: ^2.0.0
   flutterando_analysis: ^0.0.2
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

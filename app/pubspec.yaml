@@ -38,6 +38,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   design_system:
     path: ../design_system
+  line_icons: ^2.0.0 
+  shared_preferences: ^2.0.17 
+  flutterando_analysis: ^0.0.2  
 
 dev_dependencies:
   flutter_test:
