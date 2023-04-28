@@ -41,6 +41,8 @@ dependencies:
   line_icons: ^2.0.0 
   shared_preferences: ^2.0.17 
   flutterando_analysis: ^0.0.2  
+  flutter_modular: ^5.0.3
+  
 
 dev_dependencies:
   flutter_test:

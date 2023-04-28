@@ -12,6 +12,7 @@ class TodoWidget extends StatelessWidget {
   final void Function()? onLongPress;
   final Color overdueTask;
   final String? date;
+  final double? taskHeight;
 
   const TodoWidget({
     Key? key,
@@ -22,6 +23,7 @@ class TodoWidget extends StatelessWidget {
     required this.overdueTask,
     this.onTap,
     this.onLongPress,
+    this.taskHeight,
   }) : super(key: key);
 
   @override
@@ -34,7 +36,7 @@ class TodoWidget extends StatelessWidget {
           onTap: onTap,
           onLongPress: onLongPress,
           child: Container(
-            height: constraints.maxWidth * 0.194,
+            height: taskHeight ?? constraints.maxWidth * 0.198,
             width: constraints.maxWidth * 0.906,
             padding:
                 EdgeInsets.symmetric(horizontal: constraints.maxWidth * 0.032),
@@ -78,7 +80,7 @@ class TodoWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                          width: constraints.maxWidth * 0.53,
+                          width: constraints.maxWidth * 0.44,
                           child: RichText(
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -91,7 +93,7 @@ class TodoWidget extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      width: constraints.maxWidth * 0.53,
+                      width: constraints.maxWidth * 0.44,
                       child: RichText(
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

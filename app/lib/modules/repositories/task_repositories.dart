@@ -1,6 +1,6 @@
 import 'package:app/src/models/task_model.dart';
 import 'package:app/utils/preference_keys.dart';
-import '../service/interface_local_storage.dart';
+import '../../service/interface_local_storage.dart';
 
 class TaskDataBaseRepository {
   final ILocalStorageService _storageService;
