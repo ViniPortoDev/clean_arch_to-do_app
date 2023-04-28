@@ -1,8 +1,10 @@
-import 'package:app/repositories/task_repositories.dart';
-import 'package:app/states/task_state.dart';
+import 'package:app/modules/repositories/task_repositories.dart';
 import 'package:design_system/source/themes/my_theme.dart';
 import 'package:flutter/material.dart';
-import '../src/models/task_model.dart';
+
+import '../../src/models/task_model.dart';
+import '../states/task_state.dart';
+
 
 class TaskStore extends ValueNotifier<TaskState> {
   bool mode = true;

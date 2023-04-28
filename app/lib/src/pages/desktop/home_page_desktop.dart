@@ -7,7 +7,9 @@ import 'package:design_system/design_system.dart';
 import 'package:design_system/source/themes/extensions/colors_theme.dart';
 import 'package:flutter/material.dart';
 
-import '../../../stores/task_store.dart';
+import '../../../modules/stores/task_store.dart';
+
+
 
 class HomePageDesktop extends StatelessWidget {
   final TaskStore taskStore;

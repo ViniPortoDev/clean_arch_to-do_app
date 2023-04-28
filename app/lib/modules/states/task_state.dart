@@ -1,7 +1,6 @@
-import '../src/models/task_model.dart';
+import '../../src/models/task_model.dart';
 
 abstract class TaskState {
-  
   const TaskState();
 }
 

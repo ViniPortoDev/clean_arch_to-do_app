@@ -8,7 +8,7 @@ import '../../themes/extensions/text_style_theme.dart';
 class ExpansionWidget extends StatefulWidget {
   final String title;
   final double childHeight;
-  final Widget child;
+  final Widget? child;
   final int itemCount;
   final bool? isOpen;
 
@@ -16,7 +16,7 @@ class ExpansionWidget extends StatefulWidget {
     Key? key,
     required this.title,
     required this.childHeight,
-    required this.child,
+    this.child,
     required this.itemCount,
     this.isOpen,
   }) : super(key: key);
@@ -50,7 +50,7 @@ class _ExpansionWidgetState extends State<ExpansionWidget>
       CurvedAnimation(parent: animationController, curve: Curves.easeIn),
     );
     animationContainer =
-        Tween(begin: 0.0, end: widget.itemCount * widget.childHeight).animate(
+        Tween(begin: 0.0, end: widget.childHeight * widget.itemCount).animate(
       CurvedAnimation(parent: animationController, curve: Curves.easeIn),
     );
   }
@@ -107,9 +107,7 @@ class _ExpansionWidgetState extends State<ExpansionWidget>
               AnimatedBuilder(
                 animation: animationController,
                 builder: (buildContext, child) {
-                  return Container(
-                    color: Colors.red,
-                    padding: const EdgeInsets.symmetric(vertical: 20),
+                  return SizedBox(
                     height: animationContainer.value,
                     child: ClipRect(
                       child: ListView.builder(
