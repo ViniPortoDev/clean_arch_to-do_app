@@ -1,13 +1,13 @@
-import 'package:app/src/pages/desktop/widgets/chat_widget.dart';
-import 'package:app/src/pages/desktop/widgets/lateral_menu_widget.dart';
-import 'package:app/src/pages/desktop/widgets/menu_widget.dart';
-import 'package:app/src/pages/desktop/widgets/messages_widget.dart';
-import 'package:app/src/pages/desktop/widgets/profile_todos_widget.dart';
+import 'package:app/modules/pages/desktop/widgets/chat_widget.dart';
+import 'package:app/modules/pages/desktop/widgets/lateral_menu_widget.dart';
+import 'package:app/modules/pages/desktop/widgets/menu_widget.dart';
+import 'package:app/modules/pages/desktop/widgets/messages_widget.dart';
+import 'package:app/modules/pages/desktop/widgets/profile_todos_widget.dart';
 import 'package:design_system/design_system.dart';
 import 'package:design_system/source/themes/extensions/colors_theme.dart';
 import 'package:flutter/material.dart';
 
-import '../../../modules/stores/task_store.dart';
+import '../../../stores/task_store.dart';
 
 
 

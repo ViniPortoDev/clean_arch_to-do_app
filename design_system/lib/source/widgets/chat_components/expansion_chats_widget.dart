@@ -27,10 +27,10 @@ class ExpansionWidget extends StatefulWidget {
 
 class _ExpansionWidgetState extends State<ExpansionWidget>
     with SingleTickerProviderStateMixin {
-  late Animation animationRotation;
-  late Animation animationContainer;
+  late final Animation animationRotation;
+  late final Animation animationContainer;
 
-  late AnimationController animationController;
+  late final AnimationController animationController;
   @override
   void initState() {
     super.initState();
@@ -38,14 +38,7 @@ class _ExpansionWidgetState extends State<ExpansionWidget>
     animationController = AnimationController(
       duration: const Duration(milliseconds: 400),
       vsync: this,
-    )..addListener(() {
-        setState(() {});
-      });
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+    );
     animationRotation = Tween(begin: 0.0, end: pi).animate(
       CurvedAnimation(parent: animationController, curve: Curves.easeIn),
     );
@@ -54,11 +47,18 @@ class _ExpansionWidgetState extends State<ExpansionWidget>
       CurvedAnimation(parent: animationController, curve: Curves.easeIn),
     );
   }
+  //TODO aprender isso
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   final size = MediaQuery.of(context);
+  //   print('Update');
+  // }
 
   @override
   void dispose() {
-    super.dispose();
     animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -109,13 +109,7 @@ class _ExpansionWidgetState extends State<ExpansionWidget>
                 builder: (buildContext, child) {
                   return SizedBox(
                     height: animationContainer.value,
-                    child: ClipRect(
-                      child: ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: widget.itemCount,
-                        itemBuilder: (context, index) => widget.child,
-                      ),
-                    ),
+                    child: child,
                   );
                 },
               ),
