@@ -1,4 +1,4 @@
-import 'package:app/src/pages/desktop/widgets/appbar_desktop_widget.dart';
+import 'package:app/modules/pages/desktop/widgets/appbar_desktop_widget.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import '../../../../utils/image_path.dart';

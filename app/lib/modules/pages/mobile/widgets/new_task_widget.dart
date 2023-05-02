@@ -1,7 +1,7 @@
 import 'package:app/src/models/task_model.dart';
-import 'package:app/src/pages/mobile/widgets/task_error_dialog.dart';
+import 'package:app/modules/pages/mobile/widgets/task_error_dialog.dart';
 import 'package:flutter/material.dart';
-import '../../../../modules/stores/task_store.dart';
+import '../../../../stores/task_store.dart';
 
 
 
