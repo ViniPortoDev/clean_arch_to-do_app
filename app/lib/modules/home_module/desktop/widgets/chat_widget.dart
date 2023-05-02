@@ -1,8 +1,9 @@
-import 'package:app/modules/pages/desktop/widgets/appbar_desktop_widget.dart';
+
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import '../../../../utils/image_path.dart';
 import '../../../../utils/user_name.dart';
+import 'appbar_desktop_widget.dart';
 
 class ChatWidget extends StatelessWidget {
   const ChatWidget({Key? key}) : super(key: key);

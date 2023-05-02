@@ -1,8 +1,10 @@
-import 'package:app/modules/pages/mobile/widgets/logo_widget.dart';
+
 import 'package:app/utils/image_path.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+
+import 'logo_widget.dart';
 
 class MenuWidget extends StatelessWidget {
   final double? menuHeight;

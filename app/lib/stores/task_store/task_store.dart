@@ -2,7 +2,7 @@ import 'package:app/repositories/task_repositories.dart';
 import 'package:design_system/source/themes/my_theme.dart';
 import 'package:flutter/material.dart';
 
-import '../src/models/task_model.dart';
+import '../../src/models/task_model.dart';
 import 'states/task_state.dart';
 
 

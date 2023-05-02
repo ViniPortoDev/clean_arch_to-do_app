@@ -1,6 +1,9 @@
-import 'package:app/modules/pages/home_page.dart';
+
+import 'package:app/stores/task_store/task_store.dart';
 import 'package:app/utils/routes.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import 'home_page.dart';
 
 class HomeModule extends Module {
   @override
@@ -9,7 +12,9 @@ class HomeModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Routes.home,
-      child: (context, args) => const HomePage(),
+      child: (context, args) => HomePage(
+        taskStore: Modular.get<TaskStore>(),
+      ),
     ),
   ];
 }

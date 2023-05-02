@@ -47,13 +47,6 @@ class _ExpansionWidgetState extends State<ExpansionWidget>
       CurvedAnimation(parent: animationController, curve: Curves.easeIn),
     );
   }
-  //TODO aprender isso
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   final size = MediaQuery.of(context);
-  //   print('Update');
-  // }
 
   @override
   void dispose() {
