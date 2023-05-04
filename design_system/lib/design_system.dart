@@ -2,7 +2,7 @@ export 'package:design_system/design_system.dart';
 export 'source/themes/extensions/colors_theme.dart';
 export 'source/themes/extensions/text_style_theme.dart';
 export 'source/themes/my_theme.dart';
-export 'source/utils/hex_colors.dart';
+export 'source/utils/hex_dark_colors.dart';
 export 'source/widgets/appbar/app_bar_widget.dart';
 export 'source/widgets/badge/badge_widget.dart';
 export 'source/widgets/buttons/chat_filter_button_widget.dart';

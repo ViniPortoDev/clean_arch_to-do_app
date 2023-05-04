@@ -1,8 +1,8 @@
-import 'package:app/modules/pages/desktop/widgets/appbar_desktop_widget.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import '../../../../utils/image_path.dart';
 import '../../../../utils/user_name.dart';
+import 'appbar_desktop_widget.dart';
 
 class ChatWidget extends StatelessWidget {
   const ChatWidget({Key? key}) : super(key: key);
@@ -10,6 +10,7 @@ class ChatWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
+    final textStyleTheme = Theme.of(context).extension<TextStyleTheme>()!;
 
     final size = MediaQuery.of(context).size;
 
@@ -38,6 +39,7 @@ class ChatWidget extends StatelessWidget {
                     child: Column(
                       children: [
                         MessagesSent(
+                          nameColor: textStyleTheme.nameMediumStyle.color,
                           name: UserName.name,
                           myMessage: false,
                           timeSent: '10:48',
@@ -54,6 +56,7 @@ class ChatWidget extends StatelessWidget {
                         ),
                         MessagesSent(
                           name: UserName.name,
+                          nameColor: textStyleTheme.nameMediumStyle.color,
                           myMessage: true,
                           timeSent: '10:48',
                           imageNetwork: ImagePath.imageAvatar,
@@ -76,6 +79,7 @@ class ChatWidget extends StatelessWidget {
                         ),
                         MessagesSent(
                           name: UserName.name,
+                          nameColor: textStyleTheme.nameMediumStyle.color,
                           myMessage: false,
                           timeSent: '10:48',
                           imageNetwork: ImagePath.imageAvatar,
@@ -91,6 +95,7 @@ class ChatWidget extends StatelessWidget {
                         ),
                         MessagesSent(
                           name: UserName.name,
+                          nameColor: textStyleTheme.nameMediumStyle.color,
                           myMessage: false,
                           timeSent: '10:48',
                           imageNetwork: ImagePath.imageAvatar,
@@ -106,6 +111,7 @@ class ChatWidget extends StatelessWidget {
                         ),
                         MessagesSent(
                           name: UserName.name,
+                          nameColor: textStyleTheme.nameMediumStyle.color,
                           myMessage: false,
                           timeSent: '10:48',
                           imageNetwork: ImagePath.imageAvatar,
@@ -121,6 +127,7 @@ class ChatWidget extends StatelessWidget {
                         ),
                         MessagesSent(
                           name: UserName.name,
+                          nameColor: textStyleTheme.nameMediumStyle.color,
                           myMessage: true,
                           timeSent: '10:48',
                           imageNetwork: ImagePath.imageAvatar,

@@ -1,12 +1,13 @@
-import 'package:app/modules/pages/mobile/widgets/completed_task_dialog.dart';
-import 'package:app/modules/pages/mobile/widgets/new_task_widget.dart';
+
+import 'package:app/modules/info_module/widgets/completed_task_dialog.dart';
+import 'package:app/modules/info_module/widgets/new_task_widget.dart';
 import 'package:app/utils/image_path.dart';
 import 'package:design_system/source/themes/extensions/colors_theme.dart';
 import 'package:design_system/source/widgets/profile_components/profile_container_info_widget.dart';
 import 'package:design_system/source/widgets/task/todo_widget.dart';
 import 'package:flutter/material.dart';
-import '../../../stores/states/task_state.dart';
-import '../../../stores/task_store.dart';
+import '../../stores/task_store/states/task_state.dart';
+import '../../stores/task_store/task_store.dart';
 
 
 class InfoPageMobile extends StatefulWidget {

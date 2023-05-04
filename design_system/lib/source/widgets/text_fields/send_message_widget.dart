@@ -55,22 +55,22 @@ class SendMessageWidget extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.add_reaction_outlined,
-                      color: HexColors.primaryGrey,
+                      color: HexDarkColors.primaryGrey,
                       size: iconsSize ?? constraints.maxWidth * 0.064,
                     ),
                     Icon(
                       Icons.attach_file_outlined,
-                      color: HexColors.primaryGrey,
+                      color: HexDarkColors.primaryGrey,
                       size: iconsSize ?? constraints.maxWidth * 0.064,
                     ),
                     Icon(
                       Icons.image,
-                      color: HexColors.primaryGrey,
+                      color: HexDarkColors.primaryGrey,
                       size: iconsSize ?? constraints.maxWidth * 0.064,
                     ),
                     Icon(
                       Icons.link,
-                      color: HexColors.primaryGrey,
+                      color: HexDarkColors.primaryGrey,
                       size: iconsSize ?? constraints.maxWidth * 0.064,
                     ),
                     SelectedButtonWidget(

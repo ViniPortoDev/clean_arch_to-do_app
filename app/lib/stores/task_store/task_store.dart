@@ -2,9 +2,8 @@ import 'package:app/repositories/task_repositories.dart';
 import 'package:design_system/source/themes/my_theme.dart';
 import 'package:flutter/material.dart';
 
-import '../src/models/task_model.dart';
+import '../../src/models/task_model.dart';
 import 'states/task_state.dart';
-
 
 class TaskStore extends ValueNotifier<TaskState> {
   bool mode = true;
@@ -76,7 +75,7 @@ class TaskStore extends ValueNotifier<TaskState> {
   ThemeData switchMode({required bool value}) {
     mode = value;
     if (mode) {
-      return Mytheme.myTheme;
+      return Mytheme.customDarkTheme;
     }
     return ThemeData.light();
   }

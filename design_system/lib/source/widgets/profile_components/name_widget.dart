@@ -8,6 +8,7 @@ class NameWidget extends StatelessWidget {
   final bool isOnline;
   final double? statusWidth;
   final double? statusHeight;
+  final Color? nameColor;
 
   const NameWidget({
     Key? key,
@@ -16,6 +17,7 @@ class NameWidget extends StatelessWidget {
     required this.isOnline,
     this.statusWidth,
     this.statusHeight,
+    this.nameColor,
   }) : super(key: key);
 
   @override
@@ -30,8 +32,8 @@ class NameWidget extends StatelessWidget {
               text: TextSpan(
                 text: name,
                 style: TextStyle(
-                  fontSize:
-                      textSize ?? textStyleTheme.nameMediumStyle.fontSize,
+                  color: nameColor,
+                  fontSize: textSize ?? textStyleTheme.nameMediumStyle.fontSize,
                 ),
               ),
             ),

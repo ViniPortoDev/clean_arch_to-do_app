@@ -7,12 +7,13 @@ class LateralMenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
 
     return LayoutBuilder(
       builder: (context, constraints) {
         return Container(
           width: size.width * 0.179,
-          color: HexColors.black,
+          color: colorsTheme.backgroundLateralMenuColor,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
