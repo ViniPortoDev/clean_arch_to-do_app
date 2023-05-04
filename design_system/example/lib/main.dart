@@ -37,7 +37,7 @@ class WidgetbookHotReload extends StatelessWidget {
       themes: [
         WidgetbookTheme(
           name: 'dark',
-          data: Mytheme.myTheme,
+          data: Mytheme.customDarkTheme,
         ),
       ],
       categories: [
@@ -165,7 +165,7 @@ class WidgetbookHotReload extends StatelessWidget {
                       child: const SelectedButtonWidget(
                         child: Icon(
                           Icons.done,
-                          color: HexColors.black,
+                          color: HexDarkColors.black,
                         ),
                       ),
                     ),
@@ -483,7 +483,7 @@ class WidgetbookHotReload extends StatelessWidget {
                         builder: (context, constraints) {
                           return ProfileSkillsWidget(
                             text: 'Seo',
-                            colors: HexColors.skillsRandomColors1,
+                            colors: HexDarkColors.skillsRandomColors1,
                             borderRadius: constraints.maxWidth * 0.026,
                             padding: EdgeInsets.symmetric(
                               horizontal: constraints.maxWidth * 0.032,

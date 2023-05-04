@@ -33,7 +33,7 @@ class SearchWidget extends StatelessWidget {
               prefixIcon: Icon(
                 Icons.search,
                 size: constraints.maxWidth * 0.09,
-                color: HexColors.grey,
+                color: colorsTheme.primaryColor,
               ),
               border: InputBorder.none,
             ),

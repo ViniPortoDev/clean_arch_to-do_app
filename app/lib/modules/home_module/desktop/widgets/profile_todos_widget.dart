@@ -140,7 +140,9 @@ class _ProfileTodosWidgetState extends State<ProfileTodosWidget> {
           right: 10,
           child: FloatingActionButton(
             backgroundColor: colorsTheme.backgroundSelectedColor,
-            child: const Icon(Icons.add),
+            child: const Icon(
+              Icons.add,
+            ),
             onPressed: () => showModalBottomSheet(
               context: context,
               builder: (context) {

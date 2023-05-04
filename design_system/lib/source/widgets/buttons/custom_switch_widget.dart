@@ -1,7 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
-
 class CustomSwitchWidget extends StatelessWidget {
   final bool value;
   final void Function(bool) onChanged;
@@ -21,12 +20,12 @@ class CustomSwitchWidget extends StatelessWidget {
         if (states.contains(MaterialState.selected)) {
           return const Icon(
             Icons.dark_mode_outlined,
-            color: HexColors.white,
+            color: HexDarkColors.white,
           );
         }
         return const Icon(
           Icons.light_mode_outlined,
-          color: HexColors.black,
+          color: HexDarkColors.black,
         );
       },
     );
@@ -47,37 +46,39 @@ class CustomSwitchWidget extends StatelessWidget {
       },
     );
 
-    return Builder(builder: (context) {
-      return Theme(
-        data: ThemeData(useMaterial3: true),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              width: 55,
-              height: 35,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  width: 2.5,
-                  color: value == true
-                      ? colorsTheme.switchActivateColor
-                      : colorsTheme.inactiveSwitchActivateColor,
+    return Builder(
+      builder: (context) {
+        return Theme(
+          data: ThemeData(useMaterial3: true),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 53,
+                height: 33,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 2.5,
+                    color: value == true
+                        ? colorsTheme.switchActivateColor
+                        : colorsTheme.inactiveSwitchActivateColor,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                borderRadius: BorderRadius.circular(20),
+                child: Switch(
+                  value: value,
+                  trackColor: trackColor,
+                  onChanged: onChanged,
+                  activeColor: colorsTheme.backgroundColor,
+                  inactiveTrackColor: colorsTheme.backgroundColor,
+                  thumbColor: thumbColor,
+                  thumbIcon: thumbIcon,
+                ),
               ),
-              child: Switch(
-                value: value,
-                trackColor: trackColor,
-                onChanged: onChanged,
-                activeColor: colorsTheme.backgroundColor,
-                inactiveTrackColor: colorsTheme.backgroundColor,
-                thumbColor: thumbColor,
-                thumbIcon: thumbIcon,
-              ),
-            ),
-          ],
-        ),
-      );
-    },);
+            ],
+          ),
+        );
+      },
+    );
   }
 }

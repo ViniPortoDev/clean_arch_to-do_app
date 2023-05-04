@@ -6,6 +6,8 @@ class MessagesSent extends StatelessWidget {
   final String name;
   final String timeSent;
   final bool myMessage;
+  final Color? nameColor;
+
 
   final List<Widget> messageList;
 
@@ -16,6 +18,8 @@ class MessagesSent extends StatelessWidget {
     required this.timeSent,
     required this.myMessage,
     required this.messageList,
+     this.nameColor,
+
   }) : super(key: key);
 
   @override
@@ -58,6 +62,7 @@ class MessagesSent extends StatelessWidget {
                         SizedBox(width: constraints.maxWidth * 0.021),
                         NameWidget(
                           name: name,
+                          nameColor:nameColor ,
                           textSize: textStyleTheme.nameAppbarStyle.fontSize,
                           isOnline: false,
                           statusWidth: constraints.maxWidth * 0.026,

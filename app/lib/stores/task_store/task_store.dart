@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../../src/models/task_model.dart';
 import 'states/task_state.dart';
 
-
 class TaskStore extends ValueNotifier<TaskState> {
   bool mode = true;
   final List<TaskModel> _tasks = [];
@@ -76,7 +75,7 @@ class TaskStore extends ValueNotifier<TaskState> {
   ThemeData switchMode({required bool value}) {
     mode = value;
     if (mode) {
-      return Mytheme.myTheme;
+      return Mytheme.customDarkTheme;
     }
     return ThemeData.light();
   }
