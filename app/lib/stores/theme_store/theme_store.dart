@@ -6,13 +6,11 @@ class ThemeStore extends ValueNotifier<ThemeMode> {
 
   void changeTheme() {
     toggle.value = !toggle.value;
-    print(toggle.value);
 
     if (toggle.value == true) {
       value = ThemeMode.dark;
     } else {
       value = ThemeMode.light;
     }
-    print(value);
   }
 }
