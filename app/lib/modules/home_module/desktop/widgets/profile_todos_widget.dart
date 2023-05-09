@@ -18,6 +18,12 @@ class ProfileTodosWidget extends StatefulWidget {
 
 class _ProfileTodosWidgetState extends State<ProfileTodosWidget> {
   @override
+  void initState() {
+    super.initState();
+    widget.taskStore.loadTasks();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
     final size = MediaQuery.of(context).size;
@@ -91,38 +97,33 @@ class _ProfileTodosWidgetState extends State<ProfileTodosWidget> {
                           itemCount: taskList.tasks.length,
                           itemBuilder: (BuildContext context, int index) {
                             final tasks = taskList.tasks[index];
-                            return Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.012,
-                              ),
-                              child: TodoWidget(
-                                title: tasks.title,
-                                description: tasks.description,
-                                isDone: tasks.isDone,
-                                date: widget.taskStore.dateAndTime(tasks.date),
-                                onLongPress: () =>
-                                    widget.taskStore.removeTask(index),
-                                overdueTask:
-                                    widget.taskStore.overdueTask(tasks.date),
-                                taskHeight: size.height * 0.09,
-                                onTap: () {
-                                  if (tasks.isDone == false) {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => CompletedTaskDialog(
-                                        removeTask: () {
-                                          widget.taskStore.removeTask(index);
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                    );
-                                  }
-                                  widget.taskStore.completeTask(
-                                    index: index,
-                                    isDone: tasks.isDone,
+                            return TodoWidget(
+                              title: tasks.title,
+                              description: tasks.description,
+                              isDone: tasks.isDone,
+                              date: widget.taskStore.dateAndTime(tasks.date),
+                              onLongPress: () =>
+                                  widget.taskStore.removeTask(index),
+                              overdueTask:
+                                  widget.taskStore.overdueTask(tasks.date),
+                              taskHeight: size.height * 0.09,
+                              onTap: () {
+                                if (tasks.isDone == false) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => CompletedTaskDialog(
+                                      removeTask: () {
+                                        widget.taskStore.removeTask(index);
+                                        Navigator.pop(context);
+                                      },
+                                    ),
                                   );
-                                },
-                              ),
+                                }
+                                widget.taskStore.completeTask(
+                                  index: index,
+                                  isDone: tasks.isDone,
+                                );
+                              },
                             );
                           },
                         );
