@@ -1,6 +1,6 @@
 class ImagePath {
   static const imageAvatar =
-      'https://m.extra.globo.com/incoming/23560180-ee0-fc1/w480h720-PROP/81865188_re-rio-de-janeiro-rj-27-03-2019-nego-ney-o-menino-de-7-anos-que-tem-viralizado-por-seu.jpg';
+      'https://images.contentstack.io/v3/assets/blt93c07aad6c2c008a/blt6ab7020f915c4bf4/63ea6e951675ce62e3004157/Gragas_0.jpg?width=200&height=200&format=auto&auto=webp';
   static const profileAvatar =
-       'https://feijoadasimulator.top/br/sources/4166.jpeg';
+      'https://images.contentstack.io/v3/assets/blt93c07aad6c2c008a/blt6ab7020f915c4bf4/63ea6e951675ce62e3004157/Gragas_0.jpg?width=200&height=200&format=auto&auto=webp';
 }

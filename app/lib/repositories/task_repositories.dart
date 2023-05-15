@@ -1,23 +1,34 @@
-import 'package:app/src/models/task_model.dart';
+import 'package:app/service/interface_clound_storage.dart';
+
 import 'package:app/utils/preference_keys.dart';
+import '../modules/domain/entities/task_model.dart';
 import '../service/interface_local_storage.dart';
 
 class TaskDataBaseRepository {
-  final ILocalStorageService _storageService;
-  const TaskDataBaseRepository(this._storageService);
+  final ICloundStorageService _cloundStorageService;
+  final ILocalStorageService _localStorageService;
+  TaskDataBaseRepository(
+    this._localStorageService,
+    this._cloundStorageService,
+  );
 
-  Future<bool> saveTask(List<TaskModel> taskList) async {
-    final saved = await _storageService.saveListMap(
-      key: PreferenceKeys.taskList,
-      listMap: taskList.map((e) => e.toMap()).toList(),
+  Future saveTask(TaskModel task) async {
+    await _cloundStorageService.saveDocs(
+      collection: PreferenceKeys.taskList,
+      doc: {
+        'id': task.id,
+        'title': task.title,
+        'description': task.description,
+        'date': task.date,
+        'isDone': task.isDone,
+      },
     );
-    return saved;
   }
 
   Future<List<TaskModel>> loadTasks() async {
     final list = <TaskModel>[];
     final loadedTasks =
-        await _storageService.getListMap(PreferenceKeys.taskList);
+        await _localStorageService.getListMap(PreferenceKeys.taskList);
 
     for (final i in loadedTasks) {
       final task = TaskModel.fromMap(i);

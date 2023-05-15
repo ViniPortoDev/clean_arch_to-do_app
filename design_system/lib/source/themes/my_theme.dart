@@ -25,6 +25,7 @@ class Mytheme {
         badgeUnselectedColor: HexLightColors.unselectedDarkGrey,
         iconsWhiteColor: HexLightColors.lightPink,
         iconsColor: HexLightColors.black,
+        blackAndWhiteColor: HexLightColors.black,
         profileSkilltextColor: HexLightColors.backgroundChatColor,
         onlineColor: HexLightColors.greenLemon,
         terciaryGrey: HexLightColors.pink,
@@ -112,8 +113,10 @@ class Mytheme {
           color: HexDarkColors.white,
           fontSize: 16,
         ),
-        todoTitleStyle:
-            const TextStyle(fontSize: 18, color: HexLightColors.black),
+        todoTitleStyle: const TextStyle(
+          fontSize: 18,
+          color: HexLightColors.black,
+        ),
         todoDescriptionStyle: const TextStyle(
           fontSize: 16,
           color: HexDarkColors.primaryGrey,
@@ -147,6 +150,7 @@ class Mytheme {
         iconsColor: HexDarkColors.primaryGrey,
         profileSkilltextColor: HexDarkColors.pink,
         onlineColor: HexDarkColors.greenLemon,
+        blackAndWhiteColor: HexLightColors.white,
         terciaryGrey: HexDarkColors.terciaryGrey,
         profileIconsAvaliableColor: HexDarkColors.profileAvaliablePurple,
         profileIconsUnvaliableColor: HexDarkColors.profileUnvaliablePurple,
@@ -195,9 +199,8 @@ class Mytheme {
           fontSize: 12,
           color: HexDarkColors.primaryGrey,
         ),
-        nameAppbarStyle: const TextStyle(
-          fontSize: 14,
-        ),
+        nameAppbarStyle:
+            const TextStyle(fontSize: 14, color: HexLightColors.white),
         nameSmallStyle: const TextStyle(
           fontSize: 16,
         ),
@@ -233,6 +236,7 @@ class Mytheme {
         ),
         todoTitleStyle: const TextStyle(
           fontSize: 18,
+          color: HexLightColors.white,
         ),
         todoDescriptionStyle: const TextStyle(
           fontSize: 16,

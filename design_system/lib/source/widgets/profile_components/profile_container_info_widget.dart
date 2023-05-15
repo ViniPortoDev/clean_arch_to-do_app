@@ -1,3 +1,4 @@
+import 'package:design_system/source/utils/hex_light_colors.dart';
 import 'package:design_system/source/widgets/profile_components/profile_skills_widget.dart';
 import 'package:flutter/material.dart';
 import '../../themes/extensions/colors_theme.dart';
@@ -58,6 +59,7 @@ class ProfileContainerInfoWidget extends StatelessWidget {
                     children: [
                       NameWidget(
                         name: name,
+                        nameColor: HexLightColors.white,
                         isOnline: true,
                         statusHeight: constraints.maxWidth * 0.026,
                         statusWidth: constraints.maxWidth * 0.026,

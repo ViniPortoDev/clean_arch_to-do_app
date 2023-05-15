@@ -1,4 +1,4 @@
-import 'package:app/src/mocks/chat_filter_mock.dart';
+
 import 'package:app/utils/image_path.dart';
 import 'package:app/utils/routes.dart';
 import 'package:app/utils/user_name.dart';
@@ -9,6 +9,8 @@ import 'package:design_system/source/widgets/chat_components/list_tile_widget.da
 import 'package:design_system/source/widgets/navigatorbar/navigator_widget.dart';
 import 'package:design_system/source/widgets/text_fields/search_widget.dart';
 import 'package:flutter/material.dart';
+
+import 'mocks/chat_filter_mock.dart';
 
 class HomePageMobile extends StatefulWidget {
   const HomePageMobile({Key? key}) : super(key: key);

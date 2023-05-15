@@ -45,6 +45,7 @@ class AppbarDesktopWidget extends StatelessWidget {
               SizedBox(width: size.width * 0.01),
               NameWidget(
                 name: name,
+                nameColor: HexColors.white,
                 isOnline: false,
                 textSize: textStyleTheme.nameAppbarStyle.fontSize,
               )
@@ -64,8 +65,14 @@ class AppbarDesktopWidget extends StatelessWidget {
                   ),
                   child: const Text('Agree to Offer'),
                 ),
-                const Icon(Icons.calendar_today),
-                const Icon(LineIcons.calculator),
+                const Icon(
+                  Icons.calendar_today,
+                  color: HexColors.white,
+                ),
+                const Icon(
+                  LineIcons.calculator,
+                  color: HexColors.white,
+                ),
               ],
             ),
           ),

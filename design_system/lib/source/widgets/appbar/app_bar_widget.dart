@@ -1,3 +1,4 @@
+import 'package:design_system/source/utils/hex_light_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import '../../themes/extensions/colors_theme.dart';
@@ -36,7 +37,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSize {
           title: NameWidget(
             name: name,
             isOnline: false,
-            textSize: textStyleTheme.nameAppbarStyle.fontSize,
           ),
           actions: [
             Container(

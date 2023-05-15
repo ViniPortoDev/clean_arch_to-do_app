@@ -8,7 +8,7 @@ class ColorsTheme extends ThemeExtension<ColorsTheme> {
   final Color secundaryColor;
   final Color terciaryColor;
   final Color backgroundLateralMenuColor;
-
+  final Color blackAndWhiteColor;
   final Color textBadgeSelectedColor;
   final Color backgroundInfoColor;
   final Color backgroundSelectedColor;
@@ -35,6 +35,8 @@ class ColorsTheme extends ThemeExtension<ColorsTheme> {
     required this.terciaryColor,
     required this.backgroundLateralMenuColor,
     required this.textBadgeSelectedColor,
+    required this.blackAndWhiteColor,
+
     required this.backgroundInfoColor,
     required this.backgroundSelectedColor,
     required this.blackColor,

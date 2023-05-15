@@ -2,7 +2,8 @@ import 'package:app/repositories/task_repositories.dart';
 import 'package:design_system/source/themes/my_theme.dart';
 import 'package:flutter/material.dart';
 
-import '../../src/models/task_model.dart';
+
+import '../../modules/domain/entities/task_model.dart';
 import 'states/task_state.dart';
 
 class TaskStore extends ValueNotifier<TaskState> {
@@ -10,6 +11,7 @@ class TaskStore extends ValueNotifier<TaskState> {
   final List<TaskModel> _tasks = [];
   final TaskDataBaseRepository _taskRepository;
   TaskStore(this._taskRepository) : super(TaskInitialState());
+
 
   Future loadTasks() async {
     value = TaskLoadingState();
@@ -27,8 +29,8 @@ class TaskStore extends ValueNotifier<TaskState> {
 
   Future<void> addTask(TaskModel task) async {
     _tasks.add(task);
-    final orderedTaskList = _sortList(_tasks);
-    await _taskRepository.saveTask(orderedTaskList);
+    _sortList(_tasks);
+    await _taskRepository.saveTask(task);
     value = TaskSucessState(_tasks);
   }
 
@@ -39,13 +41,13 @@ class TaskStore extends ValueNotifier<TaskState> {
     final status = !isDone;
     final taskModel = _tasks[index].copyWith(isDone: status);
     _tasks[index] = taskModel;
-    await _taskRepository.saveTask(_tasks);
+    await _taskRepository.saveTask(taskModel);
     value = TaskSucessState(_tasks);
   }
 
   Future<void> removeTask(int index) async {
     _tasks.removeAt(index);
-    await _taskRepository.saveTask(_tasks);
+    // await _taskRepository.saveTask(_tasks);
     value = TaskSucessState(_tasks);
   }
 

@@ -1,14 +1,11 @@
-
 import 'package:app/modules/info_module/widgets/task_error_dialog.dart';
-import 'package:app/src/models/task_model.dart';
 import 'package:flutter/material.dart';
 import '../../../stores/task_store/task_store.dart';
-
+import '../../domain/entities/task_model.dart';
 
 
 class NewTaskWidget extends StatefulWidget {
   final TaskStore taskStore;
-  
 
   const NewTaskWidget({
     Key? key,

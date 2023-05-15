@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 
-import '../models/chat_filter_model.dart';
+import '../../../domain/entities/chat_filter_model.dart';
+
+
+
+
 
 class ChatFilterMock {
   List<ChatFilterModel> chatFilter = [
