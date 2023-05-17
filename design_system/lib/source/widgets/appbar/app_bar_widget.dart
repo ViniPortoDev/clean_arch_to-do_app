@@ -1,8 +1,6 @@
-import 'package:design_system/source/utils/hex_light_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import '../../themes/extensions/colors_theme.dart';
-import '../../themes/extensions/text_style_theme.dart';
 import '../profile_components/name_widget.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSize {
@@ -20,7 +18,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSize {
   @override
   Widget build(BuildContext context) {
     final colorsTheme = Theme.of(context).extension<ColorsTheme>()!;
-    final textStyleTheme = Theme.of(context).extension<TextStyleTheme>()!;
     return LayoutBuilder(
       builder: (context, constraints) {
         return AppBar(

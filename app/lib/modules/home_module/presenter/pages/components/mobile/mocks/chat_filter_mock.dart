@@ -1,33 +1,35 @@
+import 'package:app/modules/home_module/domain/entities/chat_filter_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 
-import '../../../domain/entities/chat_filter_model.dart';
+
+
 
 
 
 
 
 class ChatFilterMock {
-  List<ChatFilterModel> chatFilter = [
-    const ChatFilterModel(
+  List<ChatFilterEntity> chatFilter = [
+    const ChatFilterEntity(
       chatIcons: ChatIcons.allIbox,
       textTypeChat: 'All',
       numberMessage: '35',
       isSelected: true,
     ),
-    const ChatFilterModel(
+    const ChatFilterEntity(
       chatIcons: ChatIcons.inbox,
       textTypeChat: 'Live Chat',
       numberMessage: '2',
     ),
-    const ChatFilterModel(
+    const ChatFilterEntity(
       chatIcons: ChatIcons.bookmark,
       textTypeChat: 'Live Chat',
       numberMessage: '6',
     ),
   ];
 
-       IconData getIcon(ChatFilterModel chatIcons) {
+       IconData getIcon(ChatFilterEntity chatIcons) {
     switch (chatIcons.chatIcons) {
       case ChatIcons.allIbox:
         return LineIcons.comments;

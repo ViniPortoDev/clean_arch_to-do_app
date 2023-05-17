@@ -1,14 +1,12 @@
 import 'package:app/repositories/task_repositories.dart';
 import 'package:design_system/source/themes/my_theme.dart';
 import 'package:flutter/material.dart';
-
-
-import '../../modules/domain/entities/task_model.dart';
+import '../../modules/home_module/domain/entities/task_entity.dart';
 import 'states/task_state.dart';
 
 class TaskStore extends ValueNotifier<TaskState> {
   bool mode = true;
-  final List<TaskModel> _tasks = [];
+  final List<TaskEntity> _tasks = [];
   final TaskDataBaseRepository _taskRepository;
   TaskStore(this._taskRepository) : super(TaskInitialState());
 
@@ -27,7 +25,7 @@ class TaskStore extends ValueNotifier<TaskState> {
     }
   }
 
-  Future<void> addTask(TaskModel task) async {
+  Future<void> addTask(TaskEntity task) async {
     _tasks.add(task);
     _sortList(_tasks);
     await _taskRepository.saveTask(task);
@@ -51,9 +49,9 @@ class TaskStore extends ValueNotifier<TaskState> {
     value = TaskSucessState(_tasks);
   }
 
-  List<TaskModel> _sortList(List<TaskModel> list) {
+  List<TaskEntity> _sortList(List<TaskEntity> list) {
     if (list.length >= 2) {
-      list.sort((TaskModel a, TaskModel b) {
+      list.sort((TaskEntity a, TaskEntity b) {
         return a.date.compareTo(b.date);
       });
       return list;

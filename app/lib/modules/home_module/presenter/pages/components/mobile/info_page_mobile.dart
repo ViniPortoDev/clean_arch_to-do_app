@@ -1,24 +1,23 @@
-
-import 'package:app/modules/info_module/widgets/completed_task_dialog.dart';
-import 'package:app/modules/info_module/widgets/new_task_widget.dart';
+import 'package:app/modules/home_module/presenter/pages/components/mobile/widgets/completed_task_dialog.dart';
+import 'package:app/modules/home_module/presenter/pages/components/mobile/widgets/new_task_widget.dart';
 import 'package:app/utils/image_path.dart';
 import 'package:design_system/source/themes/extensions/colors_theme.dart';
 import 'package:design_system/source/widgets/profile_components/profile_container_info_widget.dart';
 import 'package:design_system/source/widgets/task/todo_widget.dart';
 import 'package:flutter/material.dart';
-import '../../stores/task_store/states/task_state.dart';
-import '../../stores/task_store/task_store.dart';
+import '../../../../../../stores/task_store/states/task_state.dart';
+import '../../../../../../stores/task_store/task_store.dart';
 
-
-class InfoPageMobile extends StatefulWidget {
+class ProfileMobilePage extends StatefulWidget {
   final TaskStore taskStore;
-  const InfoPageMobile({Key? key, required this.taskStore}) : super(key: key);
+  const ProfileMobilePage({Key? key, required this.taskStore})
+      : super(key: key);
 
   @override
-  State<InfoPageMobile> createState() => _InfoPageMobileState();
+  State<ProfileMobilePage> createState() => _ProfileMobilePageState();
 }
 
-class _InfoPageMobileState extends State<InfoPageMobile> {
+class _ProfileMobilePageState extends State<ProfileMobilePage> {
   @override
   void initState() {
     super.initState();

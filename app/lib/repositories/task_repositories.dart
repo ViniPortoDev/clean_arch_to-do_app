@@ -1,7 +1,6 @@
+import 'package:app/modules/home_module/domain/entities/task_entity.dart';
 import 'package:app/service/interface_clound_storage.dart';
-
 import 'package:app/utils/preference_keys.dart';
-import '../modules/domain/entities/task_model.dart';
 import '../service/interface_local_storage.dart';
 
 class TaskDataBaseRepository {
@@ -12,7 +11,7 @@ class TaskDataBaseRepository {
     this._cloundStorageService,
   );
 
-  Future saveTask(TaskModel task) async {
+  Future saveTask(TaskEntity task) async {
     await _cloundStorageService.saveDocs(
       collection: PreferenceKeys.taskList,
       doc: {
@@ -25,13 +24,13 @@ class TaskDataBaseRepository {
     );
   }
 
-  Future<List<TaskModel>> loadTasks() async {
-    final list = <TaskModel>[];
+  Future<List<TaskEntity>> loadTasks() async {
+    final list = <TaskEntity>[];
     final loadedTasks =
         await _localStorageService.getListMap(PreferenceKeys.taskList);
 
     for (final i in loadedTasks) {
-      final task = TaskModel.fromMap(i);
+      final task = TaskEntity.fromMap(i);
       list.add(task);
     }
     return list;

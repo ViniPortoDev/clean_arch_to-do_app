@@ -1,11 +1,13 @@
-import '../../../modules/domain/entities/task_model.dart';
+
+
+import '../../../modules/home_module/domain/entities/task_entity.dart';
 
 abstract class TaskState {
   const TaskState();
 }
 
 class TaskSucessState extends TaskState {
-  final List<TaskModel> tasks;
+  final List<TaskEntity> tasks;
   const TaskSucessState(this.tasks);
 }
 

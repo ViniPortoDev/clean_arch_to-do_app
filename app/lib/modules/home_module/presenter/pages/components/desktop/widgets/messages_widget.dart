@@ -2,10 +2,10 @@ import 'package:design_system/source/widgets/chat_components/expansion_chats_wid
 import 'package:design_system/source/widgets/chat_components/list_tile_widget.dart';
 import 'package:design_system/source/widgets/text_fields/search_widget.dart';
 import 'package:flutter/material.dart';
+import '../../../../../../../utils/image_path.dart';
+import '../../../../../../../utils/routes.dart';
+import '../../../../../../../utils/user_name.dart';
 
-import '../../../../utils/image_path.dart';
-import '../../../../utils/routes.dart';
-import '../../../../utils/user_name.dart';
 
 class MessagesWidget extends StatelessWidget {
   const MessagesWidget({Key? key}) : super(key: key);

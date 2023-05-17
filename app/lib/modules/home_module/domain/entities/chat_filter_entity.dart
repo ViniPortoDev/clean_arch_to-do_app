@@ -1,11 +1,11 @@
 enum ChatIcons { inbox, allIbox, bookmark }
 
-class ChatFilterModel {
+class ChatFilterEntity {
   final ChatIcons chatIcons;
   final String textTypeChat;
   final String numberMessage;
   final bool isSelected;
-  const ChatFilterModel({
+  const ChatFilterEntity({
     required this.chatIcons,
     required this.textTypeChat,
     required this.numberMessage,

@@ -1,4 +1,3 @@
-
 import 'package:app/utils/image_path.dart';
 import 'package:app/utils/routes.dart';
 import 'package:app/utils/user_name.dart';
@@ -143,7 +142,7 @@ class _HomePageMobileState extends State<HomePageMobile> {
         ),
       ),
       bottomNavigationBar: BottomNavigationWidget(
-        onPressed: () => Navigator.pushNamed(context, Routes.infoPage),
+        onPressed: () => Navigator.pushNamed(context, Routes.profilePage),
       ),
     );
   }

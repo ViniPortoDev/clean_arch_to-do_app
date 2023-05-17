@@ -1,7 +1,8 @@
-import 'package:app/modules/info_module/widgets/task_error_dialog.dart';
+import 'package:app/modules/home_module/domain/entities/task_entity.dart';
+import 'package:app/modules/home_module/presenter/pages/components/mobile/widgets/task_error_dialog.dart';
 import 'package:flutter/material.dart';
-import '../../../stores/task_store/task_store.dart';
-import '../../domain/entities/task_model.dart';
+import '../../../../../../../stores/task_store/task_store.dart';
+
 
 
 class NewTaskWidget extends StatefulWidget {
@@ -145,7 +146,7 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                         ),
                       );
                       widget.taskStore.addTask(
-                        TaskModel(
+                        TaskEntity(
                           title: titleTaskController.text,
                           description: descriptionTaskController.text,
                           date: dateTime,
