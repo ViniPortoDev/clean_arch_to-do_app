@@ -1,35 +1,40 @@
-import 'package:app/repositories/task_repositories.dart';
-import 'package:design_system/source/themes/my_theme.dart';
+import 'package:app/modules/home_module/domain/usecases/get_task_list_usecase.dart';
+import 'package:app/modules/home_module/domain/usecases/task_completed_usecase.dart';
 import 'package:flutter/material.dart';
-import '../../modules/home_module/domain/entities/task_entity.dart';
+import '../../../domain/usecases/add_task_usecase.dart';
+import '../../../infra/models/task_model.dart';
 import 'states/task_state.dart';
 
 class TaskStore extends ValueNotifier<TaskState> {
-  bool mode = true;
-  final List<TaskEntity> _tasks = [];
-  final TaskDataBaseRepository _taskRepository;
-  TaskStore(this._taskRepository) : super(TaskInitialState());
+  final IAddTaskUsecase _addTaskUsecase;
+  final GetTaskListUsecase _getTaskListUsecase;
+  final TaskCompletedUsecase _taskCompletedUsecase;
+  final List<TaskModel> _tasks = [];
 
+  TaskStore(
+    this._addTaskUsecase,
+    this._getTaskListUsecase,
+    this._taskCompletedUsecase,
+  ) : super(TaskInitialState());
+
+  Future<void> addTask(TaskModel task) async {
+    await _addTaskUsecase(task);
+    _sortList(_tasks);
+
+    value = TaskSucessState(_tasks);
+  }
 
   Future loadTasks() async {
     value = TaskLoadingState();
     await Future.delayed(const Duration(seconds: 1));
     try {
       _tasks.clear();
-      final loadedTasks = await _taskRepository.loadTasks();
-
-      _tasks.addAll(loadedTasks);
-      value = TaskSucessState(loadedTasks);
+      final taskList = _getTaskListUsecase;
+      _tasks.addAll(taskList);
+      value = TaskSucessState(taskList);
     } catch (e) {
       value = TaskErrorState(e.toString());
     }
-  }
-
-  Future<void> addTask(TaskEntity task) async {
-    _tasks.add(task);
-    _sortList(_tasks);
-    await _taskRepository.saveTask(task);
-    value = TaskSucessState(_tasks);
   }
 
   Future<void> completeTask({
@@ -39,7 +44,7 @@ class TaskStore extends ValueNotifier<TaskState> {
     final status = !isDone;
     final taskModel = _tasks[index].copyWith(isDone: status);
     _tasks[index] = taskModel;
-    await _taskRepository.saveTask(taskModel);
+
     value = TaskSucessState(_tasks);
   }
 
@@ -49,9 +54,9 @@ class TaskStore extends ValueNotifier<TaskState> {
     value = TaskSucessState(_tasks);
   }
 
-  List<TaskEntity> _sortList(List<TaskEntity> list) {
+  List<TaskModel> _sortList(List<TaskModel> list) {
     if (list.length >= 2) {
-      list.sort((TaskEntity a, TaskEntity b) {
+      list.sort((TaskModel a, TaskModel b) {
         return a.date.compareTo(b.date);
       });
       return list;
@@ -70,13 +75,5 @@ class TaskStore extends ValueNotifier<TaskState> {
     final dateAndTime =
         '${date.day}/${date.month}/${date.year}\n${date.hour}:${date.minute}';
     return dateAndTime;
-  }
-
-  ThemeData switchMode({required bool value}) {
-    mode = value;
-    if (mode) {
-      return Mytheme.customDarkTheme;
-    }
-    return ThemeData.light();
   }
 }

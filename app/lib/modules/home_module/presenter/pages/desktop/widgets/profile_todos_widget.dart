@@ -1,8 +1,8 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../../stores/task_store/states/task_state.dart';
-import '../../../../../../../stores/task_store/task_store.dart';
+import '../../../stores/task_store/states/task_state.dart';
+import '../../../stores/task_store/task_store.dart';
 import '../../../../../../../utils/image_path.dart';
 import '../../mobile/widgets/completed_task_dialog.dart';
 import '../../mobile/widgets/new_task_widget.dart';

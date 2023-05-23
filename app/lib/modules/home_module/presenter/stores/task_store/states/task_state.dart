@@ -1,6 +1,6 @@
 
 
-import '../../../modules/home_module/domain/entities/task_entity.dart';
+import '../../../../domain/entities/task_entity.dart';
 
 abstract class TaskState {
   const TaskState();
