@@ -83,20 +83,17 @@ class _ProfileMobilePageState extends State<ProfileMobilePage> {
                             description: tasks.description,
                             isDone: tasks.isDone,
                             date: widget.taskStore.dateAndTime(tasks.date),
-                            onLongPress: () =>
-                                widget.taskStore.removeTask(index),
                             overdueTask:
                                 widget.taskStore.overdueTask(tasks.date),
                             onTap: () {
                               if (tasks.isDone == false) {
                                 showDialog(
                                   context: context,
-                                  builder: (context) => CompletedTaskDialog(
-                                    removeTask: () {
-                                      widget.taskStore.removeTask(index);
-                                      Navigator.pop(context);
-                                    },
-                                  ),
+                                  builder: (context) =>
+                                       CompletedTaskDialog( removeTask: () {
+                                     
+                                        Navigator.pop(context);
+                                      },),
                                 );
                               }
                               widget.taskStore.completeTask(

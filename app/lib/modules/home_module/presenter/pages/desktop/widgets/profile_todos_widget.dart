@@ -1,9 +1,7 @@
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
-
+import 'package:flutter/material.dart';import '../../../../../../../utils/image_path.dart';
 import '../../../stores/task_store/states/task_state.dart';
 import '../../../stores/task_store/task_store.dart';
-import '../../../../../../../utils/image_path.dart';
 import '../../mobile/widgets/completed_task_dialog.dart';
 import '../../mobile/widgets/new_task_widget.dart';
 
@@ -104,8 +102,7 @@ class _ProfileTodosWidgetState extends State<ProfileTodosWidget> {
                               description: tasks.description,
                               isDone: tasks.isDone,
                               date: widget.taskStore.dateAndTime(tasks.date),
-                              onLongPress: () =>
-                                  widget.taskStore.removeTask(index),
+                            
                               overdueTask:
                                   widget.taskStore.overdueTask(tasks.date),
                               taskHeight: size.height * 0.09,
@@ -115,7 +112,7 @@ class _ProfileTodosWidgetState extends State<ProfileTodosWidget> {
                                     context: context,
                                     builder: (context) => CompletedTaskDialog(
                                       removeTask: () {
-                                        widget.taskStore.removeTask(index);
+                                     
                                         Navigator.pop(context);
                                       },
                                     ),

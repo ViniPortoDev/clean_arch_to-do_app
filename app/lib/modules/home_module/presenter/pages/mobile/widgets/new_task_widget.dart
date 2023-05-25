@@ -1,8 +1,7 @@
-
 import 'package:app/modules/home_module/presenter/pages/mobile/widgets/task_error_dialog.dart';
 import 'package:flutter/material.dart';
-import '../../../stores/task_store/task_store.dart';
 import '../../../../infra/models/task_model.dart';
+import '../../../stores/task_store/task_store.dart';
 
 
 

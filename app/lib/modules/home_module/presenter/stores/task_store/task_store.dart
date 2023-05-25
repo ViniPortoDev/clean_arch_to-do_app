@@ -28,10 +28,13 @@ class TaskStore extends ValueNotifier<TaskState> {
     value = TaskLoadingState();
     await Future.delayed(const Duration(seconds: 1));
     try {
-      _tasks.clear();
-      final taskList = _getTaskListUsecase;
-      _tasks.addAll(taskList);
-      value = TaskSucessState(taskList);
+      final eitherTasksList = await _getTaskListUsecase.call();
+      eitherTasksList.fold(
+        (l) => l,
+        (r) => _tasks.addAll(r as Iterable<TaskModel>),
+      );
+      _sortList(_tasks);
+      value = TaskSucessState(_tasks);
     } catch (e) {
       value = TaskErrorState(e.toString());
     }
@@ -44,16 +47,10 @@ class TaskStore extends ValueNotifier<TaskState> {
     final status = !isDone;
     final taskModel = _tasks[index].copyWith(isDone: status);
     _tasks[index] = taskModel;
-
+    await _taskCompletedUsecase(isDone: isDone);
     value = TaskSucessState(_tasks);
   }
-
-  Future<void> removeTask(int index) async {
-    _tasks.removeAt(index);
-    // await _taskRepository.saveTask(_tasks);
-    value = TaskSucessState(_tasks);
-  }
-
+  
   List<TaskModel> _sortList(List<TaskModel> list) {
     if (list.length >= 2) {
       list.sort((TaskModel a, TaskModel b) {

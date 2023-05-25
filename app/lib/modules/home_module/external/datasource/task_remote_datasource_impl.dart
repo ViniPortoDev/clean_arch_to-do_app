@@ -1,10 +1,9 @@
 import 'package:app/modules/home_module/domain/entities/task_entity.dart';
 import 'package:app/modules/home_module/infra/datasource/task_remote_datasource.dart';
-
-import '../service/firestore_service.dart';
+import '../service/remote_storage_service.dart';
 
 class RemoteDatasourceImpl implements ITaskRemoteDatasource {
-  final FirestoreStorageService service;
+  final IRemoteStorageService service;
   const RemoteDatasourceImpl(this.service);
   @override
   Future<void> addTask(TaskEntity task) async {

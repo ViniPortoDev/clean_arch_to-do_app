@@ -14,6 +14,7 @@ class GetTaskListUsecase implements IGetListTaskUsecase {
 
   @override
   Future<Either<DomainExeption, List<TaskEntity>>> call() async {
+    
     return _repository.getTaskList();
   }
 }

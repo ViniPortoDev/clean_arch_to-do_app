@@ -10,7 +10,7 @@ class TaskRepositoryMock extends Mock implements ITaskRepository {}
 
 void main() {
   final _repository = TaskRepositoryMock();
-  final usecase = IAddTaskUsecase(_repository);
+  final usecase = AddTaskUsecase(_repository);
 
   final task = TaskEntity(
     title: 'title',
