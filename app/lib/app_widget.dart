@@ -1,4 +1,4 @@
-import 'package:app/stores/theme_store/theme_store.dart';
+import 'package:app/modules/home_module/presenter/stores/theme_store/theme_store.dart';
 import 'package:design_system/source/themes/my_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';

@@ -1,5 +1,5 @@
 class Routes {
   static const home = '/';
-  static const infoPage = '/infoPage';
+  static const profilePage = '/profilePage';
   static const chatPage = '/chatPage';
 }

@@ -44,6 +44,10 @@ dependencies:
   flutter_modular: ^5.0.3
   firebase_analytics: ^10.3.0
   firebase_core: ^2.11.0
+  cloud_firestore: ^4.6.0
+  fpdart: ^0.6.0
+  mocktail: ^0.3.0
+
 
 dev_dependencies:
   flutter_test:
